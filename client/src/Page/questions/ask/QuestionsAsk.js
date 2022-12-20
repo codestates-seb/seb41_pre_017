@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Advice from './component/Advice';
+import AdviceData from './component/AdviceData';
 import AskHeader from './component/AskHeader';
 import TitleInput from './component/TitleInput';
 import Buttons from './component/Buttons';
@@ -22,6 +22,10 @@ const Wrapper = styled.div`
     a {
         color: var(--theme-link-text);
     }
+
+    .adviceBox {
+        background-color: black;
+    }
 `
 
 const QuestionsAsk = () => {
@@ -30,13 +34,13 @@ const QuestionsAsk = () => {
             <VirtualNav />
             <Wrapper>
                 <AskHeader />
-                <Advice />
+                <div className='adviceBox'>{AdviceData[0]}</div>
                 <TitleInput />
-                <Advice />
+                <div className='adviceBox'>{AdviceData[1]}</div>
                 <ProblemInput />
-                <Advice />
+                <div className='adviceBox'>{AdviceData[2]}</div>
                 <ExpectingInput />
-                <Advice />
+                <div className='adviceBox'>{AdviceData[3]}</div>
                 <TagBox />
                 <Buttons />
             </Wrapper>
