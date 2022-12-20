@@ -1,4 +1,4 @@
-package stackoverflow.domain.comment;
+package stackoverflow.domain.comment.dto;
 
 import lombok.Getter;
 
@@ -6,13 +6,13 @@ import javax.validation.constraints.NotBlank;
 
 public class CommentRequestDto {
     @Getter
-    static class Post {
+    public static class Post {
         @NotBlank(message = "내용을 입력해주세요.")
         private String content;
     }
 
     @Getter
-    static class Patch {
+    public static class Patch {
         private Long commentId;
 
         @NotBlank(message = "내용을 입력해주세요.")

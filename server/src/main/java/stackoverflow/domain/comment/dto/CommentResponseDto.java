@@ -1,4 +1,4 @@
-package stackoverflow.domain.comment;
+package stackoverflow.domain.comment.dto;
 
 import lombok.Getter;
 import lombok.Setter;

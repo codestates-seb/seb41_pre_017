@@ -1,6 +1,9 @@
-package stackoverflow.domain.comment;
+package stackoverflow.domain.comment.mapper;
 
 import org.mapstruct.Mapper;
+import stackoverflow.domain.comment.entity.Comment;
+import stackoverflow.domain.comment.dto.CommentRequestDto;
+import stackoverflow.domain.comment.dto.CommentResponseDto;
 
 import java.util.List;
 

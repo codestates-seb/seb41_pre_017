@@ -1,8 +1,10 @@
-package stackoverflow.domain.comment;
+package stackoverflow.domain.comment.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import stackoverflow.domain.comment.entity.Comment;
+import stackoverflow.domain.comment.repository.CommentRepository;
 
 import java.util.List;
 import java.util.Optional;

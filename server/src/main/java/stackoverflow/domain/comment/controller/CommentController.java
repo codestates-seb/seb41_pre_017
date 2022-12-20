@@ -1,9 +1,14 @@
-package stackoverflow.domain.comment;
+package stackoverflow.domain.comment.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import stackoverflow.domain.comment.entity.Comment;
+import stackoverflow.domain.comment.dto.CommentRequestDto;
+import stackoverflow.domain.comment.dto.CommentResponseDto;
+import stackoverflow.domain.comment.mapper.CommentMapper;
+import stackoverflow.domain.comment.service.CommentService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;

@@ -1,4 +1,4 @@
-package stackoverflow.domain.comment;
+package stackoverflow.domain.comment.entity;
 
 import lombok.Data;
 
