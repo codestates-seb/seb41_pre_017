@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import BlueBtn from '../component/bluebtn';
+
 const Container = styled.div`
     position: fixed;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
@@ -23,8 +25,7 @@ const StyledHeader = styled.header`
 
 const Logo = styled.img`
     height: 30px;
-    margin: 0px 20px 0 50px;
-    padding: 10px;
+    padding-top: 10px;
 `;
 
 const SearchInput = styled.input`
@@ -38,6 +39,12 @@ const SearchInput = styled.input`
 const ProfileLink = styled(Link)`
     text-decoration: none;
     margin-right: 10px;
+`;
+
+const StyledBtn = styled.button`
+    height: 55px;
+    padding-left: 10px;
+    padding-right: 10px;
     :hover {
         background: var(--theme-button-hover-background-color);
         color: var(--theme-button-hover-color);
@@ -49,16 +56,7 @@ const StyledLink = styled(Link)`
         background: var(--theme-button-hover-background-color);
         color: var(--theme-button-hover-color);
     }
-`;
-
-const StyledBtn = styled.button`
     height: 55px;
-    padding-left: 10px;
-    padding-right: 10px;
-    :hover {
-        background: var(--theme-button-hover-background-color);
-        color: var(--theme-button-hover-color);
-    }
 `;
 
 const Links = styled.ul`
@@ -90,7 +88,7 @@ function Header() {
     return (
         <Container>
             <StyledHeader>
-                <StyledLink to="/">
+                <StyledLink className="blue_button_hover" to="/">
                     <Logo src="img/logo.svg"></Logo>
                 </StyledLink>
 
@@ -98,11 +96,13 @@ function Header() {
                 <SearchInput type="text" placeholder="  Search..." />
                 <Links>
                     <li>
-                        <ProfileLink to="/users/login">login</ProfileLink>
+                        <ProfileLink to="/users/login">
+                            <BlueBtn>login</BlueBtn>
+                        </ProfileLink>
                     </li>
                     <li>
                         <ProfileLink to="/" className="profile">
-                            Link
+                            <BlueBtn>SingIn</BlueBtn>
                         </ProfileLink>
                     </li>
                 </Links>
