@@ -1,14 +1,16 @@
 * {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  color: rgb(35 38 41);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: rgb(35 38 41);
 }
 
 :root {
-  /* 어디서나 읽을 수 있도록 함 */
-  --theme-Orange: #f48225;
-  --theme-searchBar-border: rgb(186 191 196);
-  --theme-link-text: rgb(0 116 204);
-  --theme-border: rgb(193, 195, 197);
+    /* 어디서나 읽을 수 있도록 함 */
+    --theme-Orange: #f48225;
+    --theme-searchBar-border: rgb(186 191 196);
+    --theme-link-text: rgb(0 116 204);
+    --theme-border: rgb(193, 195, 197);
+    --theme-button-hover-color: rgb(0 99 191);
+    --theme-button-hover-background-color: rgb(213, 229, 241);
 }
