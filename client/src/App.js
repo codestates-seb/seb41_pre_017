@@ -4,9 +4,8 @@ import Login from './Page/users/login';
 import SignUp from './Page/users/SignUp';
 import SingleQuestion from './Page/questions/qusetion-detail/index';
 import Questions from './Page/questions';
-import AskModiView from './Page/questions/qusetion-detail/AskModiView';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import QuestionAsk from './Page/questions/ask/QuestionAsk';
 
 function App() {
     return (
@@ -15,7 +14,7 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/questions/ask" element={<AskModiView />} />
+                    <Route path="/questions/ask" element={<QuestionAsk />} />
                     <Route path="/questions" element={<Questions />} />
                     <Route path="/questions/1" element={<SingleQuestion />} /> {/*테스트를 위해 임의로 하드코딩된 SingleQuestion로 이동  */}
                     <Route path="/users/login" element={<Login />} />
