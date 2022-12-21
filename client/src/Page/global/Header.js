@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BlueBtn from '../component/blueBtn';
+import { ReactComponent as Logo } from '../../Img/logo.svg';
 
 const Container = styled.div`
     position: fixed;
@@ -23,8 +24,9 @@ const StyledHeader = styled.header`
     height: 100%;
 `;
 
-const Logo = styled.img`
+const StyledLogo = styled(Logo)`
     height: 30px;
+    width: 150px;
     padding-top: 10px;
 `;
 
@@ -89,7 +91,7 @@ function Header() {
         <Container>
             <StyledHeader>
                 <StyledLink className="blue_button_hover" to="/">
-                    <Logo src="img/logo.svg"></Logo>
+                    <StyledLogo></StyledLogo>
                 </StyledLink>
 
                 <StyledBtn>Products</StyledBtn>
