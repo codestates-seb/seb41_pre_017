@@ -1,9 +1,11 @@
-import Btn from "./Btn";
 import styled from "styled-components";
+import TextEditor from "./TextEditor";
+import StyledButton from "./Btn";
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     width: 850px;
     padding: 24px;
     margin-bottom: 15px;
@@ -23,29 +25,38 @@ const Wrapper = styled.div`
     input {
         border: 1px solid var(--theme-border);
         height: 25px;
+        width: 840px;
         border-radius: 3px;
         margin: 7px 0px 10px 0px;
         padding-left: 10px;
     }
-
-    textarea {
-        border: 1px solid var(--theme-border);
-        border-radius: 3px;
-        margin: 7px 0px 10px 0px;
-    }
 `
 
-const InputBox = ({data}) => {
+const InputBox = ({data, setIsHide, idx, setInputData, inputData}) => {
+
+    const handleText = (e) => {
+        let updatedData = inputData;
+        updatedData[data.id] = e.target.value;
+        setInputData(updatedData);
+        // console.log(inputData);
+    };
+
+    const handleHide = () => {
+        const setting = [false, false, false, false];
+        setting[idx] = true;
+        setIsHide(setting);
+    };
+
     return (
         <Wrapper>
             <label htmlFor={data.id}>{data.label1}</label>
             <label htmlFor={data.id}>{data.label2}</label>
             {
                 data.type === 0 ? 
-                <input type="text" id={data.id} placeholder={data.placeholder}></input> :
-                <textarea id={data.id} placeholder={data.placeholder}></textarea>
+                <input onChange={handleText} onFocus={handleHide} value={inputData[data.id]} type="text" id={data.id} placeholder={data.placeholder}></input> :
+                <TextEditor data={data} handleHide={handleHide} handleText={handleText}/>
             }
-            <Btn />
+            <StyledButton>Next</StyledButton>
         </Wrapper>
     )
 };

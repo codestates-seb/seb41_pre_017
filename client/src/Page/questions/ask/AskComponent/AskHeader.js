@@ -3,8 +3,10 @@ import styled from "styled-components";
 const Header = styled.div`
     display: flex;
     flex-direction: row;
-    width: 1216px;
+    align-items: center;
+    width: 1267px;
     height: 130px;
+    margin-bottom: 10px;
 
     h1 {
         display: inline-block;
@@ -14,6 +16,7 @@ const Header = styled.div`
     }
 
     img {
+        margin-left: 120px;
         width: 550px;
         height: 130px;
     }
