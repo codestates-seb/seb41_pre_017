@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TagNav from './TagNav';
+import TagNav from './tagNav';
 import { Link } from 'react-router-dom';
 
 // 질문 리스트 페이지 (Home, questions에서 사용되는 질문상자박스 입니다)
