@@ -37,21 +37,6 @@ public class QuestionController {
         return new ResponseEntity<>(mapper.questionToQuestionResponseDto(response), HttpStatus.CREATED);
     }
 
-    // 특정 질문 업데이트(수정)
-    @PatchMapping("/{question-id}/edit")
-    public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
-                                        @Valid @RequestBody QuestionPatchDto questionPatchDto) {
-        // TODO: 수정 시 로그인 필요
-
-        questionPatchDto.setQuestionId(questionId);
-
-        Question question = mapper.questionPatchDtoToQuestion(questionPatchDto);
-
-        Question response = questionService.updateQuestion(question);
-
-        return new ResponseEntity<>(mapper.questionToQuestionResponseDto(response), HttpStatus.OK);
-    }
-
     // 특정 질문 조회(검색)
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") long questionId) {
@@ -70,6 +55,21 @@ public class QuestionController {
         List<QuestionResponseDto> response = mapper.questionsToQuestionResponseDtos(questions);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    // 특정 질문 업데이트(수정)
+    @PatchMapping("/{question-id}/edit")
+    public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
+                                        @Valid @RequestBody QuestionPatchDto questionPatchDto) {
+        // TODO: 수정 시 로그인 필요
+
+        questionPatchDto.setQuestionId(questionId);
+
+        Question question = mapper.questionPatchDtoToQuestion(questionPatchDto);
+
+        Question response = questionService.updateQuestion(question);
+
+        return new ResponseEntity<>(mapper.questionToQuestionResponseDto(response), HttpStatus.OK);
     }
 
     // 특정 질문 삭제
