@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import Questions from '../component/questionsBox';
+import Questions from '../component/QuestionsBox';
 import db from '../../db.json';
-import BlueBtn from '../component/bluebtn';
-import Sidebar from '../global/Sidebar';
-import { Container, Main } from '../component/LayoutForSidebar';
+import BlueBtn from '../component/BlueBtn';
+import { Sidebar, Container, Main } from '../global/Sidebar';
 import { Link } from 'react-router-dom';
 
 const StyledHeader = styled.header`

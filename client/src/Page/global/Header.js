@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import BlueBtn from '../component/bluebtn';
+import BlueBtn from '../component/BlueBtn';
 
 const Container = styled.div`
     position: fixed;
