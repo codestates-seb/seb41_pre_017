@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,4 +20,8 @@ public class Answer {
 
     @Column(nullable = false, length = 5000)
     private String content;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 }
