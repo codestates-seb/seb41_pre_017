@@ -29,10 +29,11 @@ const QuestionHeader = (props) => {
                     {title}
                 </a>
             </Title>
-            <BlueBtn>
-                {/*<a href={ask question link 로 이동}></a>*/}
-                <Link to={'/questions/ask'}>Ask Question</Link>
-            </BlueBtn>
+
+            {/*<a href={ask question link 로 이동}></a>*/}
+            <Link to={'/questions/ask'}>
+                <BlueBtn>Ask Question</BlueBtn>
+            </Link>
         </Header>
     )
 };
