@@ -1,11 +1,14 @@
-import {Fragment} from "react";
 import QuestionDetail from "./QuestionDetail";
+import {Container, Main, Sidebar} from "../../global/Sidebar";
 
 const SingleQuestion = () => {
     return (
-        <Fragment>
-            <QuestionDetail/>
-        </Fragment>
+        <Container>
+            <Sidebar/>
+            <Main>
+                <QuestionDetail/>
+            </Main>
+        </Container>
     )
 };
 

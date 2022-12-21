@@ -1,20 +1,45 @@
-const AskModiView = () => {
+import styled from "styled-components";
+
+const AmwContainer = styled.div`
+  display: flex;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  border-color: hsl(210, 8%, 90%);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+`;
+
+const ElContainer = styled.div`
+  white-space: nowrap;
+  margin-bottom: 8px;
+  margin-right: 16px;
+`;
+
+const AmvTitle = styled.span`
+  color: hsl(210,8%,45%);
+`;
+
+const AskModiView = (props) => {
+    const viewedData = props.data.views;
+    // console.log(viewedData);
+
     return (
-        <div className={'asked-modified-viewed-container'}>
+        <AmwContainer>
             {/*게시글 수정일, 게시일, 본 사람 수 섹션*/}
-            <div className={'asked-container'}>
-                <span className={'amv-title'}>Asked</span>
-                <span className={'amv-date'}>today</span>
-            </div>
-            <div className={'modified-container'}>
-                <span className={'amv-title'}>Modified</span>
-                <span className={'amv-date'}>today</span>
-            </div>
-            <div className={'viewed-container'}>
-                <span className={'amv-title'}>Viewed</span>
-                <span className={'viewed-time'}>7 times</span>
-            </div>
-        </div>
+            <ElContainer>
+                <AmvTitle>Asked</AmvTitle>
+                <span>today</span>
+            </ElContainer>
+            <ElContainer>
+                <AmvTitle>Modified</AmvTitle>
+                <span>today</span>
+            </ElContainer>
+            <ElContainer>
+                <AmvTitle>Viewed</AmvTitle>
+                <span>{viewedData}</span>
+            </ElContainer>
+        </AmwContainer>
     )
 };
 
