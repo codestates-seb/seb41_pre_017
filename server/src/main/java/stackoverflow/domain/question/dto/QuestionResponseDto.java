@@ -12,8 +12,6 @@ public class QuestionResponseDto {
 
     private String title;
 
-    private String username;
-
     private String content;
 
     private LocalDateTime createdAt;

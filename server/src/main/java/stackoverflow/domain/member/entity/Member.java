@@ -1,4 +1,4 @@
-package stackoverflow.domain.question.entity;
+package stackoverflow.domain.member.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,16 +16,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Question {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long questionId;
+    private long memberId;
 
-    private String title;
+    private String email;
 
-    private String content;
+    private String nickname;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private String pwd;
 
-    private LocalDateTime modifiedAt = LocalDateTime.now();
+    private LocalDateTime signUpDay = LocalDateTime.now();
+
+    private LocalDateTime lastSeen = LocalDateTime.now();
 }

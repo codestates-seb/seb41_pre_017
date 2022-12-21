@@ -1,5 +1,6 @@
 package stackoverflow.domain.question.controller;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -47,10 +48,12 @@ public class QuestionController {
 
     // 모든 질문 리스트 조회
     @GetMapping
-    public ResponseEntity getQuestions() {
-        // TODO: Pagination 적용
+    public ResponseEntity getQuestions(@RequestParam @Positive int page,
+                                       @RequestParam @Positive int size) {
+        // Pagination
+        Page<Question> pageQuestions = questionService.findQuestions(page, size);
 
-        List<Question> questions = questionService.findQuestions();
+        List<Question> questions = pageQuestions.getContent();
 
         List<QuestionResponseDto> response = mapper.questionsToQuestionResponseDtos(questions);
 
