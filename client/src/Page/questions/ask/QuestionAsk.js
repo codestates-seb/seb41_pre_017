@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import AskHeader from './component/AskHeader';
-import ChainBox from './component/ChainBox';
+import AskHeader from './AskComponent/AskHeader';
+import ChainBox from './AskComponent/ChainBox';
+import Header from '../../global/Header';
 
 const VirtualNav = styled.div`
     width: 100%;
@@ -24,7 +25,7 @@ const Wrapper = styled.div`
 const QuestionAsk = () => {
     return (
         <>
-            <VirtualNav />
+            <Header />
             <Wrapper>
                 <AskHeader />
                 <ChainBox />
