@@ -39,7 +39,7 @@ public class QuestionController {
 
     // 특정 질문 조회(검색)
     @GetMapping("/{question-id}")
-    public ResponseEntity getQuestion(@PathVariable("question-id") long questionId) {
+    public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
         Question response = questionService.findQuestion(questionId);
 
         return new ResponseEntity<>(mapper.questionToQuestionResponseDto(response), HttpStatus.OK);
@@ -74,7 +74,7 @@ public class QuestionController {
 
     // 특정 질문 삭제
     @DeleteMapping("/{question-id}")
-    public ResponseEntity deleteQuestion(@PathVariable("question-id") long questionId) {
+    public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId) {
         // TODO: 삭제 시 로그인 필요
 
         questionService.deleteQuestion(questionId);
