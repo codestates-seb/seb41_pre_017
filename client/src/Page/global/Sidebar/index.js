@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 /* 사이드바 입니다 */
 const Aside = styled.aside`
@@ -42,18 +44,39 @@ const StyledLink = styled(Link)`
         color: var(--theme-button-hover-color);
     }
 `;
+const SelectLink = styled(Link)`
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px; //텍스트 중앙정렬
+    border-right: 3px solid var(--theme-Orange);
+    background-color: var(--theme-button-hover-background-color);
+`;
 
 export function Sidebar() {
+    const location = useLocation();
+    const [select, isSelect] = useState();
+    useEffect(() => {
+        console.log(location.pathname);
+        isSelect(location.pathname);
+    }, [location]);
+
     return (
         <Aside>
             <Nav>
                 <NavList>
-                    <StyledLink to="/">Home</StyledLink>
+                    {select === '/' ? <SelectLink to="/">Home</SelectLink> : <StyledLink to="/">Home</StyledLink>}
                     <NavList>
                         <li>PUBLIC</li>
-                        <StyledLink className="subNav" to="/questions">
-                            Questions
-                        </StyledLink>
+                        {select === '/questions' ? (
+                            <SelectLink className="subNav" to="/questions">
+                                Questions
+                            </SelectLink>
+                        ) : (
+                            <StyledLink className="subNav" to="/questions">
+                                Questions
+                            </StyledLink>
+                        )}
+
                         <StyledLink className="subNav" to="/">
                             Tags
                         </StyledLink>
