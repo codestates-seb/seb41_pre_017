@@ -1,4 +1,4 @@
-import Header from './Page/global/Header';
+import Header from './Page/global/header';
 import Home from './Page/home';
 import Login from './Page/users/login';
 import SignUp from './Page/users/SignUp';
