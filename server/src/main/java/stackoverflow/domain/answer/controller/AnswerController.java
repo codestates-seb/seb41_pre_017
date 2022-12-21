@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import stackoverflow.domain.answer.dto.AnswerPatchDto;
 import stackoverflow.domain.answer.dto.AnswerPostDto;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RequestMapping("/answers")
 @RestController
+@Validated
 public class AnswerController {
 
     private final AnswerService answerService;
