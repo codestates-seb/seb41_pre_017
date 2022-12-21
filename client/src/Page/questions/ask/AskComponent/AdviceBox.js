@@ -1,14 +1,17 @@
 import styled from "styled-components";
+import Pencil from "../img/pencil.png";
 
 const Wrapper = styled.div`
-    border: 2px solid black;
+    border: 1px solid #E3E6E8;
     width: 350px;
+    margin-left: 15px;
+    box-shadow: 1px 1px 1px 1px #EDEEEE;
 
     .title {
         font-size: 20px;
         padding: 12px;
         background-color: #f8f9f9;
-        border: 1px solid var(--theme-border);
+        border-bottom: 1px solid var(--theme-border);
     }
 `
 
@@ -16,10 +19,10 @@ const Bottom = styled.div`
     display:flex;
     margin: 16px;
 
-    .image {
+    img {
         margin: 0px 8px;
-        border: 1px solid blue;
         width: 48px;
+        height: 50px;
     }
 
     .content {
@@ -38,7 +41,7 @@ const AdviceBox = ({data}) => {
         <Wrapper>
             <div className="title">{data.title}</div>
             <Bottom>
-                <div className="image">svg이미지!!!</div>
+                <img src={Pencil} alt="pencil"/>
                 <div className="content">
                     <p>{data.content}</p>
                     <p>{data.content2}</p>

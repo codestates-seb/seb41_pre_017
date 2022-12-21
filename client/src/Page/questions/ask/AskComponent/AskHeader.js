@@ -1,22 +1,32 @@
 import styled from "styled-components";
 
 const Header = styled.div`
+    display: flex;
+    flex-direction: row;
     width: 1216px;
     height: 130px;
 
     h1 {
         display: inline-block;
+        font-size: 2rem;
         height: 35px;
-        margin: 24px 0px 24px 0px;
+        margin: 24px 300px 24px 0px;
+    }
+
+    img {
+        width: 550px;
+        height: 130px;
     }
 `
 
 const BlueBox = styled.div`
-    width: 100% !important;
+    width: 850px;
     padding: 24px;
+    margin-right: 365px;
+    margin-bottom: 15px;
     background-color: #EBF4FB;
     border: 1px solid #A6CEED;
-    border-radius: 5px;
+    border-radius: 3px;
     text-align: left;
 
     h2 {
@@ -48,6 +58,7 @@ const AskHeader = () => {
         <>  
             <Header>
                 <h1>Ask a public question</h1>
+                <img src="https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368" alt="curious robot"/>
             </Header>
             <BlueBox>
                 <h2>Writing a good question</h2>
