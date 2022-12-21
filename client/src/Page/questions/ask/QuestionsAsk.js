@@ -1,11 +1,6 @@
 import styled from 'styled-components';
-import AdviceData from './component/AdviceData';
 import AskHeader from './component/AskHeader';
-import TitleInput from './component/TitleInput';
-import Buttons from './component/Buttons';
-import ExpectingInput from './component/ExpectingInput';
-import ProblemInput from './component/ProblemInput';
-import TagBox from './component/TagBox';
+import ChainBox from './component/ChainBox';
 
 const VirtualNav = styled.div`
     width: 100%;
@@ -14,17 +9,15 @@ const VirtualNav = styled.div`
 `
 
 const Wrapper = styled.div`
-    width: 100%;
-    max-width: 1264px;
+    
     margin: 0;
+    padding: 0px, 16px, 24px, 16px;
     border: 2px solid black;
 
-    a {
-        color: var(--theme-link-text);
-    }
+    
 
     .adviceBox {
-        background-color: black;
+        border: 2px solid black;
     }
 `
 
@@ -34,15 +27,7 @@ const QuestionsAsk = () => {
             <VirtualNav />
             <Wrapper>
                 <AskHeader />
-                <div className='adviceBox'>{AdviceData[0]}</div>
-                <TitleInput />
-                <div className='adviceBox'>{AdviceData[1]}</div>
-                <ProblemInput />
-                <div className='adviceBox'>{AdviceData[2]}</div>
-                <ExpectingInput />
-                <div className='adviceBox'>{AdviceData[3]}</div>
-                <TagBox />
-                <Buttons />
+                <ChainBox />
             </Wrapper>
         </>
     )
