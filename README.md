@@ -10,4 +10,4 @@
 -   ### [Docs] : 문서 수정에 대한 커밋
 -   ### [Sytle] : 코드 스타일 혹은 포맷 등에 관한 커밋
 -   ### [Test] : 테스트 코드 수정에 대한 커밋
-![back](https://member-images.githubusercontent.com/83052628/208702345-3e5f8251-28f6-472a-a4aa-607ee2c353a0.png)
+![back](https://user-images.githubusercontent.com/83052628/208702345-3e5f8251-28f6-472a-a4aa-607ee2c353a0.png)
