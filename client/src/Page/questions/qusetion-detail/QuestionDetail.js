@@ -5,6 +5,7 @@ import MainBar from "./mainbar/MainBar";
 
 import db from '../../../db.json';
 import styled from "styled-components";
+import {useParams} from "react-router-dom";
 
 const InnerContent = styled.div`
   background-color: hsl(0, 0%, 100%);
@@ -18,9 +19,11 @@ const InnerContent = styled.div`
   box-sizing: border-box;
 `;
 
-const questionDetail = () => {
-    const questionData = db.questions[5];
-    // console.log(questionData);
+//개별 질문 페이지
+const QuestionDetail = () => {
+    const {questionId} = useParams();
+
+    const questionData = db.questions[questionId];
 
     return (
         <InnerContent>
@@ -32,4 +35,4 @@ const questionDetail = () => {
     )
 };
 
-export default questionDetail;
+export default QuestionDetail;

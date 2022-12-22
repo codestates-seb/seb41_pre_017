@@ -10,6 +10,7 @@ const SideSection = styled.div`
   margin: 0 0 15px;
 `;
 
+//질문 콘텐츠 옆에 위치한 사이드바 항목들입니다
 const SideBar = () => {
     return (
         <SideSection>

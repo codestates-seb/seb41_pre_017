@@ -16,7 +16,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/questions/ask" element={<QuestionAsk />} />
                     <Route path="/questions" element={<Questions />} />
-                    <Route path="/questions/1" element={<SingleQuestion />} /> {/*테스트를 위해 임의로 하드코딩된 SingleQuestion로 이동  */}
+                    <Route path="/questions/:questionId" element={<SingleQuestion />} /> {/*테스트를 위해 임의로 하드코딩된 SingleQuestion로 이동  */}
                     <Route path="/users/login" element={<Login />} />
                     <Route path="/users/signUp" element={<SignUp />} />
                 </Routes>

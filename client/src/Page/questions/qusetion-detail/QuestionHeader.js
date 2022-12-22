@@ -16,9 +16,9 @@ const Title = styled.h1`
   line-height: 1.3;
 `;
 
+//질문 제목과 ask question 버튼 헤더 부분입니다
 const QuestionHeader = (props) => {
     const title = props.data.title;
-    // console.log(title)
 
     return (
         <Header>
@@ -30,7 +30,6 @@ const QuestionHeader = (props) => {
                 </a>
             </Title>
 
-            {/*<a href={ask question link 로 이동}></a>*/}
             <Link to={'/questions/ask'}>
                 <BlueBtn>Ask Question</BlueBtn>
             </Link>

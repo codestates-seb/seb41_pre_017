@@ -17,6 +17,7 @@ const PostLayout = styled.div`
   grid-template-columns: max-content 1fr;
 `;
 
+//투표 버튼과 질문 컨텐츠 포함하는 섹션입니다
 const MainBar = (props) => {
     const contentData = props.data;
     const voteData = props.data.votes;
