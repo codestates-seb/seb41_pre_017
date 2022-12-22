@@ -3,13 +3,12 @@ package stackoverflow.domain.question.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+import stackoverflow.domain.exception.BusinessLogicException;
+import stackoverflow.domain.exception.ExceptionCode;
 import stackoverflow.domain.question.entity.Question;
 import stackoverflow.domain.question.repository.QuestionRepository;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -31,7 +30,7 @@ public class QuestionService {
     public Question findQuestion(long questionId) {
         // TODO: 추후 예외 처리 생성
 
-        return questionRepository.findById(questionId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return questionRepository.findById(questionId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
     }
 
     // 모든 질문 리스트 조회
