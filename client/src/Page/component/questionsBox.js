@@ -62,7 +62,7 @@ const questions = ({ data }) => {
                 </Link>
 
                 <SummaryMeta>
-                    <span className="tags">{data.tag ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</span>
+                    <span className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</span>
                     <span className="userCard">
                         <span className="userLink">{'anonymous'}</span> <span>{'11 asked 2 mins ago'}</span>
                     </span>
