@@ -58,17 +58,17 @@ export function Sidebar() {
 
     //url 주소 바뀔때마다 select에 할당하여 url주소 기준으로 탭선택 이펙트 구현
     useEffect(() => {
-        isSelect(location.pathname);
+        isSelect(location.pathname.split('/')[1]);
     }, [location]);
 
     return (
         <Aside>
             <Nav>
                 <NavList>
-                    {select === '/' ? <SelectLink to="/">Home</SelectLink> : <StyledLink to="/">Home</StyledLink>}
+                    {select === '' ? <SelectLink to="/">Home</SelectLink> : <StyledLink to="/">Home</StyledLink>}
                     <NavList>
                         <li>PUBLIC</li>
-                        {select === '/questions' ? (
+                        {select === 'questions' ? (
                             <SelectLink className="subNav" to="/questions">
                                 Questions
                             </SelectLink>
@@ -77,7 +77,6 @@ export function Sidebar() {
                                 Questions
                             </StyledLink>
                         )}
-
                         <StyledLink className="subNav" to="/">
                             Tags
                         </StyledLink>
