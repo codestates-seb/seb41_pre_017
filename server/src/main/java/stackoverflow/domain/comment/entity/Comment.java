@@ -3,7 +3,10 @@ package stackoverflow.domain.comment.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.audit.BaseTime;
+import stackoverflow.domain.member.entity.Member;
+import stackoverflow.domain.question.entity.Question;
 
 import javax.persistence.*;
 
@@ -19,8 +22,31 @@ public class Comment extends BaseTime {
     @Column(nullable = false)
     private String content;
 
-    // TODO member, question 엔티티 간의 연관 관계 매핑 필요
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    private Long questionId;
+    public long getMemberId() {
+        return member.getMemberId();
+    }
+
+    public String getMemberNickname() {
+        return member.getNickname();
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ANSWER_ID")
+    private Answer answer;
+
+    public long getAnswerId() {
+        return answer.getAnswerId();
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "QUESTION_ID")
+    private Question question;
+
+    public long getQuestionId() {
+        return question.getQuestionId();
+    }
 }
