@@ -1,9 +1,9 @@
-import PostUser from "./content/postUser";
-import PostMenu from "./content/postMenu";
+import PostUser from "./content/PostUser";
+import PostMenu from "./content/PostMenu";
 import TagContent from "./content/TagContent";
-import Content from "./content/content";
+import Content from "./content/Content";
 import styled from "styled-components";
-import PostSignature from "./content/postSignature";
+import PostSignature from "./content/PostSignature";
 
 
 const QuestionCell = styled.div`
@@ -24,11 +24,11 @@ const PostCell = styled.div`
   justify-content: flex-end;
 `;
 
+//질문 내용 섹션입니다
 const QuestionContent = (props) => {
     const tags = props.data.tags;
     const user = props.data.user;
     const asked = props.data.asked;
-    // console.log(props.data.tags)
 
     return (
         <QuestionCell>

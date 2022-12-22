@@ -4,16 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import stackoverflow.domain.audit.BaseTime;
+import stackoverflow.domain.comment.entity.Comment;
+import stackoverflow.domain.member.entity.Member;
+import stackoverflow.domain.question.entity.Question;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Answer {
+public class Answer extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
@@ -21,7 +26,26 @@ public class Answer {
     @Column(nullable = false, length = 5000)
     private String content;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    private LocalDateTime modifiedAt = LocalDateTime.now();
+    public long getMemberId() {
+        return member.getMemberId();
+    }
+
+    public String getMemberNickname() {
+        return member.getNickname();
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "QUESTION_ID")
+    private Question question;
+
+    public long getQuestionId() {
+        return question.getQuestionId();
+    }
+
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 }

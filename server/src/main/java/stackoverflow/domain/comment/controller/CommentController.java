@@ -1,12 +1,13 @@
 package stackoverflow.domain.comment.controller;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import stackoverflow.domain.comment.entity.Comment;
 import stackoverflow.domain.comment.dto.CommentRequestDto;
 import stackoverflow.domain.comment.dto.CommentResponseDto;
+import stackoverflow.domain.comment.entity.Comment;
 import stackoverflow.domain.comment.mapper.CommentMapper;
 import stackoverflow.domain.comment.service.CommentService;
 
@@ -34,8 +35,10 @@ public class CommentController {
     }
 
     @GetMapping
-    public ResponseEntity getComments() {
-        List<Comment> comments = commentService.findComments();
+    public ResponseEntity getComments(@RequestParam @Positive int page,
+                                      @RequestParam @Positive int size) {
+        Page<Comment> pageComments = commentService.findComments(page, size);
+        List<Comment> comments = pageComments.getContent();
         List<CommentResponseDto> response = commentMapper.commentToResponseDtos(comments);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -51,7 +54,7 @@ public class CommentController {
     public ResponseEntity patchComment(@PathVariable @Positive long commentId,
                                        @Valid @RequestBody CommentRequestDto.Patch request) {
         request.setCommentId(commentId);
-        Comment comment = commentService.updateComment(commentMapper.PatchDtoToComment(request));
+        Comment comment = commentService.updateComment(commentMapper.patchDtoToComment(request));
         CommentResponseDto response = commentMapper.commentToResponseDto(comment);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
