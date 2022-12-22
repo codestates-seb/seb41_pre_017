@@ -1,26 +1,53 @@
-const Vote = () => {
+import styled from "styled-components";
+
+const VoteCell = styled.div`
+  width: auto;
+  vertical-align: top;
+  grid-column: 1;
+  padding-right: 16px;
+`;
+
+const VotingContainer = styled.div`
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-direction: column;
+  margin: calc(4px / 2 * -1);
+`;
+
+const VoteNumber = styled.div`
+  font-size: 1.61538462rem;
+`;
+
+const VoteButton = styled.button`
+  width: 36px;
+  height: 36px;
+`;
+
+const Vote = (props) => {
+
     return (
-        <div className={'vote-cell'}>
+        <VoteCell>
             {/*추천 비추천 버튼 섹션*/}
-            <div className={'voting-container'}>
+            <VotingContainer>
                 {/*추천 버튼*/}
-                <button className={'vote-up-button'}>
+                <VoteButton>
                     <svg aria-hidden="true" className="svg-icon iconArrowUpLg" width="36"
                          height="36" viewBox="0 0 36 36">
                         <path d="M2 25h32L18 9 2 25Z"></path>
                     </svg>
-                </button>
+                </VoteButton>
                 {/*추천 갯수*/}
-                <div className={'voted-number'}>5</div>
+                <VoteNumber>{props.vote}</VoteNumber>
                 {/*비추천 버튼*/}
-                <button className={'vote-down-button'}>
+                <VoteButton>
                     <svg aria-hidden="true" className="svg-icon iconArrowDownLg" width="36"
                          height="36" viewBox="0 0 36 36">
                         <path d="M2 11h32L18 27 2 11Z"></path>
                     </svg>
-                </button>
-            </div>
-        </div>
+                </VoteButton>
+            </VotingContainer>
+        </VoteCell>
     )
 };
 

@@ -1,5 +1,11 @@
-const Answer = () => {
+import {Fragment} from "react";
+import QuestionsBox from "../../../component/questionsBox";
+
+const Answer = (props) => {
     return (
+        // <Fragment>
+        //     <QuestionsBox/>
+        // </Fragment>
         <form className={'answer-container'}>
             {/*해당 질문에 대한 답변 섹션*/}
             <h2 className={'answer-header'}>Your Answer</h2>
