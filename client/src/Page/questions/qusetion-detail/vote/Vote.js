@@ -16,14 +16,17 @@ const VotingContainer = styled.div`
 `;
 
 const VoteNumber = styled.div`
+  text-align: center;
   font-size: 1.61538462rem;
 `;
 
 const VoteButton = styled.button`
   width: 36px;
   height: 36px;
+  cursor: pointer;
 `;
 
+//투표 버튼 섹션입니다
 const Vote = (props) => {
 
     return (

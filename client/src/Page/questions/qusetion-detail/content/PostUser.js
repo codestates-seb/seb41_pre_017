@@ -3,10 +3,11 @@ import styled from "styled-components";
 const UserWrapper = styled.div`
   margin: 4px;
   border-radius: 3px;
-  background-color: skyblue;
+  background-color: rgb(220, 233, 246);
   text-align: left;
   vertical-align: top;
   width: 200px;
+  padding: 4px;다
 `;
 
 const UserInfo = styled.div`
@@ -41,6 +42,7 @@ const UserDetail = styled.div`
   word-wrap: break-word;
 `;
 
+//질문자 관련 정보 카드 섹션입니다
 const PostUser = (props) => {
     const {userData, askedData} = props;
 

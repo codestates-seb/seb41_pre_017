@@ -1,19 +1,16 @@
-import {Fragment} from "react";
-import QuestionsBox from "../../../component/questionsBox";
+import BlueBtn from "../../../component/blueBtn";
 
+//답변 작성 섹션입니다
 const Answer = (props) => {
     return (
-        // <Fragment>
-        //     <QuestionsBox/>
-        // </Fragment>
         <form className={'answer-container'}>
             {/*해당 질문에 대한 답변 섹션*/}
             <h2 className={'answer-header'}>Your Answer</h2>
             <textarea className={'answer-editor'}></textarea>
             <div className={'submit-button'}>
-                <button className={'submit-answer'}>
+                <BlueBtn>
                     Post Your Answer
-                </button>
+                </BlueBtn>
             </div>
         </form>
     )

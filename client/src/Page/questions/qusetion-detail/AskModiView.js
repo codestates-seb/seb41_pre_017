@@ -18,8 +18,10 @@ const ElContainer = styled.div`
 
 const AmvTitle = styled.span`
   color: hsl(210,8%,45%);
+  margin: 0 4px;
 `;
 
+//질문 제목 밑에 위치한 게시일, 편집일, 조회수 섹션입니다.
 const AskModiView = (props) => {
     const viewedData = props.data.views;
     // console.log(viewedData);
