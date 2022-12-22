@@ -99,12 +99,12 @@ function Header() {
                 <Links>
                     <li>
                         <ProfileLink to="/users/login">
-                            <BlueBtn>login</BlueBtn>
+                            <BlueBtn>Log in</BlueBtn>
                         </ProfileLink>
                     </li>
                     <li>
-                        <ProfileLink to="/" className="profile">
-                            <BlueBtn>SingIn</BlueBtn>
+                        <ProfileLink to="/users/signUp" className="profile">
+                            <BlueBtn>Sign Up</BlueBtn>
                         </ProfileLink>
                     </li>
                 </Links>
