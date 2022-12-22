@@ -48,8 +48,6 @@ public class QuestionService {
         Optional.ofNullable(question.getTitle()).ifPresent(title -> question.setTitle(title));
         Optional.ofNullable(question.getContent()).ifPresent(content -> question.setContent(content));
 
-        question.setModifiedAt(LocalDateTime.now());
-
         return questionRepository.save(question);
     }
 
