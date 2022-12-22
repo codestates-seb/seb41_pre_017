@@ -53,8 +53,18 @@ const InputBox = ({data, setIsHide, idx, setInputData, inputData}) => {
             <label htmlFor={data.id}>{data.label2}</label>
             {
                 data.type === 0 ? 
-                <input onChange={handleText} onFocus={handleHide} value={inputData[data.id]} type="text" id={data.id} placeholder={data.placeholder}></input> :
-                <TextEditor data={data} handleHide={handleHide} handleText={handleText}/>
+                <input 
+                    onChange={handleText} 
+                    onFocus={handleHide} 
+                    value={inputData[data.id]} 
+                    type="text" id={data.id} 
+                    placeholder={data.placeholder} 
+                />
+                :<TextEditor
+                    data={data} 
+                    handleHide={handleHide} 
+                    handleText={handleText} 
+                />
             }
             <StyledButton>Next</StyledButton>
         </Wrapper>

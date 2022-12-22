@@ -23,21 +23,27 @@ const Footer = styled.div`
     height: 320px;
     background-color: #232629;
     color: white;
-    font-size: 100px;
+    font-size: 50px;
 `
 
 const QuestionAsk = () => {
     const [inputData, setInputData] = useState({});
+    
+//    setInputData 에 데이터가 쌓이는데 이걸 지워
+
+   const handleReset = () => {
+        setInputData({ problem: '', title: '', expect: '', tag: ''});
+   }
     
 
     return (
         <>
             <Wrapper>
                 <AskHeader />
-                <ChainBox inputData={inputData} setInputData={setInputData} />
+                <ChainBox inputData={inputData} handleReset={handleReset} setInputData={setInputData} />
                 <div className='buttonSubmit'>
-                    <StyledButton onClick={()=>console.log('a')}>Review your question</StyledButton>
-                    <StyledButton color="red" background="white">Discard draft</StyledButton>
+                    <StyledButton onClick={()=>console.log(inputData)}>Review your question</StyledButton>
+                    <StyledButton onClick={handleReset} color="red" background="white">Discard draft</StyledButton>
                 </div>
             </Wrapper>
             <Footer>

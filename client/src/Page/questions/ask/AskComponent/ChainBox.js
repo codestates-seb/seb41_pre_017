@@ -26,9 +26,16 @@ const ChainBox = ({inputData, setInputData}) => {
                 formData.map((data,idx) => {
                     return (
                         <div key={idx} className="box">
-                            <InputBox idx={idx} setIsHide={setIsHide} data={data[0]} 
-                            inputData={inputData} setInputData={setInputData} />
-                            <AdviceBox idx={idx} isHide={isHide} data={data[1]} />
+                            <InputBox 
+                                idx={idx} 
+                                setIsHide={setIsHide} 
+                                data={data[0]} 
+                                inputData={inputData} 
+                                setInputData={setInputData} />
+                            <AdviceBox 
+                                idx={idx} 
+                                isHide={isHide} 
+                                data={data[1]} />
                         </div>
                     );
                 })

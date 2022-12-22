@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Pencil from "../img/pencil.png";
+import Pencil from "../../img/pencil.png";
 
 const Wrapper = styled.div`
     display: ${({isHide, idx}) => isHide[idx] ? 'block': 'none'};
