@@ -34,7 +34,7 @@ public class AnswerService {
     }
 
     public Answer findAnswer (long answerId) {
-        return findVerifiedAnswer(answerId);
+        return answerRepository.findById(answerId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
     }
 
     public Page<Answer> findAnswers(int page, int size) {
