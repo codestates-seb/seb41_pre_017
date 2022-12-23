@@ -1,4 +1,5 @@
 import Header from './Page/global/Header';
+import Footer from './Page/global/Footer';
 import Home from './Page/home';
 import Login from './Page/users/login';
 import SignUp from './Page/users/SignUp';
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/users/login" element={<Login />} />
                     <Route path="/users/signUp" element={<SignUp />} />
                 </Routes>
+                <Footer />
             </BrowserRouter>
         </div>
     );
