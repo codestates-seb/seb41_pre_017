@@ -84,29 +84,29 @@ const SignInMessage = styled.div`
   text-align: center;
 `;
 
-const SignUpButtons = () => {
+const LogInButtons = () => {
     return (
         <OpenIdContainer>
             <GoogleLoginButton>
                 {GoogleButton}
                 <SignInMessage>
-                    Sign up with Google
+                    Log in with Google
                 </SignInMessage>
             </GoogleLoginButton>
             <GithubLoginButton>
                 {GithubButton}
                 <SignInMessage>
-                    Sign up with GitHub
+                    Log in with GitHub
                 </SignInMessage>
             </GithubLoginButton>
             <FaceBookLoginButton>
                 {FaceBookButton}
                 <SignInMessage>
-                    Sign up with FaceBook
+                    Log in with FaceBook
                 </SignInMessage>
             </FaceBookLoginButton>
         </OpenIdContainer>
     )
 };
 
-export default SignUpButtons;
+export default LogInButtons;
