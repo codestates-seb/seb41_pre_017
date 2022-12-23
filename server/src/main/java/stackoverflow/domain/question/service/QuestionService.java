@@ -4,8 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import stackoverflow.domain.exception.BusinessLogicException;
-import stackoverflow.domain.exception.ExceptionCode;
+import stackoverflow.exception.BusinessLogicException;
+import stackoverflow.exception.ExceptionCode;
 import stackoverflow.domain.question.entity.Question;
 import stackoverflow.domain.question.repository.QuestionRepository;
 

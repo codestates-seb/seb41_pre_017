@@ -61,7 +61,7 @@ public class MemberController {
     }
 
     // 특정 회원 정보 수정
-    @PatchMapping("/{member-id}/edit")
+    @PatchMapping("/{member-id}")
     public ResponseEntity patchMember(@PathVariable("member-id") @Positive long memberId,
                                     @Valid @RequestBody MemberPatchDto memberPatchDto) {
 

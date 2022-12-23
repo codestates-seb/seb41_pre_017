@@ -1,4 +1,4 @@
-package stackoverflow.domain;
+package stackoverflow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

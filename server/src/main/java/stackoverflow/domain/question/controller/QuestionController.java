@@ -61,7 +61,7 @@ public class QuestionController {
     }
 
     // 특정 질문 업데이트(수정)
-    @PatchMapping("/{question-id}/edit")
+    @PatchMapping("/{question-id}")
     public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                         @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         // TODO: 수정 시 로그인 필요
