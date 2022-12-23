@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import QuestionsBox from '../component/questionsBox';
 
@@ -24,8 +23,8 @@ const PageList = styled.ul`
         color: #fff;
     }
 `;
-const Pagination = ({ url }) => {
-    const [data, setData] = useState([]);
+const Pagination = ({ _data }) => {
+    const [data, setData] = useState(_data);
     const [currentPage, setCurrentPage] = useState(1); //현재 페이지
     const [itemsPerPage, setItemsPerPage] = useState(10); //아이템 갯수
     const [pageLimit, setPageLimit] = useState(5); // 페이지 버튼갯수
@@ -33,11 +32,6 @@ const Pagination = ({ url }) => {
     // 페이지이동시 버튼값 변경을 위한 값
     const [maxPageLimit, setMaxPageLimit] = useState(5);
     const [minPageLimit, setMinPageLimit] = useState(0);
-
-    // 서버에서 데이더 받아오기
-    useEffect(() => {
-        axios.get(url).then((res) => setData(res.data));
-    }, []);
 
     // 현재 페이지를 가리킴
     const handleClick = (event) => {
