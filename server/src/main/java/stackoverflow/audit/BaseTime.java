@@ -1,4 +1,4 @@
-package stackoverflow.domain.audit;
+package stackoverflow.audit;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

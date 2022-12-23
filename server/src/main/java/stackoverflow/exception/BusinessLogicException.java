@@ -1,4 +1,4 @@
-package stackoverflow.domain.exception;
+package stackoverflow.exception;
 
 public class BusinessLogicException extends RuntimeException {
     private final ExceptionCode exceptionCode;

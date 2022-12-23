@@ -6,8 +6,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.answer.repository.AnswerRepository;
-import stackoverflow.domain.exception.BusinessLogicException;
-import stackoverflow.domain.exception.ExceptionCode;
+import stackoverflow.exception.BusinessLogicException;
+import stackoverflow.exception.ExceptionCode;
 
 import java.util.Optional;
 
