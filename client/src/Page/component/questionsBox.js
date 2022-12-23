@@ -52,23 +52,19 @@ const questions = ({ data }) => {
     return (
         <QuestionRow>
             <QuestionStat>
-                <span>{data.votes} votes</span>
-                <span>{data.answers} answers</span>
-                <span>{data.views} views</span>
+                <span>{data.votes ? data.votes : 0} votes</span>
+                <span>{data.answers ? data.answers : 0} answers</span>
+                <span>{data.views ? data.views : 0} views</span>
             </QuestionStat>
             <Question>
-                <Link to="/questions/1">
+                <Link to={`/questions/${data.id}`}>
                     <Title> {data.title}</Title>
                 </Link>
 
                 <SummaryMeta>
-                    <span className="tags">
-                        {data.tags.map((tag) => (
-                            <TagNav key={tag}>{tag}</TagNav>
-                        ))}
-                    </span>
+                    <span className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</span>
                     <span className="userCard">
-                        <span className="userLink">{data.user}</span> <span>{data.asked}</span>
+                        <span className="userLink">{'anonymous'}</span> <span>{'11 asked 2 mins ago'}</span>
                     </span>
                 </SummaryMeta>
             </Question>

@@ -3,9 +3,9 @@ package stackoverflow.domain.member.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+import stackoverflow.domain.exception.BusinessLogicException;
+import stackoverflow.domain.exception.ExceptionCode;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.member.repository.MemberRepository;
 
@@ -31,7 +31,8 @@ public class MemberService {
     public Member findMember(long memberId) {
         // TODO: 추후 예외 처리 생성
 
-        return memberRepository.findById(memberId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return findVerifiedMember(memberId);
+        //return memberRepository.findById(memberId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
     // 모든 회원 조회
@@ -65,12 +66,12 @@ public class MemberService {
     public void verifyExistsEmail(String email) {
         Optional<Member> member = memberRepository.findByEmail(email);
 
-        if (member.isPresent()) throw new ResponseStatusException(HttpStatus.CONFLICT);
+        if (member.isPresent()) throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
 
     public Member findVerifiedMember(long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
-        Member findMember = optionalMember.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
 
         return findMember;
     }
