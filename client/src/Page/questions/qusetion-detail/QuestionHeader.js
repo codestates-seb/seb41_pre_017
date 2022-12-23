@@ -10,7 +10,8 @@ const Header = styled.div`
 
 const Title = styled.h1`
   overflow-wrap: break-word;
-  font-size: 2.07692308rem;
+  font-size: 25px;
+  font-weight: 400;
   margin-bottom: 8px;
   flex: 1 auto;
   line-height: 1.3;

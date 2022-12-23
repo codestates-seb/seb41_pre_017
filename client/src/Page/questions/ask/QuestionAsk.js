@@ -18,37 +18,50 @@ const Wrapper = styled.div`
         margin-bottom: 60px;
     }
 `
-const Footer = styled.div`
-    width: 100%;
-    height: 320px;
-    background-color: #232629;
-    color: white;
-    font-size: 50px;
-`
 
-const QuestionAsk = () => {
-    const [inputData, setInputData] = useState({});
-    
-//    setInputData 에 데이터가 쌓이는데 이걸 지워
+const QuestionAsk = () => {    
+    const [ title, setTitle ] = useState('');
+    const [ expect, setExpect ] = useState('');
+    const [ problem, setProblem ] = useState('');
+    const [ tag, setTag ] = useState('');
 
-   const handleReset = () => {
-        setInputData({ problem: '', title: '', expect: '', tag: ''});
+    const handleReset = () => {
+        // setInputData({problem: '', title: '', expect: '', tag: ''});
+        setTitle('')
+        setExpect('')
+        setProblem('')
+        setTag('')
    }
-    
+    // { title, expect: expect, problem: problem, tag: tag }
+    // axios.post('/questions/ask', {
+    //     title,
+    //     expect,
+    //     problem,
+    //     tag
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
 
     return (
         <>
             <Wrapper>
                 <AskHeader />
-                <ChainBox inputData={inputData} handleReset={handleReset} setInputData={setInputData} />
+                <ChainBox 
+                    title={title} setTitle={setTitle}
+                    expect={expect} setExpect={setExpect}
+                    problem={problem} setProblem={setProblem}
+                    tag={tag} setTag={setTag}  
+                    handleReset={handleReset}  />
                 <div className='buttonSubmit'>
-                    <StyledButton onClick={()=>console.log(inputData)}>Review your question</StyledButton>
+                    <StyledButton onClick={()=>console.log({title, expect, problem, tag})}>Review your question</StyledButton>
                     <StyledButton onClick={handleReset} color="red" background="white">Discard draft</StyledButton>
                 </div>
             </Wrapper>
-            <Footer>
-                임시 footer입니다.
-            </Footer>
         </>
     )
 }
