@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 @Setter
 public class CommentResponseDto {
     private Long commentId;
+    private Long memberId;
+    private Long questionId;
+    private Long answerId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
