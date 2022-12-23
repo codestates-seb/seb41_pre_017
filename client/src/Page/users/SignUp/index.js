@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import JoinMessageBox from "./JoinMessageBox";
-import SignUpBox from "../../component/SignUpBox";
+import SignUpBox from "./SignUpBox";
 
 const Wrapper = styled.div`
   max-width: 100%;
