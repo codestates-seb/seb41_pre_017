@@ -17,7 +17,8 @@ const Wrapper = styled.div`
 // input박스로 내려주고 조건부 렌더링
 // chainBox 
 
-const ChainBox = ({inputData, setInputData, title, setTitle, expect, setExpect, problem, setProblem, tag, setTag}) => {
+const ChainBox = ({inputData, setInputData, title, setTitle, expect, 
+    setExpect, problem, setProblem, tag, setTag}) => {
     const [isHide, setIsHide] = useState([true,false,false,false]);
 
     return (

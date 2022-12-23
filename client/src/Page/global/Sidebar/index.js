@@ -15,6 +15,7 @@ const Nav = styled.nav`
     position: sticky;
     margin-top: 20px;
     top: 80px;
+    font-size: 14px;
 `;
 
 const NavList = styled.ol`

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const AmwContainer = styled.div`
   display: flex;
+  font-size: 15px;
   padding-bottom: 8px;
   margin-bottom: 16px;
   flex-wrap: wrap;

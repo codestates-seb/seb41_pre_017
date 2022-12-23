@@ -7,6 +7,7 @@ const Header = styled.div`
     width: 1267px;
     height: 130px;
     margin-bottom: 10px;
+    font-family: LiverationSans;
 
     h1 {
         display: inline-block;
