@@ -47,6 +47,7 @@ const StyledBtn = styled.button`
     height: 55px;
     padding-left: 10px;
     padding-right: 10px;
+    background-color: white;
     :hover {
         background: var(--theme-button-hover-background-color);
         color: var(--theme-button-hover-color);

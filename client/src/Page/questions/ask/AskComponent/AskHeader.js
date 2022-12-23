@@ -11,7 +11,7 @@ const Header = styled.div`
 
     h1 {
         display: inline-block;
-        font-size: 2rem;
+        font-size: 30px;
         height: 35px;
         margin: 24px 300px 24px 0px;
     }
