@@ -23,10 +23,13 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long memberId;
 
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String nickname;
 
+    @Column(nullable = false)
     private String pwd;
 
     private LocalDateTime signUpDay = LocalDateTime.now();
