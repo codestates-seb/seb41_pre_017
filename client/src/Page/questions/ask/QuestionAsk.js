@@ -32,7 +32,19 @@ const QuestionAsk = () => {
         setProblem('')
         setTag('')
    }
-    // JSON.stringify({ title: title, expect: expect, problem: problem, tag: tag })
+    // { title, expect: expect, problem: problem, tag: tag }
+    // axios.post('/questions/ask', {
+    //     title,
+    //     expect,
+    //     problem,
+    //     tag
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
 
 
     return (
@@ -46,7 +58,7 @@ const QuestionAsk = () => {
                     tag={tag} setTag={setTag}  
                     handleReset={handleReset}  />
                 <div className='buttonSubmit'>
-                    <StyledButton onClick={()=>console.log(title, expect, problem, tag)}>Review your question</StyledButton>
+                    <StyledButton onClick={()=>console.log({title, expect, problem, tag})}>Review your question</StyledButton>
                     <StyledButton onClick={handleReset} color="red" background="white">Discard draft</StyledButton>
                 </div>
             </Wrapper>
