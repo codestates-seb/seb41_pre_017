@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 // input박스로 내려주고 조건부 렌더링
 // chainBox 
 
-const ChainBox = ({inputData, setInputData}) => {
+const ChainBox = ({inputData, setInputData, title, setTitle, expect, setExpect, problem, setProblem, tag, setTag}) => {
     const [isHide, setIsHide] = useState([true,false,false,false]);
 
     return (
@@ -31,7 +31,11 @@ const ChainBox = ({inputData, setInputData}) => {
                                 setIsHide={setIsHide} 
                                 data={data[0]} 
                                 inputData={inputData} 
-                                setInputData={setInputData} />
+                                setInputData={setInputData} 
+                                title={title} setTitle={setTitle}
+                                expect={expect} setExpect={setExpect}
+                                problem={problem} setProblem={setProblem}
+                                tag={tag} setTag={setTag}  />
                             <AdviceBox 
                                 idx={idx} 
                                 isHide={isHide} 

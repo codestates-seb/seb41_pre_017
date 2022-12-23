@@ -32,14 +32,24 @@ const Wrapper = styled.div`
     }
 `
 
-const InputBox = ({data, setIsHide, idx, setInputData, inputData}) => {
+const InputBox = ({data, setIsHide, idx, title, setTitle, expect, setExpect, 
+    problem, setProblem, tag, setTag}) => {
 
-    const handleText = (e) => {
-        let updatedData = inputData;
-        updatedData[data.id] = e.target.value;
-        setInputData(updatedData);
-        // console.log(inputData);
+    const handleTitle = (e) => {
+        // let updatedData = inputData;
+        // updatedData[data.id] = e.target.value;
+        // setInputData(updatedData);
+        // // console.log(inputData);
+        setTitle(e.target.value);
     };
+    const handleTag = (e) => {
+        // let updatedData = inputData;
+        // updatedData[data.id] = e.target.value;
+        // setInputData(updatedData);
+        // // console.log(inputData);
+        setTag(e.target.value);
+    };
+    
 
     const handleHide = () => {
         const setting = [false, false, false, false];
@@ -54,16 +64,16 @@ const InputBox = ({data, setIsHide, idx, setInputData, inputData}) => {
             {
                 data.type === 0 ? 
                 <input 
-                    onChange={handleText} 
+                    onChange={data.id === 'title' ? handleTitle : handleTag}
                     onFocus={handleHide} 
-                    value={inputData[data.id]} 
+                    value={data.id=== 'title' ? title : tag}
                     type="text" id={data.id} 
                     placeholder={data.placeholder} 
                 />
                 :<TextEditor
                     data={data} 
                     handleHide={handleHide} 
-                    handleText={handleText} 
+                    handler={{expect, setExpect, problem, setProblem}}
                 />
             }
             <StyledButton>Next</StyledButton>

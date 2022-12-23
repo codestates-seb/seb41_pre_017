@@ -52,9 +52,23 @@ const TextArea = styled.textarea`
 
 
 
-const TextEditor = ({data, handleHide, handleText}) => {
+const TextEditor = ({data, handleHide, handler}) => {
     // const imageData = [ heading, bold, italic, inlineCode, link, quote, insertImage, grid, numlist, list, more, help ];
+    const handleExpect = (e) => {
+        // let updatedData = inputData;
+        // updatedData[data.id] = e.target.value;
+        // setInputData(updatedData);
+        // // console.log(inputData);
+        handler.setExpect(e.target.value);
+    };
 
+    const handleProblem = (e) => {
+        // let updatedData = inputData;
+        // updatedData[data.id] = e.target.value;
+        // setInputData(updatedData);
+        // // console.log(inputData);
+        handler.setProblem(e.target.value);
+    };
     return (
         <Wrapper>
             <Buttons>
@@ -76,7 +90,12 @@ const TextEditor = ({data, handleHide, handleText}) => {
                 <button><img src={more} alt="more" /></button>
                 <button><a href="https://stackoverflow.com/editing-help"> <img src={help} alt="help" /></a></button>
             </Buttons>
-            <TextArea onFocus={handleHide} onChange={handleText} id={data.id} placeholder={data.placeholder}></TextArea>
+            <TextArea 
+                onFocus={handleHide} 
+                onChange={ data.id === 'expect' ? handleExpect : handleProblem} 
+                id={data.id} placeholder={data.placeholder}
+                value={ data.id === 'expect' ? handler.expect : handler.problem }>   
+            </TextArea>
         </Wrapper>
     )
 }
