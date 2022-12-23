@@ -14,6 +14,8 @@ public class AnswerResponseDto {
     private Long memberId;
     private Long questionId;
     private String content;
+    private long memberId;
+    private long questionId;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }
