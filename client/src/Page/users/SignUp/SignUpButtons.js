@@ -90,19 +90,19 @@ const SignUpButtons = () => {
             <GoogleLoginButton>
                 {GoogleButton}
                 <SignInMessage>
-                    Sign up with Google
+                    Sign in with Google
                 </SignInMessage>
             </GoogleLoginButton>
             <GithubLoginButton>
                 {GithubButton}
                 <SignInMessage>
-                    Sign up with GitHub
+                    Sign in with GitHub
                 </SignInMessage>
             </GithubLoginButton>
             <FaceBookLoginButton>
                 {FaceBookButton}
                 <SignInMessage>
-                    Sign up with FaceBook
+                    Sign in with FaceBook
                 </SignInMessage>
             </FaceBookLoginButton>
         </OpenIdContainer>

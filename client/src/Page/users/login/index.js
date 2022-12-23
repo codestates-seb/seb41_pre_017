@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LoginInBox from "./LoginInBox";
+import SignUpBox from "../../component/SignUpBox";
 
 const Wrapper = styled.div`
   max-width: 100%;
@@ -39,7 +39,7 @@ const Login = () => {
         <Wrapper>
             <Content>
                 <Container>
-                    <LoginInBox/>
+                    <SignUpBox/>
                 </Container>
             </Content>
         </Wrapper>

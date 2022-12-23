@@ -1,7 +1,6 @@
 import styled from "styled-components";
-
-import SignUpButtons from "./SignUpButtons";
-import SignUpForm from "./SignUpForm";
+import SignUpButtons from "../users/SignUp/SignUpButtons";
+import SignUpForm from "../users/SignUp/SignUpForm";
 
 const SignUpContainer = styled.div`
   flex-shrink: 0;
