@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import stackoverflow.domain.question.controller.QuestionController;
 import stackoverflow.domain.question.dto.QuestionPatchDto;
 import stackoverflow.domain.question.dto.QuestionPostDto;
 import stackoverflow.domain.question.dto.QuestionResponseDto;
@@ -23,10 +22,7 @@ import stackoverflow.domain.question.service.QuestionService;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
@@ -75,7 +71,6 @@ public class QuestionControllerTest {
 
         // then
         actions.andExpect(status().isCreated())
-                .andExpect(header().string("Location", is(startsWith("/questions"))))
                 .andExpect(jsonPath("$.title").value(post.getTitle()))
                 .andExpect(jsonPath("$.content").value(post.getContent()))
                 .andExpect(jsonPath("$.memberId").value(post.getMemberId()))
@@ -103,23 +98,19 @@ public class QuestionControllerTest {
                 ));
     }
 
-    /*
     @Test
     public void patchQuestionTest() throws Exception {
         // given
         long questionId = 1L;
-        QuestionPatchDto patch = new QuestionPatchDto();
-        patch.setQuestionId(1L);
-        patch.setTitle("수정된 제목입니다.");
-        patch.setContent("수정된 본문입니다.");
+        LocalDateTime createdAt = LocalDateTime.now();
+
+        QuestionPatchDto patch = new QuestionPatchDto(questionId, "수정한 제목입니다.","수정한 본문입니다.");
         String content = gson.toJson(patch);
 
-        QuestionResponseDto response = new QuestionResponseDto();
-        
-        given(mapper.questionPatchDtoToQuestion(Mockito.any(QuestionPatchDto.class))).willReturn(new Question());
-        
-        given(questionService.updateQuestion(Mockito.any(Question.class))).willReturn(new Question());
+        QuestionResponseDto response = new QuestionResponseDto(1L, 1L,"수정한 제목입니다.", "수정한 본문입니다.", createdAt, LocalDateTime.now());
 
+        given(mapper.questionPatchDtoToQuestion(Mockito.any(QuestionPatchDto.class))).willReturn(new Question());
+        given(questionService.updateQuestion(Mockito.any(Question.class))).willReturn(new Question());
         given(mapper.questionToQuestionResponseDto(Mockito.any(Question.class))).willReturn(response);
 
         // when
@@ -132,6 +123,9 @@ public class QuestionControllerTest {
 
         // then
         actions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.questionId").value(questionId))
+                .andExpect(jsonPath("$.title").value(patch.getTitle()))
+                .andExpect(jsonPath("$.content").value(patch.getContent()))
                 .andDo(document(
                         "patch-question",
                         getRequestPreProcessor(),
@@ -141,13 +135,21 @@ public class QuestionControllerTest {
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("question-id").type(JsonFieldType.NUMBER).description("질문 번호").ignored(),
+                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 번호").ignored(),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("제목").optional(),
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("본문").optional()
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 번호"),
+                                        fieldWithPath("title").type(JsonFieldType.STRING).description("제목"),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("본문"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("생성 날짜"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("수정 날짜")
                                 )
                         )
                 ));
     }
-
-     */
 }
