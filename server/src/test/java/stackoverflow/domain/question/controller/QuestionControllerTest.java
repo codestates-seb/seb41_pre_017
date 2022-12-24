@@ -23,6 +23,8 @@ import stackoverflow.domain.question.service.QuestionService;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -31,8 +33,7 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static stackoverflow.util.ApiDocumentUtils.getRequestPreProcessor;
 import static stackoverflow.util.ApiDocumentUtils.getResponsePreProcessor;
 
@@ -58,7 +59,7 @@ public class QuestionControllerTest {
         QuestionPostDto post = new QuestionPostDto("제목입니다.","본문입니다.", 1L);
         String content = gson.toJson(post);
 
-        QuestionResponseDto response = new QuestionResponseDto(1L, 1L,"제목입니다.", "본문입니다", LocalDateTime.now(), LocalDateTime.now());
+        QuestionResponseDto response = new QuestionResponseDto(1L, 1L,"제목입니다.", "본문입니다.", LocalDateTime.now(), LocalDateTime.now());
 
         given(mapper.questionPostDtoToQuestion(Mockito.any(QuestionPostDto.class))).willReturn(new Question());
         given(questionService.createQuestion(Mockito.any(Question.class))).willReturn(new Question());
@@ -74,9 +75,10 @@ public class QuestionControllerTest {
 
         // then
         actions.andExpect(status().isCreated())
-                //.andExpect(jsonPath("$.data.title").value(post.getTitle()))
-                //.andExpect(jsonPath("$.data.content").value(post.getContent()))
-                //.andExpect(jsonPath("$.data.memberId").value(post.getMemberId()))
+                .andExpect(header().string("Location", is(startsWith("/questions"))))
+                .andExpect(jsonPath("$.title").value(post.getTitle()))
+                .andExpect(jsonPath("$.content").value(post.getContent()))
+                .andExpect(jsonPath("$.memberId").value(post.getMemberId()))
                 .andDo(document(
                         "post-question",
                         getRequestPreProcessor(),
@@ -90,13 +92,12 @@ public class QuestionControllerTest {
                         ),
                         responseFields(
                                 List.of(
-                                        //fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
-                                        fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
-                                        fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 번호"),
-                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("제목"),
-                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("본문"),
-                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("생성 날짜"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("수정 날짜")
+                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 번호"),
+                                        fieldWithPath("title").type(JsonFieldType.STRING).description("제목"),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("본문"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("생성 날짜"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("수정 날짜")
                                 )
                         )
                 ));
