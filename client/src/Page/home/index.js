@@ -15,6 +15,7 @@ const StyledHeader = styled.header`
 
 const H1 = styled.h1`
     font-size: 1.5rem;
+    font-weight: 400;
 `;
 
 const data = db.questions;

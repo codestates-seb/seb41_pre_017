@@ -4,6 +4,7 @@
     border: 0;
     color: rgb(35 38 41);
     text-decoration: none; /* a태그 , Link태그의 밑줄 없애기 */
+    font-family: 'LiberationSans';
 }
 
 body {
@@ -20,3 +21,24 @@ body {
     --theme-button-hover-color: rgb(0 99 191);
     --theme-button-hover-background-color: rgb(213, 229, 241);
 }
+
+@font-face {
+    font-family: "LiberationSans";
+    font-display: fallback;
+    src: url("./static/fonts/LiberationSans-Regular.ttf") format("truetype"), 
+        url("./static/fonts/LiberationSans-Regular.woff") format("woff"), 
+        url("./static/fonts/LiberationSans-Regular.eot?iefix") format("embedded-opentype");
+    font-weight: 100;
+    font-style: normal;
+    
+    /* Font Weight
+    100 Thin
+    200 Extra Light
+    300 Light
+    400 Normal
+    500 Medium
+    600 Semi Bold
+    700 Bold
+    800 Extra Bold
+    900 Ultra Bold */
+  }

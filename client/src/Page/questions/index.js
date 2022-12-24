@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loading from '../component/loading';
-import Footer from '../global/Footer';
+
+
 const StyledHeader = styled.header`
     display: flex;
     flex-wrap: nowrap;
@@ -17,6 +18,7 @@ const StyledHeader = styled.header`
 
 const H1 = styled.h1`
     font-size: 1.5rem;
+    font-weight: 400;
 `;
 
 const Questions = () => {
