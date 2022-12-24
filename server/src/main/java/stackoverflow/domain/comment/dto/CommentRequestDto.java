@@ -1,7 +1,6 @@
 package stackoverflow.domain.comment.dto;
 
 import lombok.Getter;
-import org.springframework.lang.Nullable;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.question.entity.Question;
@@ -16,10 +15,8 @@ public class CommentRequestDto {
 
         private Long memberId;
 
-        @Nullable
         private Long questionId;
 
-        @Nullable
         private Long answerId;
 
         public Member getMember() {
