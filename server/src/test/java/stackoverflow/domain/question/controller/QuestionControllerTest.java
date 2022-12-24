@@ -24,8 +24,7 @@ import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
@@ -139,6 +138,44 @@ public class QuestionControllerTest {
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("제목").optional(),
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("본문").optional()
                                 )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 번호"),
+                                        fieldWithPath("title").type(JsonFieldType.STRING).description("제목"),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("본문"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("생성 날짜"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("수정 날짜")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    public void getQuestionTest() throws Exception {
+        // given
+        long questionId = 1L;
+
+        QuestionResponseDto response = new QuestionResponseDto(1L, 1L,"조회한 질문의 제목", "조회한 질문의 본문", LocalDateTime.now(), LocalDateTime.now());
+
+        given(questionService.findQuestion(Mockito.anyLong())).willReturn(new Question());
+        given(mapper.questionToQuestionResponseDto(Mockito.any(Question.class))).willReturn(response);
+
+        // when
+        ResultActions actions = mockMvc.perform(
+                get("/questions/{question-id}", questionId)
+                        .accept(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        actions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.questionId").value(questionId))
+                .andDo(document(
+                        "get-question",
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("question-id").description("질문 번호")
                         ),
                         responseFields(
                                 List.of(
