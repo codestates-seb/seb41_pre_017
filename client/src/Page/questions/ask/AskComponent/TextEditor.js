@@ -12,6 +12,7 @@ import list from '../../img/textEditor/list.png';
 import more from '../../img/textEditor/more.png';
 import help from '../../img/textEditor/help-web-button.png';
 import { useState, useRef } from 'react';
+import { TextToCode, CodeToHtml } from '../../../component/textConverter';
 
 // 영역을 두개로 나눈다
 const Wrapper = styled.div`
@@ -76,7 +77,7 @@ const TextEditor = ({ data, handleHide, handler }) => {
     };
 
     // 텍스트를 html 로 바꾸기 위한
-    const [problem, setProblem] = useState('');
+    const [problem, setProblem] = useState(''); //프리뷰
     const [isBold, setBold] = useState(false);
     const [isItalic, setItalic] = useState(false);
     const [isInlineCode, setInlineCode] = useState(false);
@@ -121,10 +122,9 @@ const TextEditor = ({ data, handleHide, handler }) => {
         }
         TextAreaFocus.current.focus();
     };
-
     // 정규식으로 줄바꿈 태그 넣는 부분
     const handleProblem = (e) => {
-        setProblem(e.target.value.replaceAll(/(\n|\r\n)/g, '<br>'));
+        setProblem(TextToCode(e.target.value));
         handler.setProblem(e.target.value);
     };
 
@@ -139,7 +139,6 @@ const TextEditor = ({ data, handleHide, handler }) => {
                 <button type="button">
                     <img src={heading} alt="heading" />
                 </button>
-                {console.log(selectBtn)}
                 <button className={selectBtn === 'Bold' ? 'selected' : null} onClick={Bold} ref={TextAreaFocus}>
                     <img src={bold} alt="bold" />
                 </button>
@@ -185,7 +184,7 @@ const TextEditor = ({ data, handleHide, handler }) => {
                 placeholder={data.placeholder}
                 value={data.id === 'expect' ? handler.expect : handler.problem}
             ></TextArea>
-            <Preview dangerouslySetInnerHTML={{ __html: problem }}></Preview> {/* 문자열의 html 태그를 출력 */}
+            <Preview dangerouslySetInnerHTML={{ __html: CodeToHtml(problem) }} /> {/* 문자열의 html 태그를 출력 */}
         </Wrapper>
     );
 };
