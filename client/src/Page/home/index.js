@@ -14,10 +14,20 @@ const StyledHeader = styled.header`
 `;
 
 const H1 = styled.h1`
-    font-size: 1.5rem;
-    font-weight: 400;
+    font-size: 1.8rem;
+    font-weight: bold;
 `;
 
+const Suggestion = styled.div`
+    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 18px;
+    a {
+        font-weight: 600;
+        color: var(--theme-link-text);
+    }
+`;
 const data = db.questions;
 
 function Home() {
@@ -36,6 +46,9 @@ function Home() {
                     {data.map((el) => (
                         <Questions key={el.id} data={el} />
                     ))}
+                    <Suggestion>
+                        Looking for more? Browse the <a href="/questions">complete list of questions</a> or popular tags. Help us answer unanswered questions.
+                    </Suggestion>
                 </section>
             </Main>
         </Container>
