@@ -45,6 +45,8 @@ const SummaryMeta = styled.div`
 
 const Title = styled.h2`
     color: var(--theme-link-text);
+    margin-bottom: 15px;
+    margin-top: 5px;
     font-size: 16px;
 `;
 
@@ -62,7 +64,7 @@ const questions = ({ data }) => {
                 </Link>
 
                 <SummaryMeta>
-                    <span className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</span>
+                    <nav className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</nav>
                     <span className="userCard">
                         <span className="userLink">{'anonymous'}</span> <span>{'11 asked 2 mins ago'}</span>
                     </span>
