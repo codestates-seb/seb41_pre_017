@@ -4,7 +4,7 @@ import Home from './Page/home';
 import Login from './Page/users/login';
 import SignUp from './Page/users/SignUp';
 import SingleQuestion from './Page/questions/qusetion-detail/index';
-import Questions from './Page/questions';
+import Questions from './Page/questions/questionList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import QuestionAsk from './Page/questions/ask/QuestionAsk';
 
