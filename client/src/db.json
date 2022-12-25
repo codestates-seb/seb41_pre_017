@@ -5,7 +5,7 @@
             "votes": 7,
             "answers": 0,
             "views": 0,
-            "title": "change a code of extension v2 to v3 please help me",
+            "title": "How to use a text converter",
             "content": "<h2><b>textConverter 사용법</b></h3><br><b> 이 문서는 textConverter를 사용하여 작성하였습니다</b><br><br><purple>import</purple>{ TextToCode, CodeToHtml } from component/textConverter 를 합니다.<br><br>TextArea이나 input으로 새로 값을 생성하는 경우 <b>TextToCode</b> 함수를 사용합니다<br><br><br><h3><b>TextToCode</b>함수는</h3> <br>특정 문자열을(java, JavaScript의 함수, 변수등등)의 색상코드를 삽입하는 역할을 합니다.<br><br><br><h3><b>CodeToHtml</b> 함수는</h3> <br><b>TextToCode</b>함수로 변환한 코드를 사용자들이 볼 수 있게 코드를 해석해주는 역할을 합니다<br><br>기본적으로 Script 코드를 제외한(보안-변조방지) html 태그들을 인식하고 <br><br>개발자가 미리 정한 고유코드를 이용하여 문자열을 꾸밀 수 있습니다<br> <br><br>텍스트를 <'고유코드'> 사이에 입력하시고 <'/고유코드'> 으로 닫아주시면 됩니다<br><br>대표적인 고유코드를 소개해드리겠습니다 <br><br>code 고유코드를 사용하시면 코드블럭을 작성 할 수 있습니다<br><br><b>예시</b><br><code> <orange>const</orange> str  = 안녕하세요~  <br><br><blue>function</blue>( ) {<br> 다들 힘냅시다 <br>}</code><br><br>또는 텍스트입력창 상단의 <'/'> 버튼을 사용하셔서 작성하실 수 있습니다<br><br>다른 고유코드들로는 '<'red'><'/red'>, <'orange'><'/orange'>, <'blue'><'/blue'>, <'purple'><'/purple'>가 있습니다<br><br>각각 코드들은 텍스트의 색상을 꾸며줍니다<br><br><red>안녕</red> <orange>하세요</orange> <blue>색상을</blue> <purple>꾸며봅시다</purple><br><br>상단의 B 버튼은 <b>굵은 글씨</b>를 작성하는데 사용됩니다 버튼을 누르셔도 되고 코드로 작성하셔도 됩니다<br><b> 코드-></b> <'b'>  텍스트작성 <'/b'><br><br>i 버튼은 <i>이탤릭체를</i> 작성하는데 사용됩니다 버튼을 누르셔도 되고 코드로 작성하셔도 됩니다<br><b> 코드-></b> <'i'>  텍스트작성 <'/i'><br><br><h2><i><b> - 설명 끝 - </b></i></h2>",
             "tags": ["laravel", "vue.js", "inertiajs"],
             "answer": [1],
