@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Questions from '../component/questionsBox';
+import Questions from '../component/function/questionsBox';
 import db from '../../db.json';
-import BlueBtn from '../component/blueBtn';
+import BlueBtn from '../component/style/blueBtn';
 import { Sidebar, Container, Main } from '../global/Sidebar';
 import { Link } from 'react-router-dom';
 

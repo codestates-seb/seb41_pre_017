@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import BlueBtn from '../component/blueBtn';
+import BlueBtn from '../component/style/blueBtn';
 import { Sidebar, Container, Main } from '../global/Sidebar';
 import Contents from './Contents';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Loading from '../component/loading';
+import Loading from '../component/style/loading';
 
 const StyledHeader = styled.header`
     display: flex;

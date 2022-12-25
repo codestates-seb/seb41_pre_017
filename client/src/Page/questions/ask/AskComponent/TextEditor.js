@@ -12,7 +12,7 @@ import list from '../../img/textEditor/list.png';
 import more from '../../img/textEditor/more.png';
 import help from '../../img/textEditor/help-web-button.png';
 import { useState, useRef } from 'react';
-import { TextToCode, CodeToHtml } from '../../../component/textConverter';
+import { TextToCode, CodeToHtml } from '../../../component/function/textConverter';
 
 // 영역을 두개로 나눈다
 const Wrapper = styled.div`
