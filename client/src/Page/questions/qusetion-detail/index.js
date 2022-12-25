@@ -1,5 +1,5 @@
 import { Container, Main, Sidebar } from '../../global/Sidebar';
-import ContentList from './Contents';
+import ContentList from './ContentList';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BlueBtn from '../../component/style/blueBtn';
