@@ -12,12 +12,31 @@ body {
 }
 
 code {
-    background-color: rgb(206, 214, 221);
+    display: inline-block;
+    background-color: rgb(224, 233, 240);
     border-radius: 3px;
     margin-left: 5px;
     margin-right: 5px;
     font-family: courier, monospace;
     padding: 0 3px;
+    line-height: 20px;
+    padding: 10px;
+}
+.OrangeText {
+    color: #f48225;
+}
+
+.BlueText {
+    color: rgb(1 84 147);
+}
+.GreenText {
+    color: rgb(86 122 13);
+}
+.RedText {
+    color: red;
+}
+.PurpleText {
+    color: purple;
 }
 
 :root {
