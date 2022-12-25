@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import BlueBtn from '../component/blueBtn';
 import { Sidebar, Container, Main } from '../global/Sidebar';
-import Pagination from './pagination';
+import Contents from './Contents';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loading from '../component/loading';
-
 
 const StyledHeader = styled.header`
     display: flex;
@@ -17,8 +16,8 @@ const StyledHeader = styled.header`
 `;
 
 const H1 = styled.h1`
-    font-size: 1.5rem;
-    font-weight: 400;
+    font-size: 1.8rem;
+    font-weight: bold;
 `;
 
 const Questions = () => {
@@ -36,7 +35,7 @@ const Questions = () => {
                 .then(() => setLoading(false))
                 .catch((error) => console.error(error));
         };
-        const timer = setTimeout(() => {
+        setTimeout(() => {
             fetchData();
         }, 1000);
         setLoading(true);
@@ -52,7 +51,7 @@ const Questions = () => {
                             <BlueBtn>Ask Question</BlueBtn>
                         </Link>
                     </StyledHeader>
-                    {loading ? <Loading /> : <Pagination _data={data}></Pagination>}
+                    {loading ? <Loading /> : <Contents _data={data}></Contents>}
                 </Main>
             </Container>
         </>
