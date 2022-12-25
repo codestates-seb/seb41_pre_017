@@ -5,7 +5,6 @@ const useInput = (initialValue = '', onSubmit) => {
     const [inputValue, setInputValue] = useState(initialValue);
     const handleChange = (e) => {
         setInputValue(e.target.value);
-        console.log(e.target.value);
     };
     const handleSubmit = () => {
         setInputValue('');
