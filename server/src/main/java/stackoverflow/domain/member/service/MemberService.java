@@ -29,10 +29,7 @@ public class MemberService {
 
     // 회원 정보 조회
     public Member findMember(long memberId) {
-        // TODO: 추후 예외 처리 생성
-
-        return findVerifiedMember(memberId);
-        //return memberRepository.findById(memberId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        return memberRepository.findById(memberId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
     // 모든 회원 조회
@@ -63,12 +60,14 @@ public class MemberService {
         memberRepository.delete(findMember);
     }
 
+    // 이미 등록된 이메일인지 확인
     public void verifyExistsEmail(String email) {
         Optional<Member> member = memberRepository.findByEmail(email);
 
         if (member.isPresent()) throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
 
+    // 존재하는 회원인지 확인
     public Member findVerifiedMember(long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
