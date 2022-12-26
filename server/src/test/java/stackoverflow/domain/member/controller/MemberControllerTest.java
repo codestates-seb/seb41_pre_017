@@ -87,6 +87,7 @@ public class MemberControllerTest {
                         ),
                         responseFields(
                                 List.of(
+                                        fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 번호"),
                                         fieldWithPath("data.email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("data.nickname").type(JsonFieldType.STRING).description("닉네임"),
@@ -140,6 +141,7 @@ public class MemberControllerTest {
                         ),
                         responseFields(
                                 List.of(
+                                        fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 번호"),
                                         fieldWithPath("data.email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("data.nickname").type(JsonFieldType.STRING).description("닉네임"),
@@ -177,6 +179,7 @@ public class MemberControllerTest {
                         ),
                         responseFields(
                                 List.of(
+                                        fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 번호"),
                                         fieldWithPath("data.email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("data.nickname").type(JsonFieldType.STRING).description("닉네임"),
@@ -228,6 +231,7 @@ public class MemberControllerTest {
                         ),
                         responseFields(
                                 List.of(
+                                        fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터").optional(),
                                         fieldWithPath("data[].memberId").type(JsonFieldType.NUMBER).description("회원 번호"),
                                         fieldWithPath("data[].email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("data[].nickname").type(JsonFieldType.STRING).description("닉네임"),
