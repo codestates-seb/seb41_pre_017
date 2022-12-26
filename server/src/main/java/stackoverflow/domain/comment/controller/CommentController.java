@@ -10,6 +10,8 @@ import stackoverflow.domain.comment.dto.CommentResponseDto;
 import stackoverflow.domain.comment.entity.Comment;
 import stackoverflow.domain.comment.mapper.CommentMapper;
 import stackoverflow.domain.comment.service.CommentService;
+import stackoverflow.dto.MultiResponseDto;
+import stackoverflow.dto.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -31,7 +33,16 @@ public class CommentController {
     public ResponseEntity postComment(@Valid @RequestBody CommentRequestDto.Post request) {
         Comment createdComment = commentService.createComment(commentMapper.postDtoToComment(request));
         CommentResponseDto response = commentMapper.commentToResponseDto(createdComment);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.CREATED);
+    }
+
+    @PatchMapping("{comment-id}")
+    public ResponseEntity patchComment(@PathVariable("comment-id") @Positive long commentId,
+                                       @Valid @RequestBody CommentRequestDto.Patch request) {
+        request.setCommentId(commentId);
+        Comment comment = commentService.updateComment(commentMapper.patchDtoToComment(request));
+        CommentResponseDto response = commentMapper.commentToResponseDto(comment);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
     @GetMapping
@@ -40,28 +51,19 @@ public class CommentController {
         Page<Comment> pageComments = commentService.findComments(page, size);
         List<Comment> comments = pageComments.getContent();
         List<CommentResponseDto> response = commentMapper.commentToResponseDtos(comments);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(new MultiResponseDto<>(response, pageComments), HttpStatus.OK);
     }
 
-    @GetMapping("{commentId}")
-    public ResponseEntity getComment(@PathVariable @Positive long commentId) {
+    @GetMapping("{comment-id}")
+    public ResponseEntity getComment(@PathVariable("comment-id") @Positive long commentId) {
         Comment comment = commentService.findComment(commentId);
         CommentResponseDto response = commentMapper.commentToResponseDto(comment);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
-    @PatchMapping("{commentId}")
-    public ResponseEntity patchComment(@PathVariable @Positive long commentId,
-                                       @Valid @RequestBody CommentRequestDto.Patch request) {
-        request.setCommentId(commentId);
-        Comment comment = commentService.updateComment(commentMapper.patchDtoToComment(request));
-        CommentResponseDto response = commentMapper.commentToResponseDto(comment);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @DeleteMapping("{commentId}")
-    public ResponseEntity deleteComment(@PathVariable @Positive long commentId) {
+    @DeleteMapping("{comment-id}")
+    public ResponseEntity deleteComment(@PathVariable("comment-id") @Positive long commentId) {
         commentService.deleteComment(commentId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

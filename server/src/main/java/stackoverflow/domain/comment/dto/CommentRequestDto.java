@@ -1,6 +1,9 @@
 package stackoverflow.domain.comment.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.question.entity.Question;
@@ -9,6 +12,9 @@ import javax.validation.constraints.NotBlank;
 
 public class CommentRequestDto {
     @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Post {
         @NotBlank(message = "내용을 입력해주세요.")
         private String content;
@@ -42,6 +48,9 @@ public class CommentRequestDto {
     }
 
     @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Patch {
         private Long commentId;
 
