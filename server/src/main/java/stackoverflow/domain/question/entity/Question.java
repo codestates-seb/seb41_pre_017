@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.audit.BaseTime;
-import stackoverflow.domain.comment.entity.Comment;
 import stackoverflow.domain.member.entity.Member;
 
 import javax.persistence.*;
@@ -37,12 +36,9 @@ public class Question extends BaseTime {
         return member.getMemberId();
     }
 
-    public String getMemberNickname() {
+    public String getNickname() {
         return member.getNickname();
     }
-
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();

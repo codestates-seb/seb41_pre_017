@@ -11,6 +11,7 @@ import stackoverflow.domain.answer.dto.AnswerResponseDto;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.answer.mapper.AnswerMapper;
 import stackoverflow.domain.answer.service.AnswerService;
+import stackoverflow.domain.question.service.QuestionService;
 import stackoverflow.dto.MultiResponseDto;
 import stackoverflow.dto.SingleResponseDto;
 
@@ -46,17 +47,20 @@ public class AnswerController {
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponse(answer)), HttpStatus.OK);
     }
 
-    @GetMapping("/{answer-id}")
-    public ResponseEntity getAnswer(@PathVariable("answer-id") @Positive long answerId) {
-        Answer findAnswer = answerService.findAnswer(answerId);
+//    @GetMapping("/{answer-id}")
+//    public ResponseEntity getAnswer(@PathVariable("answer-id") @Positive long answerId) {
+//        Answer findAnswer = answerService.findAnswer(answerId);
+//
+//        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponse(findAnswer)), HttpStatus.OK);
+//    }
 
-        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponse(findAnswer)), HttpStatus.OK);
-    }
-
-    @GetMapping
-    public ResponseEntity getAnswers(@RequestParam @Positive int page,
+    // 특정 questionId를 가진 answer들 조회
+    @GetMapping("/{question-id}")
+    public ResponseEntity getAnswers(@PathVariable("question-id") @Positive long questionId,
+                                     @RequestParam @Positive int page,
                                      @RequestParam @Positive int size) {
-        Page<Answer> pageAnswers = answerService.findAnswers(page, size);
+
+        Page<Answer> pageAnswers = answerService.findAnswers(questionId, page, size);
         List<Answer> answers = pageAnswers.getContent();
         return new ResponseEntity<>(new MultiResponseDto<>(mapper.answersToAnswerResponses(answers), pageAnswers), HttpStatus.OK);
     }

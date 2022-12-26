@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.member.service.MemberService;
 import stackoverflow.exception.BusinessLogicException;
 import stackoverflow.exception.ExceptionCode;
@@ -25,7 +26,8 @@ public class QuestionService {
     // 질문 등록
     public Question createQuestion(Question question) {
         // 존재하는 회원인지 확인
-        memberService.findVerifiedMember(question.getMember().getMemberId());
+        Member createMember = memberService.findVerifiedMember(question.getMember().getMemberId());
+        question.setMember(createMember);
 
         return questionRepository.save(question);
     }
