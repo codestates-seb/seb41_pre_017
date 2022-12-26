@@ -68,8 +68,6 @@ public class QuestionController {
     @PatchMapping("/{question-id}")
     public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                         @Valid @RequestBody QuestionPatchDto questionPatchDto) {
-        // TODO: 수정 시 로그인 필요
-
         questionPatchDto.setQuestionId(questionId);
 
         Question question = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto));
@@ -82,8 +80,6 @@ public class QuestionController {
     // 특정 질문 삭제
     @DeleteMapping("/{question-id}")
     public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId) {
-        // TODO: 삭제 시 로그인 필요
-
         questionService.deleteQuestion(questionId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
