@@ -11,6 +11,8 @@ import stackoverflow.domain.question.dto.QuestionResponseDto;
 import stackoverflow.domain.question.entity.Question;
 import stackoverflow.domain.question.mapper.QuestionMapper;
 import stackoverflow.domain.question.service.QuestionService;
+import stackoverflow.dto.MultiResponseDto;
+import stackoverflow.dto.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -31,19 +33,21 @@ public class QuestionController {
     // 질문 등록
     @PostMapping
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
-        Question question = mapper.questionPostDtoToQuestion(questionPostDto);
+        Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
 
-        Question response = questionService.createQuestion(question);
+        QuestionResponseDto response = mapper.questionToQuestionResponseDto(question);
 
-        return new ResponseEntity<>(mapper.questionToQuestionResponseDto(response), HttpStatus.CREATED);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.CREATED);
     }
 
     // 특정 질문 조회(검색)
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
-        Question response = questionService.findQuestion(questionId);
+        Question question = questionService.findQuestion(questionId);
 
-        return new ResponseEntity<>(mapper.questionToQuestionResponseDto(response), HttpStatus.OK);
+        QuestionResponseDto response = mapper.questionToQuestionResponseDto(question);
+
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
     // 모든 질문 리스트 조회
@@ -57,7 +61,7 @@ public class QuestionController {
 
         List<QuestionResponseDto> response = mapper.questionsToQuestionResponseDtos(questions);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(new MultiResponseDto<>(response, pageQuestions), HttpStatus.OK);
     }
 
     // 특정 질문 업데이트(수정)
@@ -68,11 +72,11 @@ public class QuestionController {
 
         questionPatchDto.setQuestionId(questionId);
 
-        Question question = mapper.questionPatchDtoToQuestion(questionPatchDto);
+        Question question = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto));
 
-        Question response = questionService.updateQuestion(question);
+        QuestionResponseDto response = mapper.questionToQuestionResponseDto(question);
 
-        return new ResponseEntity<>(mapper.questionToQuestionResponseDto(response), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
     // 특정 질문 삭제

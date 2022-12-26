@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
@@ -74,9 +71,9 @@ public class QuestionControllerTest {
 
         // then
         actions.andExpect(status().isCreated())
-                .andExpect(jsonPath("$.title").value(post.getTitle()))
-                .andExpect(jsonPath("$.content").value(post.getContent()))
-                .andExpect(jsonPath("$.memberId").value(post.getMemberId()))
+                .andExpect(jsonPath("$.data.title").value(post.getTitle()))
+                .andExpect(jsonPath("$.data.content").value(post.getContent()))
+                .andExpect(jsonPath("$.data.memberId").value(post.getMemberId()))
                 .andDo(document(
                         "post-question",
                         getRequestPreProcessor(),
@@ -90,12 +87,12 @@ public class QuestionControllerTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
-                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("작성자 회원 번호"),
-                                        fieldWithPath("title").type(JsonFieldType.STRING).description("제목"),
-                                        fieldWithPath("content").type(JsonFieldType.STRING).description("본문"),
-                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("최초 생성 시간"),
-                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("최종 수정 시간")
+                                        fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
+                                        fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("작성자 회원 번호"),
+                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("제목"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("본문"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("최초 생성 시간"),
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("최종 수정 시간")
                                 )
                         )
                 ));
@@ -126,9 +123,9 @@ public class QuestionControllerTest {
 
         // then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.questionId").value(questionId))
-                .andExpect(jsonPath("$.title").value(patch.getTitle()))
-                .andExpect(jsonPath("$.content").value(patch.getContent()))
+                .andExpect(jsonPath("$.data.questionId").value(questionId))
+                .andExpect(jsonPath("$.data.title").value(patch.getTitle()))
+                .andExpect(jsonPath("$.data.content").value(patch.getContent()))
                 .andDo(document(
                         "patch-question",
                         getRequestPreProcessor(),
@@ -145,12 +142,12 @@ public class QuestionControllerTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
-                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("작성자 회원 번호"),
-                                        fieldWithPath("title").type(JsonFieldType.STRING).description("제목"),
-                                        fieldWithPath("content").type(JsonFieldType.STRING).description("본문"),
-                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("최초 생성 시간"),
-                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("최종 수정 시간")
+                                        fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
+                                        fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("작성자 회원 번호"),
+                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("제목"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("본문"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("최초 생성 시간"),
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("최종 수정 시간")
                                 )
                         )
                 ));
@@ -174,7 +171,7 @@ public class QuestionControllerTest {
 
         // then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.questionId").value(questionId))
+                .andExpect(jsonPath("$.data.questionId").value(questionId))
                 .andDo(document(
                         "get-question",
                         getResponsePreProcessor(),
@@ -183,12 +180,12 @@ public class QuestionControllerTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
-                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("작성자 회원 번호"),
-                                        fieldWithPath("title").type(JsonFieldType.STRING).description("제목"),
-                                        fieldWithPath("content").type(JsonFieldType.STRING).description("본문"),
-                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("최초 생성 시간"),
-                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("최종 수정 시간")
+                                        fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
+                                        fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("작성자 회원 번호"),
+                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("제목"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("본문"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("최초 생성 시간"),
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("최종 수정 시간")
                                 )
                         )
                 ));
@@ -197,8 +194,8 @@ public class QuestionControllerTest {
     @Test
     public void getQuestionsTest() throws Exception {
         // given
-        int page = 1;
-        int size = 5;
+        int page = 2;
+        int size = 3;
 
         List<QuestionResponseDto> responses = List.of(
                 new QuestionResponseDto(1L, 1L,"제목1", "본문1", LocalDateTime.now(), LocalDateTime.now()),
@@ -213,8 +210,7 @@ public class QuestionControllerTest {
                 new QuestionResponseDto(10L, 7L,"제목10", "본문10", LocalDateTime.now(), LocalDateTime.now())
         );
 
-        given(questionService.findQuestions(Mockito.anyInt(), Mockito.anyInt()))
-                .willReturn(new PageImpl<>(List.of(new Question()), PageRequest.of(page - 1, size, Sort.by("questionId").descending()), 1));
+        given(questionService.findQuestions(Mockito.anyInt(), Mockito.anyInt())).willReturn(new PageImpl<>(List.of()));
         given(mapper.questionsToQuestionResponseDtos(Mockito.anyList())).willReturn(responses);
 
         // when
@@ -227,7 +223,6 @@ public class QuestionControllerTest {
         actions.andExpect(status().isOk())
                 .andDo(document(
                         "get-questions",
-                        getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestParameters(
                                 List.of(
@@ -237,12 +232,18 @@ public class QuestionControllerTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
-                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("작성자 회원 번호"),
-                                        fieldWithPath("title").type(JsonFieldType.STRING).description("제목"),
-                                        fieldWithPath("content").type(JsonFieldType.STRING).description("본문"),
-                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("최초 생성 시간"),
-                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("최종 수정 시간")
+                                        fieldWithPath("data[].questionId").type(JsonFieldType.NUMBER).description("질문 번호"),
+                                        fieldWithPath("data[].memberId").type(JsonFieldType.NUMBER).description("작성자 회원 번호"),
+                                        fieldWithPath("data[].title").type(JsonFieldType.STRING).description("제목"),
+                                        fieldWithPath("data[].content").type(JsonFieldType.STRING).description("본문"),
+                                        fieldWithPath("data[].createdAt").type(JsonFieldType.STRING).description("최초 생성 시간"),
+                                        fieldWithPath("data[].modifiedAt").type(JsonFieldType.STRING).description("최종 수정 시간"),
+
+                                        fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
+                                        fieldWithPath("pageInfo.page").type(JsonFieldType.NUMBER).description("페이지 번호"),
+                                        fieldWithPath("pageInfo.size").type(JsonFieldType.NUMBER).description("페이지 크기"),
+                                        fieldWithPath("pageInfo.totalElements").type(JsonFieldType.NUMBER).description("총 갯수"),
+                                        fieldWithPath("pageInfo.totalPages").type(JsonFieldType.NUMBER).description("총 페이지 수")
                                 )
                         )
                 ));
