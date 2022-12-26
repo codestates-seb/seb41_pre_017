@@ -47,10 +47,10 @@ public class QuestionService {
         // 존재하는 질문인지 확인
         Question findQuestion = findVerifiedQuestion(question.getQuestionId());
 
-        Optional.ofNullable(question.getTitle()).ifPresent(title -> question.setTitle(title));
-        Optional.ofNullable(question.getContent()).ifPresent(content -> question.setContent(content));
+        Optional.ofNullable(question.getTitle()).ifPresent(title -> findQuestion.setTitle(title));
+        Optional.ofNullable(question.getContent()).ifPresent(content -> findQuestion.setContent(content));
 
-        return questionRepository.save(question);
+        return questionRepository.save(findQuestion);
     }
 
     // 특정 질문 삭제
@@ -58,7 +58,8 @@ public class QuestionService {
         // TODO: 연관관계 매핑 이후 로그인, 작성자 확인 필요
 
         // 존재하는 질문인지 확인
-        Question findQuestion = findVerifiedQuestion(questionId);
+        //Question findQuestion = findVerifiedQuestion(questionId);
+        findVerifiedQuestion(questionId);
 
         questionRepository.deleteById(questionId);
     }

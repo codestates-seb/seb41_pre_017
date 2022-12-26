@@ -47,7 +47,7 @@ public class MemberService {
         Optional.ofNullable(member.getNickname()).ifPresent(nickName -> findMember.setNickname(nickName));
         Optional.ofNullable(member.getPwd()).ifPresent(pwd -> findMember.setPwd(pwd));
 
-        return memberRepository.save(member);
+        return memberRepository.save(findMember);
     }
 
     // 특정 회원 탈퇴
@@ -55,9 +55,10 @@ public class MemberService {
         // TODO: 데이터 삭제가 아닌 숨김(휴면) 상태로 변경
 
         // 존재하는 회원인지 확인
-        Member findMember = findVerifiedMember(memberId);
+        //Member findMember = findVerifiedMember(memberId);
+        findVerifiedMember(memberId);
 
-        memberRepository.delete(findMember);
+        memberRepository.deleteById(memberId);
     }
 
     // 이미 등록된 이메일인지 확인
