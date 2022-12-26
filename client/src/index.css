@@ -9,6 +9,7 @@
 
 body {
     padding-top: 55px; /* 탑 바(헤더)와 안겹치게 해줌 */
+    min-width: auto;
 }
 
 code {

@@ -7,13 +7,12 @@ import { Link } from 'react-router-dom';
 
 const Post = styled.div`
     line-height: 30px;
-    margin: 50px 20px;
+    margin: 0px 20px;
 `;
 
 const Container = styled.div`
     display: flex;
     padding-bottom: 50px;
-    border-bottom: 1px solid var(--theme-border);
 `;
 
 const Tags = styled.nav`

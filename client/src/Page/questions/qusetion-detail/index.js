@@ -1,43 +1,70 @@
-import { Container, Main, Sidebar } from '../../global/Sidebar';
+import {Container, Main, Sidebar} from '../../global/Sidebar';
 import ContentList from './ContentList';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import BlueBtn from '../../components/style/blueBtn';
 import questionDB from '../../../db.json';
 import answerDB from '../../../answerDB.json';
-import { useState } from 'react';
+import {useState} from 'react';
 import ContentSidebar from './sidebar/SideBar';
+
 const StyledHeader = styled.header`
-    display: flex;
-    flex-wrap: wrap;
-    padding: 30px 20px;
-    border-bottom: 1px solid var(--theme-border);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 8px;
+
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+  }
 `;
 
 const H1 = styled.h1`
-    font-size: 1.8rem;
-    font-weight: bold;
-    width: 85%;
-`;
-const StyledLink = styled(Link)`
-    width: 10%;
-    margin-left: auto;
+  overflow-wrap: break-word;
+  font-size: 25px;
+  font-weight: 400;
+  flex: 1 auto;
+  line-height: 1.3;
 `;
 
 const Information = styled.div`
-    font-size: 16px;
-    margin-top: 20px;
-    color: rgb(106 115 124);
+  display: flex;
+  font-size: 15px;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  border-color: hsl(210, 8%, 90%);
+  border-bottom: 1px solid var(--theme-border);
+`;
+
+const ElContainer = styled.div`
+  white-space: nowrap;
+  margin-bottom: 8px;
+  margin-right: 16px;
+`;
+
+const AmvTitle = styled.span`
+  color: hsl(210, 8%, 45%);
+  margin: 0 4px;
 `;
 
 const Time = styled.span`
-    color: #232629;
-    margin-left: 2px;
-    margin-right: 20px;
+  color: #232629;
+  margin-left: 2px;
+  margin-right: 20px;
 `;
 
 const ContentLayout = styled.div`
-    display: flex;
+  display: flex;
+  width: calc(100% - 300px - 24px);
+  float: left;
+  margin: 0;
+  padding: 0;
+
+  @media screen and (max-width: 980px) {
+    width: 100%;
+    float: none;
+  }
 `;
 //개별 질문 페이지 구성 화면입니다
 const SingleQuestion = () => {
@@ -47,23 +74,34 @@ const SingleQuestion = () => {
 
     return (
         <Container>
-            <Sidebar />
+            <Sidebar/>
             <Main>
                 {/* 헤더 = 제목, 질문생성 버튼, 질문정보(날짜등등) */}
                 <StyledHeader>
                     <H1>{questionData.title}</H1>
-                    <StyledLink to="/questions/ask">
+                    <Link to={'/questions/ask'}>
                         <BlueBtn>Ask Question</BlueBtn>
-                    </StyledLink>
-                    <Information>
-                        Asked <Time>today</Time> Modified <Time>today</Time> Viewed <Time>2 times</Time>
-                    </Information>
+                    </Link>
                 </StyledHeader>
+                <Information>
+                    <ElContainer>
+                        <AmvTitle>Asked</AmvTitle>
+                        <Time>today</Time>
+                    </ElContainer>
+                    <ElContainer>
+                        <AmvTitle>Modified</AmvTitle>
+                        <Time>today</Time>
+                    </ElContainer>
+                    <ElContainer>
+                        <AmvTitle>Viewed</AmvTitle>
+                        <Time>2 times</Time>
+                    </ElContainer>
+                </Information>
                 {/* 질문과, 답변 = 콘텐츠 영역 */}
                 <ContentLayout>
-                    <ContentList dataList={{ questionData, answerData }} dataHandler={{ setQuestionData, setAnswerData }} />
-                    <ContentSidebar />
+                    <ContentList dataList={{questionData, answerData}} dataHandler={{setQuestionData, setAnswerData}}/>
                 </ContentLayout>
+                <ContentSidebar/>
             </Main>
         </Container>
     );
