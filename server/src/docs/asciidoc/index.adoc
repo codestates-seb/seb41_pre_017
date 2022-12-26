@@ -7,9 +7,8 @@
 
 Pre-Project-017
 
-v1.0.0, 2022.12.25.
+v1.0.0, 2022.12.26.
 
-***
 == QuestionController
 === 질문 등록
 .curl-request
@@ -18,11 +17,20 @@ include::{snippets}/post-question/curl-request.adoc[]
 .http-request
 include::{snippets}/post-question/http-request.adoc[]
 
+.http-response
+include::{snippets}/post-question/http-response.adoc[]
+
+.httpie-request
+include::{snippets}/post-question/httpie-request.adoc[]
+
+.request-body
+include::{snippets}/post-question/request-body.adoc[]
+
 .request-fields
 include::{snippets}/post-question/request-fields.adoc[]
 
-.http-response
-include::{snippets}/post-question/http-response.adoc[]
+.response-body
+include::{snippets}/post-question/response-body.adoc[]
 
 .response-fields
 include::{snippets}/post-question/response-fields.adoc[]
@@ -35,14 +43,23 @@ include::{snippets}/patch-question/curl-request.adoc[]
 .http-request
 include::{snippets}/patch-question/http-request.adoc[]
 
+.http-response
+include::{snippets}/patch-question/http-response.adoc[]
+
+.httpie-request
+include::{snippets}/patch-question/httpie-request.adoc[]
+
 .path-parameters
 include::{snippets}/patch-question/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/patch-question/request-body.adoc[]
 
 .request-fields
 include::{snippets}/patch-question/request-fields.adoc[]
 
-.http-response
-include::{snippets}/patch-question/http-response.adoc[]
+.response-body
+include::{snippets}/patch-question/response-body.adoc[]
 
 .response-fields
 include::{snippets}/patch-question/response-fields.adoc[]
@@ -55,11 +72,20 @@ include::{snippets}/get-question/curl-request.adoc[]
 .http-request
 include::{snippets}/get-question/http-request.adoc[]
 
+.http-response
+include::{snippets}/get-question/http-response.adoc[]
+
+.httpie-request
+include::{snippets}/get-question/httpie-request.adoc[]
+
 .path-parameters
 include::{snippets}/get-question/path-parameters.adoc[]
 
-.http-response
-include::{snippets}/get-question/http-response.adoc[]
+.request-body
+include::{snippets}/get-question/request-body.adoc[]
+
+.response-body
+include::{snippets}/get-question/response-body.adoc[]
 
 .response-fields
 include::{snippets}/get-question/response-fields.adoc[]
@@ -75,6 +101,18 @@ include::{snippets}/get-questions/http-request.adoc[]
 .http-response
 include::{snippets}/get-questions/http-response.adoc[]
 
+.httpie-request
+include::{snippets}/get-questions/httpie-request.adoc[]
+
+.request-body
+include::{snippets}/get-questions/request-body.adoc[]
+
+.request-parameters
+include::{snippets}/get-questions/request-parameters.adoc[]
+
+.response-body
+include::{snippets}/get-questions/response-body.adoc[]
+
 .response-fields
 include::{snippets}/get-questions/response-fields.adoc[]
 
@@ -86,11 +124,20 @@ include::{snippets}/delete-question/curl-request.adoc[]
 .http-request
 include::{snippets}/delete-question/http-request.adoc[]
 
+.http-response
+include::{snippets}/delete-question/http-response.adoc[]
+
+.httpie-request
+include::{snippets}/delete-question/httpie-request.adoc[]
+
 .path-parameters
 include::{snippets}/delete-question/path-parameters.adoc[]
 
-.http-response
-include::{snippets}/delete-question/http-response.adoc[]
+.request-body
+include::{snippets}/delete-question/request-body.adoc[]
+
+.response-body
+include::{snippets}/delete-question/response-body.adoc[]
 
 ***
 == AnswerController
@@ -119,7 +166,7 @@ include::{snippets}/post-answer/response-body.adoc[]
 .response-fields
 include::{snippets}/post-answer/response-fields.adoc[]
 
-=== 답변 수정
+=== 특정 답변 수정
 .curl-request
 include::{snippets}/patch-answer/curl-request.adoc[]
 
@@ -147,7 +194,7 @@ include::{snippets}/patch-answer/response-body.adoc[]
 .response-fields
 include::{snippets}/patch-answer/response-fields.adoc[]
 
-=== 답변 조회
+=== 특정 답변 조회
 .curl-request
 include::{snippets}/get-answer/curl-request.adoc[]
 
@@ -172,7 +219,7 @@ include::{snippets}/get-answer/response-body.adoc[]
 .response-fields
 include::{snippets}/get-answer/response-fields.adoc[]
 
-=== 답변 전체 조회
+=== 모든 답변 조회
 .curl-request
 include::{snippets}/get-answers/curl-request.adoc[]
 
@@ -197,7 +244,7 @@ include::{snippets}/get-answers/response-body.adoc[]
 .response-fields
 include::{snippets}/get-answers/response-fields.adoc[]
 
-=== 답변 삭제
+=== 특정 답변 삭제
 .curl-request
 include::{snippets}/delete-answer/curl-request.adoc[]
 
@@ -228,16 +275,24 @@ include::{snippets}/post-comment/curl-request.adoc[]
 .http-request
 include::{snippets}/post-comment/http-request.adoc[]
 
+.http-response
+include::{snippets}/post-comment/http-response.adoc[]
+
+.httpie-request
+include::{snippets}/post-comment/httpie-request.adoc[]
+
+.request-body
+include::{snippets}/post-comment/request-body.adoc[]
+
 .request-fields
 include::{snippets}/post-comment/request-fields.adoc[]
 
-.http-response
-include::{snippets}/post-comment/http-response.adoc[]
+.response-body
+include::{snippets}/post-comment/response-body.adoc[]
 
 .response-fields
 include::{snippets}/post-comment/response-fields.adoc[]
 
-***
 === 특정 댓글 수정
 .curl-request
 include::{snippets}/patch-comment/curl-request.adoc[]
@@ -245,19 +300,52 @@ include::{snippets}/patch-comment/curl-request.adoc[]
 .http-request
 include::{snippets}/patch-comment/http-request.adoc[]
 
+.http-response
+include::{snippets}/patch-comment/http-response.adoc[]
+
+.httpie-request
+include::{snippets}/patch-comment/httpie-request.adoc[]
+
 .path-parameters
 include::{snippets}/patch-comment/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/patch-comment/request-body.adoc[]
 
 .request-fields
 include::{snippets}/patch-comment/request-fields.adoc[]
 
-.http-response
-include::{snippets}/patch-comment/http-response.adoc[]
+.response-body
+include::{snippets}/patch-comment/response-body.adoc[]
 
 .response-fields
 include::{snippets}/patch-comment/response-fields.adoc[]
 
-***
+=== 특정 댓글 조회
+.curl-request
+include::{snippets}/get-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-comment/http-request.adoc[]
+
+.http-response
+include::{snippets}/get-comment/http-response.adoc[]
+
+.httpie-request
+include::{snippets}/get-comment/httpie-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-comment/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/get-comment/request-body.adoc[]
+
+.response-body
+include::{snippets}/get-comment/response-body.adoc[]
+
+.response-fields
+include::{snippets}/get-comment/response-fields.adoc[]
+
 === 모든 댓글 조회
 .curl-request
 include::{snippets}/get-comments/curl-request.adoc[]
@@ -268,27 +356,21 @@ include::{snippets}/get-comments/http-request.adoc[]
 .http-response
 include::{snippets}/get-comments/http-response.adoc[]
 
+.httpie-request
+include::{snippets}/get-comments/httpie-request.adoc[]
+
+.request-body
+include::{snippets}/get-comments/request-body.adoc[]
+
+.request-parameters
+include::{snippets}/get-comments/request-parameters.adoc[]
+
+.response-body
+include::{snippets}/get-comments/response-body.adoc[]
+
 .response-fields
 include::{snippets}/get-comments/response-fields.adoc[]
 
-***
-=== 특정 댓글 조회
-.curl-request
-include::{snippets}/get-comment/curl-request.adoc[]
-
-.http-request
-include::{snippets}/get-comment/http-request.adoc[]
-
-.path-parameters
-include::{snippets}/get-comment/path-parameters.adoc[]
-
-.http-response
-include::{snippets}/get-comment/http-response.adoc[]
-
-.response-fields
-include::{snippets}/get-comment/response-fields.adoc[]
-
-***
 === 특정 댓글 삭제
 .curl-request
 include::{snippets}/delete-comment/curl-request.adoc[]
@@ -296,9 +378,17 @@ include::{snippets}/delete-comment/curl-request.adoc[]
 .http-request
 include::{snippets}/delete-comment/http-request.adoc[]
 
+.http-response
+include::{snippets}/delete-comment/http-response.adoc[]
+
+.httpie-request
+include::{snippets}/delete-comment/httpie-request.adoc[]
+
 .path-parameters
 include::{snippets}/delete-comment/path-parameters.adoc[]
 
-.http-response
-include::{snippets}/delete-comment/http-response.adoc[]
-***
+.request-body
+include::{snippets}/delete-comment/request-body.adoc[]
+
+.response-body
+include::{snippets}/delete-comment/response-body.adoc[]
