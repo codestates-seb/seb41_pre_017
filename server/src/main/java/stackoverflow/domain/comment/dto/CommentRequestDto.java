@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.member.entity.Member;
-import stackoverflow.domain.question.entity.Question;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 public class CommentRequestDto {
     @Getter
@@ -19,10 +19,10 @@ public class CommentRequestDto {
         @NotBlank(message = "내용을 입력해주세요.")
         private String content;
 
+        @Positive
         private Long memberId;
 
-        private Long questionId;
-
+        @Positive
         private Long answerId;
 
         public Member getMember() {
@@ -30,13 +30,6 @@ public class CommentRequestDto {
             member.setMemberId(memberId);
 
             return member;
-        }
-
-        public Question getQuestion() {
-            Question question = new Question();
-            question.setQuestionId(questionId);
-
-            return question;
         }
 
         public Answer getAnswer() {

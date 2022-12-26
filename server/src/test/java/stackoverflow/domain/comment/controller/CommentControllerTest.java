@@ -71,10 +71,10 @@ public class CommentControllerTest {
     @Test
     public void postCommentTest() throws Exception {
         // given
-        CommentRequestDto.Post post = new CommentRequestDto.Post("comment1", 1L, 1L, 1L);
+        CommentRequestDto.Post post = new CommentRequestDto.Post("comment1", 1L, 1L);
         String content = gson.toJson(post);
 
-        CommentResponseDto response = new CommentResponseDto(1L, 1L, 1L, 1L, "comment1", LocalDateTime.now(), LocalDateTime.now());
+        CommentResponseDto response = new CommentResponseDto(1L, 1L, 1L, "comment1", LocalDateTime.now(), LocalDateTime.now());
 
         given(commentMapper.postDtoToComment(Mockito.any(CommentRequestDto.Post.class))).willReturn(new Comment());
 
@@ -96,7 +96,6 @@ public class CommentControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data.content").value(post.getContent()))
                 .andExpect(jsonPath("$.data.memberId").value(post.getMemberId()))
-                .andExpect(jsonPath("$.data.questionId").value(post.getQuestionId()))
                 .andExpect(jsonPath("$.data.answerId").value(post.getAnswerId()))
                 .andDo(document("post-comment",
                         preprocessRequest(prettyPrint()),
@@ -105,7 +104,6 @@ public class CommentControllerTest {
                                 List.of(
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                         fieldWithPath("answerId").type(JsonFieldType.NUMBER).description("답변 식별자")
                                 )
                         ),
@@ -113,7 +111,6 @@ public class CommentControllerTest {
                                 List.of(
                                         fieldWithPath("data.commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                         fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                        fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                         fieldWithPath("data.answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("추가된 시간"),
@@ -134,7 +131,6 @@ public class CommentControllerTest {
 
         CommentResponseDto response =
                 new CommentResponseDto(
-                        1L,
                         1L,
                         1L,
                         1L,
@@ -178,7 +174,6 @@ public class CommentControllerTest {
                                 List.of(
                                         fieldWithPath("data.commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                         fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                        fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                         fieldWithPath("data.answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("추가된 시간"),
@@ -221,7 +216,6 @@ public class CommentControllerTest {
                         1L,
                         1L,
                         1L,
-                        1L,
                         "comment1",
                         LocalDateTime.now(),
                         LocalDateTime.now());
@@ -229,7 +223,6 @@ public class CommentControllerTest {
         CommentResponseDto response2 =
                 new CommentResponseDto(
                         2L,
-                        1L,
                         1L,
                         1L,
                         "comment2",
@@ -266,7 +259,6 @@ public class CommentControllerTest {
                                                 Arrays.asList(
                                                         fieldWithPath("data[].commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                                         fieldWithPath("data[].memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                                        fieldWithPath("data[].questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                                         fieldWithPath("data[].answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
                                                         fieldWithPath("data[].content").type(JsonFieldType.STRING).description("내용"),
                                                         fieldWithPath("data[].createdAt").type(JsonFieldType.STRING).description("추가된 시간"),
@@ -290,7 +282,7 @@ public class CommentControllerTest {
     public void getCommentTest() throws Exception {
         // given
         long commentId = 1L;
-        CommentResponseDto response = new CommentResponseDto(1L, 1L, 1L, 1L, "아주 훌륭해요!", LocalDateTime.now(), LocalDateTime.now());
+        CommentResponseDto response = new CommentResponseDto(1L, 1L, 1L, "아주 훌륭해요!", LocalDateTime.now(), LocalDateTime.now());
 
         given(commentService.findComment(Mockito.anyLong())).willReturn(new Comment());
         given(commentMapper.commentToResponseDto(Mockito.any(Comment.class))).willReturn(response);
@@ -316,7 +308,6 @@ public class CommentControllerTest {
                                         Arrays.asList(
                                                 fieldWithPath("data.commentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                                 fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                                fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                                 fieldWithPath("data.answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
                                                 fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
                                                 fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("추가된 시간"),
