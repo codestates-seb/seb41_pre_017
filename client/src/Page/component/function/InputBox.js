@@ -78,7 +78,6 @@ const PostBtn = styled(BlueBtn)`
 `;
 
 const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해주세요', Value, setValue, SubmitBtnName, Submit }) => {
-    // const imageData = [ heading, bold, italic, inlineCode, link, quote, insertImage, grid, numlist, list, more, help ];
     const TextAreaFocus = useRef(null); // TextArea포커스 기능을 위한
     const [selectBtn, isSelectBtn] = useState(); //버튼 선택중
 
@@ -128,7 +127,8 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
         }
         TextAreaFocus.current.focus();
     };
-    // 정규식으로 줄바꿈 태그 넣는 부분
+
+    //input입력값을 value로 변경하는 이벤트 함수
     const ConvertText = (e) => {
         OnChange(e);
         setPreviewText(TextToCode(e.target.value));
