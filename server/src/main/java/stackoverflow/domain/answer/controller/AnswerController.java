@@ -7,9 +7,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import stackoverflow.domain.answer.dto.AnswerPatchDto;
 import stackoverflow.domain.answer.dto.AnswerPostDto;
+import stackoverflow.domain.answer.dto.AnswerResponseDto;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.answer.mapper.AnswerMapper;
 import stackoverflow.domain.answer.service.AnswerService;
+import stackoverflow.dto.MultiResponseDto;
+import stackoverflow.dto.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -31,30 +34,31 @@ public class AnswerController {
     @PostMapping
     public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto) {
         Answer answer = answerService.createAnswer(mapper.answerPostDtoToAnswer(answerPostDto));
+        AnswerResponseDto response = mapper.answerToAnswerResponse(answer);
 
-        return new ResponseEntity<>(mapper.answerToAnswerResponse(answer), HttpStatus.CREATED);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.CREATED);
     }
     @PatchMapping("/{answer-id}")
     public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive long answerId,
                                       @Valid @RequestBody AnswerPatchDto answerPatchDto) {
         answerPatchDto.setAnswerId(answerId);
         Answer answer = answerService.updateAnswer(mapper.answerPatchDtoToAnswer(answerPatchDto));
-        return new ResponseEntity<>(mapper.answerToAnswerResponse(answer), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponse(answer)), HttpStatus.OK);
     }
 
     @GetMapping("/{answer-id}")
     public ResponseEntity getAnswer(@PathVariable("answer-id") @Positive long answerId) {
         Answer findAnswer = answerService.findAnswer(answerId);
 
-        return new ResponseEntity<>(mapper.answerToAnswerResponse(findAnswer), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponse(findAnswer)), HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity getAnswers(@RequestParam @Positive int page,
                                      @RequestParam @Positive int size) {
-        Page<Answer> pageAnswer = answerService.findAnswers(page, size);
-        List<Answer> answers = pageAnswer.getContent();
-        return new ResponseEntity<>(mapper.answersToAnswerResponses(answers), HttpStatus.OK);
+        Page<Answer> pageAnswers = answerService.findAnswers(page, size);
+        List<Answer> answers = pageAnswers.getContent();
+        return new ResponseEntity<>(new MultiResponseDto<>(mapper.answersToAnswerResponses(answers), pageAnswers), HttpStatus.OK);
     }
 
     @DeleteMapping("/{answer-id}")
