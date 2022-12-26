@@ -55,6 +55,11 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
     // Vote 투표수정을 위해 answerData는 원본 데이터가 필요, questionData데이터는 에초에 원본데이터
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
+
+    const Delete = () => {
+        alert(`${category}삭제`);
+        console.log('Delete', data);
+    };
     return (
         <Container>
             {/* 투표기능 */}
@@ -77,6 +82,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                         >
                             <Button>Edit</Button>
                         </Link>
+                        <Button onClick={Delete}>Delete</Button>
                         <Button>Follow</Button>
                     </ul>
                     <User>
