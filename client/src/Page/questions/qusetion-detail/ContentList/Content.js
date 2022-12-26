@@ -71,6 +71,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                         <Link
                             to={`/questions/edit/${category}/${data.id}`}
                             state={{
+                                category: category,
                                 data: data,
                             }}
                         >

@@ -192,7 +192,7 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
                     <Preview dangerouslySetInnerHTML={{ __html: CodeToHtml(PreviewText) }} /> {/* 문자열의 html 태그를 출력 */}
                 </div>
             </Wrapper>
-            <PostBtn onClick={handleSubmit}>{SubmitBtnName}</PostBtn>
+            {Submit ? <PostBtn onClick={handleSubmit}>{SubmitBtnName}</PostBtn> : null}
         </div>
     );
 };

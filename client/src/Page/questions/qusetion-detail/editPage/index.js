@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import InputBox from '../../../component/function/InputBox';
 import useInput from '../../../component/hook/useInput';
-import { HtmlToText } from '../../../component/function/textConverter';
+import BlueBtn from '../../../component/style/blueBtn';
+
 const ContentLayout = styled.div`
     display: flex;
 `;
@@ -25,16 +26,39 @@ const EditInput = styled.div`
     margin-top: 50px;
 `;
 
-// title = '', subtitle = '', OnChange, Placeholder = '입력해주세요', Value, setValue, SubmitBtnName, Submit
+const SubmitBtn = styled(BlueBtn)`
+    margin-top: 30px;
+    margin-bottom: 50px;
+`;
+const TitleInput = styled.input`
+    height: 30px;
+    border: 1px solid var(--theme-border);
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+`;
+
+const StyledTitle = styled.h2`
+    font-weight: 100;
+`;
 
 const EditPage = () => {
     let data = useLocation().state.data;
-    const sendToServer = (data) => {
+    let category = useLocation().state.category;
+
+    const sendToServer = () => {
+        if (category === 'answer') {
+            console.log(Content);
+        } else if (category === 'question') {
+            console.log(Title);
+            console.log(Content);
+        }
         // 수정된 데이터 서버에 보내기, ex) axios.post('http://localhost:3000/answer', data);
     };
 
-    const [inputValue, setInputValue, handleChange, handleSubmit] = useInput(data.content, sendToServer);
-    console.log('🚀  data', data);
+    const [Content, setContent, ChangeContent] = useInput(data.content);
+    const [Title, setTitle, ChangeTitle] = useInput(data.title);
     return (
         <Container>
             <Sidebar />
@@ -50,19 +74,24 @@ const EditPage = () => {
                             </p>
                         </Notice>
                         <EditInput>
+                            {category === 'question' ? (
+                                <>
+                                    <StyledTitle>Title</StyledTitle>
+                                    <TitleInput type={'text'} value={Title} onChange={ChangeTitle}></TitleInput>
+                                </>
+                            ) : null}
                             <InputBox
                                 title={'Body'}
                                 subtitle={' '}
-                                OnChange={handleChange}
+                                OnChange={ChangeContent}
                                 Placeholder={'답변을 입력해주세요'}
-                                Value={inputValue}
-                                setValue={setInputValue}
-                                SubmitBtnName={'Save edits'}
-                                Submit={handleSubmit}
+                                Value={Content}
+                                setValue={setContent}
                             ></InputBox>
+                            <SubmitBtn onClick={sendToServer}>Save edits</SubmitBtn>
                         </EditInput>
                     </Section>
-                    <RightSidebar>1</RightSidebar>
+                    <RightSidebar>{/*사이드바 영역*/}</RightSidebar>
                 </ContentLayout>
             </Main>
         </Container>
