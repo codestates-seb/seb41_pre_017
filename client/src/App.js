@@ -3,10 +3,11 @@ import Footer from './Page/global/Footer';
 import Home from './Page/home';
 import Login from './Page/users/login';
 import SignUp from './Page/users/SignUp';
-import SingleQuestion from './Page/questions/qusetion-detail/index';
-import Questions from './Page/questions';
+import SingleQuestion from './Page/questions/qusetion-detail';
+import Questions from './Page/questions/questionList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import QuestionAsk from './Page/questions/ask/QuestionAsk';
+import QuestionAsk from './Page/questions/ask';
+import EditPage from './Page/questions/qusetion-detail/editPage';
 
 function App() {
     return (
@@ -17,7 +18,8 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/questions/ask" element={<QuestionAsk />} />
                     <Route path="/questions" element={<Questions />} />
-                    <Route path="/questions/:questionId" element={<SingleQuestion />} /> {/*테스트를 위해 임의로 하드코딩된 SingleQuestion로 이동  */}
+                    <Route path="/questions/:questionId" element={<SingleQuestion />} />
+                    <Route path="/questions/edit/:category/:id" element={<EditPage />} />
                     <Route path="/users/login" element={<Login />} />
                     <Route path="/users/signUp" element={<SignUp />} />
                 </Routes>

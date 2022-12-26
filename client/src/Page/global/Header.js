@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import BlueBtn from '../component/blueBtn';
+import BlueBtn from '../components/style/blueBtn';
 import { ReactComponent as Logo } from '../../Img/logo.svg';
 
 const Container = styled.div`

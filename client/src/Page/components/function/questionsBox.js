@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TagNav from './tagNav';
+import TagNav from '../style/tagNav';
 import { Link } from 'react-router-dom';
 
 // 질문 리스트 페이지 (Home, questions에서 사용되는 질문상자박스 입니다)
@@ -45,6 +45,8 @@ const SummaryMeta = styled.div`
 
 const Title = styled.h2`
     color: var(--theme-link-text);
+    margin-bottom: 15px;
+    margin-top: 5px;
     font-size: 16px;
 `;
 
@@ -62,9 +64,9 @@ const questions = ({ data }) => {
                 </Link>
 
                 <SummaryMeta>
-                    <span className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</span>
+                    <nav className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</nav>
                     <span className="userCard">
-                        <span className="userLink">{'anonymous'}</span> <span>{'11 asked 2 mins ago'}</span>
+                        <span className="userLink">{data.user ? data.user : 'anonymous'}</span> <span>{'11 asked 2 mins ago'}</span>
                     </span>
                 </SummaryMeta>
             </Question>

@@ -11,6 +11,34 @@ body {
     padding-top: 55px; /* 탑 바(헤더)와 안겹치게 해줌 */
 }
 
+code {
+    display: inline-block;
+    background-color: rgb(224, 233, 240);
+    border-radius: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: courier, monospace;
+    padding: 0 3px;
+    line-height: 20px;
+    padding: 10px;
+}
+.OrangeText {
+    color: #f48225;
+}
+
+.BlueText {
+    color: rgb(1 84 147);
+}
+.GreenText {
+    color: rgb(86 122 13);
+}
+.RedText {
+    color: red;
+}
+.PurpleText {
+    color: purple;
+}
+
 :root {
     /* 어디서나 읽을 수 있도록 함 */
     --theme-Orange: #f48225;
@@ -23,14 +51,13 @@ body {
 }
 
 @font-face {
-    font-family: "LiberationSans";
+    font-family: 'LiberationSans';
     font-display: fallback;
-    src: url("./static/fonts/LiberationSans-Regular.ttf") format("truetype"), 
-        url("./static/fonts/LiberationSans-Regular.woff") format("woff"), 
-        url("./static/fonts/LiberationSans-Regular.eot?iefix") format("embedded-opentype");
+    src: url('./static/fonts/LiberationSans-Regular.ttf') format('truetype'), url('./static/fonts/LiberationSans-Regular.woff') format('woff'),
+        url('./static/fonts/LiberationSans-Regular.eot?iefix') format('embedded-opentype');
     font-weight: 100;
     font-style: normal;
-    
+
     /* Font Weight
     100 Thin
     200 Extra Light
@@ -41,4 +68,4 @@ body {
     700 Bold
     800 Extra Bold
     900 Ultra Bold */
-  }
+}

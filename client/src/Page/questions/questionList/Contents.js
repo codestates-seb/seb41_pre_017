@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import QuestionsBox from '../component/questionsBox';
+import QuestionsBox from '../../components/function/questionsBox';
 
 const PageBtn = styled.li`
     display: inline;
@@ -17,7 +17,9 @@ const PageBtn = styled.li`
 `;
 const PageList = styled.ul`
     display: flex;
-    margin: 10px;
+    margin: 30px;
+    margin-top: 80px;
+    margin-bottom: 40px;
     .active {
         background-color: var(--theme-Orange);
         color: #fff;
@@ -81,7 +83,7 @@ const Pagination = ({ _data }) => {
         }
     };
     return (
-        <div>
+        <>
             <section>
                 {currentItems.map((el) => {
                     return <QuestionsBox key={el.id} data={el} />;
@@ -98,7 +100,7 @@ const Pagination = ({ _data }) => {
                     Next
                 </PageBtn>
             </PageList>
-        </div>
+        </>
     );
 };
 

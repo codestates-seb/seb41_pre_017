@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // 파란색 태그입니다
 
-const TagNav = styled.nav`
+const TagNav = styled(Link)`
     display: inline-block;
     margin-right: 10px;
     font-size: 12px;
