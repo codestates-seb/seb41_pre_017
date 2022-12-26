@@ -1,6 +1,8 @@
 package stackoverflow.domain.answer.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.question.entity.Question;
@@ -10,6 +12,8 @@ import javax.validation.constraints.Positive;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AnswerPostDto {
     @NotBlank
     private String content;
