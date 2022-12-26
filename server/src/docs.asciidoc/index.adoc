@@ -1,0 +1,94 @@
+= Stack Overflow
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: Each Domain Controller
+:source-highlighter: prettify
+
+Pre-Project-017
+
+v1.0.0, 2022.12.25.
+
+***
+== CommentController
+=== 댓글 등록
+.curl-request
+include::{snippets}/post-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-comment/http-request.adoc[]
+
+.request-fields
+include::{snippets}/post-comment/request-fields.adoc[]
+
+.http-response
+include::{snippets}/post-comment/http-response.adoc[]
+
+.response-fields
+include::{snippets}/post-comment/response-fields.adoc[]
+
+***
+=== 특정 댓글 수정
+.curl-request
+include::{snippets}/patch-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-comment/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/patch-comment/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/patch-comment/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-comment/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-comment/response-fields.adoc[]
+
+***
+=== 모든 댓글 조회
+.curl-request
+include::{snippets}/get-comments/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-comments/http-request.adoc[]
+
+.http-response
+include::{snippets}/get-comments/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-comments/response-fields.adoc[]
+
+***
+=== 특정 댓글 조회
+.curl-request
+include::{snippets}/get-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-comment/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-comment/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/get-comment/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-comment/response-fields.adoc[]
+
+***
+=== 특정 댓글 삭제
+.curl-request
+include::{snippets}/delete-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-comment/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/delete-comment/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/delete-comment/http-response.adoc[]
+***
