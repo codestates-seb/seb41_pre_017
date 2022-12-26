@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import stackoverflow.audit.BaseTime;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.comment.entity.Comment;
 import stackoverflow.domain.question.entity.Question;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Member {
+public class Member extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long memberId;
@@ -31,10 +31,6 @@ public class Member {
 
     @Column(nullable = false)
     private String pwd;
-
-    private LocalDateTime signUpDay = LocalDateTime.now();
-
-    private LocalDateTime lastSeen = LocalDateTime.now();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();

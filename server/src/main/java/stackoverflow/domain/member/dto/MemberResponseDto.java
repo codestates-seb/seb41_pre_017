@@ -14,7 +14,7 @@ public class MemberResponseDto {
 
     private String nickname;
 
-    private LocalDateTime signUpDay;
+    private LocalDateTime createdAt;
 
-    private LocalDateTime lastSeen;
+    private LocalDateTime modifiedAt;
 }
