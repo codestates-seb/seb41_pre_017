@@ -4,20 +4,19 @@ import useInput from '../../../components/hook/useInput';
 import Content from './Content';
 
 const Section = styled.section`
-    max-width: 1100px;
-    width: calc(100% - 164px);
-    height: 100%;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-start;
+  max-width: 1100px;
+  width: calc(100% - 24px);
+  height: 100%;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
 `;
 
 const H1 = styled.h1`
-    margin-left: 50px;
-    font-weight: 100;
-    margin-top: 30px;
+  font-weight: 100;
+  margin: 0 0 1em;
 `;
 
 const EnterAnswer = styled.div`

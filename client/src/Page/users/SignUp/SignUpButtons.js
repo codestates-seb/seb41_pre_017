@@ -9,7 +9,7 @@ const OpenIdContainer = styled.div`
   margin-right: 0;
 `;
 
-const GoogleLoginButton = styled.button`
+const SignInButton = styled.button`
   display: flex;
   flex-direction: row;
   margin-right: 0;
@@ -21,16 +21,18 @@ const GoogleLoginButton = styled.button`
   text-align: center;
   height: auto;
   width: auto;
+  border-radius: 5px;
+  border-color: hsl(210, 8% 85%);
 
   svg {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     margin: auto;
     margin-left: 10px;
   }
 
   &:hover {
-    background-color: hsl(210, 8%, 97.5%);
+    background-color: hsl(210, 2%, 82%);
   }
 `;
 
@@ -64,47 +66,57 @@ const GoogleButton = (
 );
 
 const FaceBookButton = (
-    <svg aria-hidden="true" className="svg-icon iconFacebook" viewBox="0 0 18 18">
+    <svg viewBox="0 0 17 17">
         <path
             d="M3 1a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H3Zm6.55 16v-6.2H7.46V8.4h2.09V6.61c0-2.07 1.26-3.2 3.1-3.2.88 0 1.64.07 1.87.1v2.16h-1.29c-1 0-1.19.48-1.19 1.18V8.4h2.39l-.31 2.42h-2.08V17h-2.5Z"
             fill="#4167B2"></path>
     </svg>
 );
 
-const GithubLoginButton = styled(GoogleLoginButton)`
+const GithubSignInButton = styled(SignInButton)`
+    svg {
+      margin-top: 5px;
+      width: 32px;
+      height: 32px;
+    }
 `;
 
-const FaceBookLoginButton = styled(GoogleLoginButton)`
+const FaceBookSignInButton = styled(SignInButton)`
+    svg {
+      width: 32px;
+      height: 32px;
+    }
 `;
 
 const SignInMessage = styled.div`
   width: 100%;
-  font-size: 18px;
+  font-size: 15px;
   margin: 10px;
   text-align: center;
+  color: black;
 `;
 
 const SignUpButtons = () => {
     return (
         <OpenIdContainer>
-            <GoogleLoginButton>
+            <SignInButton>
                 {GoogleButton}
                 <SignInMessage>
                     Sign up with Google
                 </SignInMessage>
-            </GoogleLoginButton>
-            <GithubLoginButton>
+            </SignInButton>
+            <GithubSignInButton>
                 {GithubButton}
                 <SignInMessage>
                     Sign up with GitHub
                 </SignInMessage>
-            </GithubLoginButton>
-            <FaceBookLoginButton>
+            </GithubSignInButton>
+            <FaceBookSignInButton>
                 {FaceBookButton}
                 <SignInMessage>
                     Sign up with FaceBook
                 </SignInMessage>
-            </FaceBookLoginButton>
+            </FaceBookSignInButton>
         </OpenIdContainer>
     )
 };
