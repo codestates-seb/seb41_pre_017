@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import InputBox from '../../../component/function/InputBox';
-import useInput from '../../../component/hook/useInput';
+import InputBox from '../../../components/function/InputBox';
+import useInput from '../../../components/hook/useInput';
 import Content from './Content';
 
 const Section = styled.section`

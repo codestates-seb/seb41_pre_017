@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import QuestionsBox from '../../component/function/questionsBox';
+import QuestionsBox from '../../components/function/questionsBox';
 
 const PageBtn = styled.li`
     display: inline;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { CodeToHtml } from '../../../component/function/textConverter';
+import { CodeToHtml } from '../../../components/function/textConverter';
 import Vote from '../vote';
-import TagNav from '../../../component/style/tagNav';
+import TagNav from '../../../components/style/tagNav';
 import ProfilePicture from '../../img/unnamed.png';
 import { Link } from 'react-router-dom';
 

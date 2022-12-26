@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BlueBtn from '../../component/style/blueBtn';
+import BlueBtn from '../../components/style/blueBtn';
 import { Fragment } from 'react';
 
 const FromContainer = styled.div`

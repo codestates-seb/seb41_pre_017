@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BlueBtn from '../../component/style/blueBtn';
+import BlueBtn from '../../components/style/blueBtn';
 
 const FromContainer = styled.div`
     max-width: calc(calc(97rem / 12) * 3);

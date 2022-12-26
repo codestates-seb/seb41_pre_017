@@ -1,9 +1,9 @@
 import { Sidebar, Container, Main } from '../../../global/Sidebar';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
-import InputBox from '../../../component/function/InputBox';
-import useInput from '../../../component/hook/useInput';
-import BlueBtn from '../../../component/style/blueBtn';
+import InputBox from '../../../components/function/InputBox';
+import useInput from '../../../components/hook/useInput';
+import BlueBtn from '../../../components/style/blueBtn';
 
 const ContentLayout = styled.div`
     display: flex;

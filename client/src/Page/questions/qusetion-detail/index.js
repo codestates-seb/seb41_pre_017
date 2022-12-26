@@ -2,7 +2,7 @@ import { Container, Main, Sidebar } from '../../global/Sidebar';
 import ContentList from './ContentList';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import BlueBtn from '../../component/style/blueBtn';
+import BlueBtn from '../../components/style/blueBtn';
 import questionDB from '../../../db.json';
 import answerDB from '../../../answerDB.json';
 import { useState } from 'react';
