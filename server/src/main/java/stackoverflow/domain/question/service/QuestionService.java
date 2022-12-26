@@ -58,7 +58,6 @@ public class QuestionService {
         // TODO: 연관관계 매핑 이후 로그인, 작성자 확인 필요
 
         // 존재하는 질문인지 확인
-        //Question findQuestion = findVerifiedQuestion(questionId);
         findVerifiedQuestion(questionId);
 
         questionRepository.deleteById(questionId);
