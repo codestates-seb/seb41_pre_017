@@ -18,10 +18,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
-@CrossOrigin("*")
+
 @RestController
 @RequestMapping(value = "questions")
 @Validated
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class QuestionController {
     private final QuestionService questionService;
     private final QuestionMapper mapper;
