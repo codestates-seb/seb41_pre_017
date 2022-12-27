@@ -28,12 +28,7 @@ const Wrapper = styled.div`
         width: 840px;
         border-radius: 3px;
         margin: 7px 0px 10px 0px;
-        padding-left: 10px;
-    
-        input:focus {
-            outline:1px solid #59A4DE;
-            border: 1px solid white;
-        }
+        padding-left: 10px;  
     }
 `
 

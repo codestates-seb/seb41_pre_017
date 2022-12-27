@@ -58,9 +58,10 @@ const TextArea = styled.textarea`
     height: 220px;
 
     :focus {
-            outline: 1px solid #59A4DE;
+    outline: 1px solid #6BBBF7;
+    box-shadow: 3px 3px 30px rgb(193,213,227), -3px -3px 30px rgb(193,213,227);
     }
-`;
+`
 
 const Preview = styled.div`
     padding: 10px;

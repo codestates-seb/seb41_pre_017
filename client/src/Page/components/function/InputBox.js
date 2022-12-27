@@ -23,45 +23,54 @@ const Wrapper = styled.div`
 `;
 
 const Buttons = styled.div`
-    margin-top: 6px;
-    width: 850px;
-    height: 35px;
+  margin-top: 6px;
+  width: 850px;
+  height: 35px;
 
-    button {
-        background-color: white;
-        width: 30px;
-        height: 24px;
-        padding: 3px;
-        margin: 3px 3px 3px 6px;
+  button {
+    background-color: white;
+    width: 30px;
+    height: 24px;
+    padding: 3px;
+    margin: 3px 3px 3px 6px;
 
-        img {
-            width: 18px;
-            height: 18px;
-        }
+    img {
+      width: 18px;
+      height: 18px;
     }
-    .selected {
-        background-color: #c7e0f4;
-        padding-bottom: 23px;
-        padding-top: 5px;
-        border-radius: 5px;
-    }
+  }
 
-    button:hover {
-        cursor: pointer;
-        background-color: #efefef;
-    }
+  .selected {
+    background-color: #c7e0f4;
+    padding-bottom: 23px;
+    padding-top: 5px;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: #efefef;
+  }
 `;
 
 const TextArea = styled.textarea`
-    border-radius: 3px;
-    width: 100%;
-    height: 220px;
-    border-bottom: 1px solid var(--theme-border);
-    border-top: 1px solid var(--theme-border);
-    line-height: 40px;
-    font-size: 1em;
-    letter-spacing: 1px;
+  border-radius: 3px;
+  width: 100%;
+  height: 250px;
+  line-height: 25px;
+  font-size: 1em;
+  letter-spacing: 1px;
+  resize: none;
+  overflow: scroll;
+  border-bottom: 1px solid var(--theme-border);
+  border-top: 1px solid var(--theme-border);
+
+  :focus {
+    outline: 1px solid #6BBBF7;
+    box-shadow: 3px 3px 30px rgb(193,213,227), -3px -3px 30px rgb(193,213,227);
+  }
 `;
+
 const Title = styled.h2`
     margin-bottom: 10px;
     color: #232629;

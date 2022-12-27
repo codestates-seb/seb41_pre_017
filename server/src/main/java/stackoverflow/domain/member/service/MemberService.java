@@ -29,10 +29,7 @@ public class MemberService {
 
     // 회원 정보 조회
     public Member findMember(long memberId) {
-        // TODO: 추후 예외 처리 생성
-
-        return findVerifiedMember(memberId);
-        //return memberRepository.findById(memberId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        return memberRepository.findById(memberId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
     // 모든 회원 조회
@@ -50,7 +47,7 @@ public class MemberService {
         Optional.ofNullable(member.getNickname()).ifPresent(nickName -> findMember.setNickname(nickName));
         Optional.ofNullable(member.getPwd()).ifPresent(pwd -> findMember.setPwd(pwd));
 
-        return memberRepository.save(member);
+        return memberRepository.save(findMember);
     }
 
     // 특정 회원 탈퇴
@@ -58,17 +55,20 @@ public class MemberService {
         // TODO: 데이터 삭제가 아닌 숨김(휴면) 상태로 변경
 
         // 존재하는 회원인지 확인
-        Member findMember = findVerifiedMember(memberId);
+        //Member findMember = findVerifiedMember(memberId);
+        findVerifiedMember(memberId);
 
-        memberRepository.delete(findMember);
+        memberRepository.deleteById(memberId);
     }
 
+    // 이미 등록된 이메일인지 확인
     public void verifyExistsEmail(String email) {
         Optional<Member> member = memberRepository.findByEmail(email);
 
         if (member.isPresent()) throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
 
+    // 존재하는 회원인지 확인
     public Member findVerifiedMember(long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));

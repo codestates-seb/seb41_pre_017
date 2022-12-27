@@ -35,8 +35,6 @@ import java.util.List;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessRequest;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -70,6 +68,7 @@ public class AnswerControllerTest {
                 new AnswerResponseDto(1L,
                         "answer1",
                         1L,
+                        "nickname1",
                         1L,
                         LocalDateTime.now(),
                         LocalDateTime.now());
@@ -111,6 +110,7 @@ public class AnswerControllerTest {
                                         fieldWithPath("data.answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("답변 내용"),
                                         fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("답변 회원 식별자"),
+                                        fieldWithPath("data.nickname").type(JsonFieldType.STRING).description("답변 회원 닉네임"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("답변 생성 날짜"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("답변 수정 날짜"),
                                         fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 식별자")
@@ -129,6 +129,7 @@ public class AnswerControllerTest {
                 new AnswerResponseDto(1L,
                         "answer1",
                         1L,
+                        "nickname1",
                         1L,
                         LocalDateTime.now(),
                         LocalDateTime.now());
@@ -169,54 +170,7 @@ public class AnswerControllerTest {
                                         fieldWithPath("data.answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("답변 내용"),
                                         fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("답변 회원 식별자"),
-                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("답변 생성 날짜"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("답변 수정 날짜"),
-                                        fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 식별자")
-                                )
-                        )
-                ));
-    }
-
-    @Test
-    public void getAnswerTest() throws Exception {
-        //given
-        Answer answer= new Answer();
-        answer.setAnswerId(1L);
-        answer.setContent("answer1");
-        answer.setMember(new Member());
-        answer.setQuestion(new Question());
-
-        AnswerResponseDto answerResponseDto =
-                new AnswerResponseDto(1L,
-                        "answer1",
-                        1L,
-                        1L,
-                        LocalDateTime.now(),
-                        LocalDateTime.now());
-
-        given(answerService.findAnswer(Mockito.anyLong())).willReturn(new Answer());
-        given(mapper.answerToAnswerResponse(Mockito.any(Answer.class))).willReturn(answerResponseDto);
-
-        // when
-        ResultActions actions =
-                mockMvc.perform(
-                        get("/answers/{answer-id}", answer.getAnswerId())
-                                .accept(MediaType.APPLICATION_JSON)
-                );
-
-        // then
-        actions
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.answerId").value(answer.getAnswerId()))
-                .andDo(document("get-answer",
-                        preprocessResponse(),
-                        pathParameters(parameterWithName("answer-id").description("답변 식별자")),
-                        responseFields(
-                                List.of(
-                                        fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
-                                        fieldWithPath("data.answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
-                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("답변 내용"),
-                                        fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("답변 회원 식별자"),
+                                        fieldWithPath("data.nickname").type(JsonFieldType.STRING).description("답변 회원 닉네임"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("답변 생성 날짜"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("답변 수정 날짜"),
                                         fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 식별자")
@@ -254,6 +208,7 @@ public class AnswerControllerTest {
                 new AnswerResponseDto(1L,
                         "answer1",
                         1L,
+                        "nickname1",
                         1L,
                         LocalDateTime.now(),
                         LocalDateTime.now());
@@ -262,22 +217,24 @@ public class AnswerControllerTest {
                 new AnswerResponseDto(2L,
                         "answer2",
                         2L,
+                        "nickname2",
                         1L,
                         LocalDateTime.now(),
                         LocalDateTime.now());
 
         List<AnswerResponseDto> responses = List.of(answerResponseDto1, answerResponseDto2);
 
-        given(answerService.findAnswers(Mockito.anyInt(), Mockito.anyInt())).willReturn(pages);
+        given(answerService.findAnswers(Mockito.anyLong(), Mockito.anyInt(), Mockito.anyInt())).willReturn(pages);
         given(mapper.answersToAnswerResponses(Mockito.anyList())).willReturn(responses);
 
         // when
         ResultActions actions =
                 mockMvc.perform(
-                        get("/answers")
+                        get("/answers/{question-id}", answerResponseDto1.getQuestionId())
                                 .params(queryParams)
                                 .accept(MediaType.APPLICATION_JSON)
                 );
+
 
         // then
         actions
@@ -290,12 +247,16 @@ public class AnswerControllerTest {
                                         parameterWithName("size").description("페이지 사이즈")
                                 )
                         ),
+                        pathParameters(
+                                parameterWithName("question-id").description("질문 식별자")
+                        ),
                         responseFields(
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터").optional(),
                                         fieldWithPath("data[*].answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
                                         fieldWithPath("data[*].content").type(JsonFieldType.STRING).description("답변 내용"),
                                         fieldWithPath("data[*].memberId").type(JsonFieldType.NUMBER).description("답변 회원 식별자"),
+                                        fieldWithPath("data[*].nickname").type(JsonFieldType.STRING).description("답변 회원 닉네임"),
                                         fieldWithPath("data[*].createdAt").type(JsonFieldType.STRING).description("답변 생성 날짜"),
                                         fieldWithPath("data[*].modifiedAt").type(JsonFieldType.STRING).description("답변 수정 날짜"),
                                         fieldWithPath("data[*].questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
