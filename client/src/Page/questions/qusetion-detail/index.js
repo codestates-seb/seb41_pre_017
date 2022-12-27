@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import ContentSidebar from './sidebar/SideBar';
 import axios from 'axios';
 import Loading from '../../components/style/loading';
-
+import TimeForToday from '../../components/function/timeForToday';
 const StyledHeader = styled.header`
     display: flex;
     flex-flow: row nowrap;
@@ -74,7 +74,6 @@ const SingleQuestion = () => {
     const [questionData, setQuestionData] = useState({});
     const [answerData, setAnswerData] = useState([]);
     const [loading, setLoading] = useState(true);
-
     useEffect(() => {
         setLoading(true);
         axios.get(`http://localhost:8080/questions/${data.state.id}`).then((res) => setQuestionData(res.data.data));
@@ -84,7 +83,8 @@ const SingleQuestion = () => {
             .then(() => setLoading(false))
             .catch((error) => console.error(error));
     }, []);
-
+    const Asked = TimeForToday(new Date(questionData.createdAt));
+    const Modified = TimeForToday(new Date(questionData.modifiedAt));
     return (
         <Container>
             <Sidebar />
@@ -99,15 +99,11 @@ const SingleQuestion = () => {
                 <Information>
                     <ElContainer>
                         <AmvTitle>Asked</AmvTitle>
-                        <Time>today</Time>
+                        <Time>{Asked}</Time>
                     </ElContainer>
                     <ElContainer>
                         <AmvTitle>Modified</AmvTitle>
-                        <Time>today</Time>
-                    </ElContainer>
-                    <ElContainer>
-                        <AmvTitle>Viewed</AmvTitle>
-                        <Time>2 times</Time>
+                        <Time>{Modified}</Time>
                     </ElContainer>
                 </Information>
                 {/* 질문과, 답변 = 콘텐츠 영역 */}

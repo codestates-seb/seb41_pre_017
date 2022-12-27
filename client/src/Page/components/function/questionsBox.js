@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import TagNav from '../style/tagNav';
 import { Link } from 'react-router-dom';
-
+import TimeForToday from './timeForToday';
 // 질문 리스트 페이지 (Home, questions에서 사용되는 질문상자박스 입니다)
 
 const QuestionRow = styled.div`
@@ -59,6 +59,7 @@ const Title = styled.h2`
 `;
 
 const questions = ({ data }) => {
+    const time = data.modifiedAt ? TimeForToday(new Date(data.modifiedAt)) : TimeForToday(new Date());
     return (
         <QuestionRow>
             <QuestionStat>
@@ -79,8 +80,8 @@ const questions = ({ data }) => {
                 <SummaryMeta>
                     <nav className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</nav>
                     <span className="userCard">
-                        <span className="userLink">{data.nickname ? data.nickname : 'anonymous'}</span>{' '}
-                        <span>{data.modifiedAt ? data.modifiedAt.split('T')[0] : null}</span>
+                        <span className="userLink">{data.nickname ? data.nickname : 'anonymous'}</span>
+                        <span>{data.modifiedAt ? time : time}</span>
                     </span>
                 </SummaryMeta>
             </Question>
