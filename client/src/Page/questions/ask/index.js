@@ -17,27 +17,30 @@ const Wrapper = styled.div`
         margin-top: -20px;
         margin-bottom: 60px;
     }
+
+    button:disabled {
+        border: 0px;
+        background-color : #82C7FC;
+        cursor: default;
+    }
 `
 
 const QuestionAsk = () => {    
     const [ title, setTitle ] = useState('');
-    const [ expect, setExpect ] = useState('');
     const [ problem, setProblem ] = useState('');
     const [ tag, setTag ] = useState('');
+    const [ submit, setSubmit ] = useState(false);
 
     const handleReset = () => {
         // setInputData({problem: '', title: '', expect: '', tag: ''});
-        setTitle('')
-        setExpect('')
-        setProblem('')
-        setTag('')
+        setTitle('');
+        setProblem('');
+        setTag('');
    }
     // { title, expect: expect, problem: problem, tag: tag }
     // axios.post('/questions/ask', {
     //     title,
-    //     expect,
-    //     problem,
-    //     tag
+    //     content: problem,
     //   })
     //   .then(function (response) {
     //     console.log(response);
@@ -46,6 +49,9 @@ const QuestionAsk = () => {
     //     console.log(error);
     //   });
 
+    const handleSubmit = (e) => {
+        console.log({title, content : problem});
+    }
 
     return (
         <>
@@ -53,12 +59,11 @@ const QuestionAsk = () => {
                 <AskHeader />
                 <ChainBox 
                     title={title} setTitle={setTitle}
-                    expect={expect} setExpect={setExpect}
                     problem={problem} setProblem={setProblem}
-                    tag={tag} setTag={setTag}  
-                    handleReset={handleReset}  />
+                    tag={tag} setTag={setTag} 
+                    handleReset={handleReset} setSubmit={setSubmit} />
                 <div className='buttonSubmit'>
-                    <StyledButton onClick={()=>console.log({title, expect, problem, tag})}>Review your question</StyledButton>
+                    <StyledButton onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
                     <StyledButton onClick={handleReset} color="red" background="white">Discard draft</StyledButton>
                 </div>
             </Wrapper>

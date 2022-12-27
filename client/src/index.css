@@ -23,6 +23,13 @@ code {
     line-height: 20px;
     padding: 10px;
 }
+
+input:focus {
+    outline: 1px solid #6BBBF7;
+    box-shadow: 3px 3px 30px rgb(193,213,227), -3px -3px 30px rgb(193,213,227);
+    padding-left: 5px;
+}
+
 .OrangeText {
     color: #f48225;
 }

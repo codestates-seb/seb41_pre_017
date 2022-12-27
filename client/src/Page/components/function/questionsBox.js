@@ -23,7 +23,16 @@ const QuestionStat = styled.div`
     justify-content: center;
     margin-right: 20px;
     span {
+        margin-bottom: 5px;
         font-size: 13px;
+    }
+
+    .voted {
+        border: 1px solid #2F6F44;
+        color: #2F6F44;
+        border-radius: 5px;
+        padding: 3px;
+        
     }
 `;
 
@@ -55,7 +64,7 @@ const questions = ({ data }) => {
         <QuestionRow>
             <QuestionStat>
                 <span>{data.votes ? data.votes : 0} votes</span>
-                <span>{data.answers ? data.answers : 0} answers</span>
+                <span className={data.answers ? "voted" : null}>{data.answers ? data.answers : 0 } answers</span>
                 <span>{data.views ? data.views : 0} views</span>
             </QuestionStat>
             <Question>

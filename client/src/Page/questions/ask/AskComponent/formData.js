@@ -27,20 +27,6 @@ const formData = [
     ],
     [
         {
-            type: 1,
-            id: 'expect',
-            label1: "What did you try and what were you expecting?",
-            label2: "Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters."
-        },
-        {
-            title: "Expand on the problem",
-            content: "Show what you've tried, tell us what happened, and why it didn't meet your needs.",
-            content2: "Not all questions benefit from including code, but if your problem is better understood with code you've written, you should include a minimal, reproducible example.",
-            content3: "Please make sure to post code and errors as text directly to the question (and not as images), and format them appropriately."
-        }
-    ],
-    [
-        {
             type: 0,
             id: 'tag',
             label1: "Tags",
