@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import AskHeader from './AskComponent/AskHeader';
 import StyledButton from './AskComponent/Btn';
 import ChainBox from './AskComponent/ChainBox';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -30,27 +34,42 @@ const QuestionAsk = () => {
     const [ problem, setProblem ] = useState('');
     const [ tag, setTag ] = useState('');
     const [ submit, setSubmit ] = useState(false);
+    const navigate = useNavigate();
 
     const handleReset = () => {
         // setInputData({problem: '', title: '', expect: '', tag: ''});
         setTitle('');
         setProblem('');
         setTag('');
-   }
+    }
     // { title, expect: expect, problem: problem, tag: tag }
-    // axios.post('/questions/ask', {
-    //     title,
-    //     content: problem,
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
     const handleSubmit = (e) => {
-        console.log({title, content : problem});
+        axios.post('https://ed8f-121-184-8-159.jp.ngrok.io/questions', {
+                title,
+                content: problem
+            },
+            { 
+                headers:{ 
+                'Content-type': 'application/json;charset=UTF-8', 
+                'Accept': 'application/json' 
+                }, 
+                withCredentials: true
+            }
+        )
+            .then(function (response) {
+            console.log(response);
+        })
+            .catch(function (error) {
+            console.log('');
+            
+        })
+            .then(res => {
+                if (res.status === 201) {
+                    alert('질문이 등록되었습니다')
+                    navigate("/");
+                }
+                
+        })
     }
 
     return (
