@@ -4,6 +4,9 @@ import Vote from '../vote';
 import TagNav from '../../../components/style/tagNav';
 import ProfilePicture from '../../img/unnamed.png';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Post = styled.div`
     line-height: 30px;
@@ -13,6 +16,7 @@ const Post = styled.div`
 const Container = styled.div`
     display: flex;
     padding-bottom: 50px;
+    width: 100%;
 `;
 
 const Tags = styled.nav`
@@ -26,6 +30,7 @@ const UserCard = styled.article`
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+    width: 100%;
     button {
         margin-right: 15px;
         margin-left: 5px;
@@ -51,13 +56,19 @@ const Button = styled.button`
 `;
 
 const Content = ({ category, data, dataHandler, answerData, index }) => {
-    // Vote 투표수정을 위해 answerData는 원본 데이터가 필요, questionData데이터는 에초에 원본데이터
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
-
+    const [feat, setFeat] = useState([Math.floor(Math.random() * 101), Math.floor(Math.random() * 101), Math.floor(Math.random() * 101)]);
+    const navigate = useNavigate();
     const Delete = () => {
-        alert(`${category}삭제`);
-        console.log('Delete', data);
+        if (category === 'question') {
+            axios.delete(`http://localhost:8080/questions/${data.questionId}`);
+            navigate('/');
+        } else if (category === 'answer') {
+            axios.delete(`http://localhost:8080/answers/${data.answerId}`);
+            const deleted = answerData.filter((el) => el !== data);
+            dataHandler([...deleted]);
+        }
     };
     return (
         <Container>
@@ -73,7 +84,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                     <ul>
                         <Button>Share</Button>
                         <Link
-                            to={`/questions/edit/${category}/${data.id}`}
+                            to={`/questions/edit/${category}/${data.questionId}`}
                             state={{
                                 category: category,
                                 data: data,
@@ -87,10 +98,10 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                     <User>
                         <img src={ProfilePicture} alt="profile" />
                         <div>
-                            <div>{data.user}</div>
+                            <div>{data.nickname}</div>
                             <span>
                                 {/* 업적 = 랜덤함수로 임의의 숫자를 생성 API가 구현된다면 바꿔야됨 */}
-                                {Math.floor(Math.random() * 101)}🥇 {Math.floor(Math.random() * 101)}🥈 {Math.floor(Math.random() * 101)}🥉
+                                {feat[0]}🥇 {feat[1]}🥈 {feat[2]}🥉
                             </span>
                         </div>
                     </User>

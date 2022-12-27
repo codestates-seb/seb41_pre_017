@@ -28,11 +28,10 @@ const QuestionStat = styled.div`
     }
 
     .voted {
-        border: 1px solid #2F6F44;
-        color: #2F6F44;
+        border: 1px solid #2f6f44;
+        color: #2f6f44;
         border-radius: 5px;
         padding: 3px;
-        
     }
 `;
 
@@ -64,18 +63,24 @@ const questions = ({ data }) => {
         <QuestionRow>
             <QuestionStat>
                 <span>{data.votes ? data.votes : 0} votes</span>
-                <span className={data.answers ? "voted" : null}>{data.answers ? data.answers : 0 } answers</span>
+                <span className={data.answers ? 'voted' : null}>{data.answers ? data.answers : 0} answers</span>
                 <span>{data.views ? data.views : 0} views</span>
             </QuestionStat>
             <Question>
-                <Link to={`/questions/${data.id}`}>
+                <Link
+                    to={`/questions/${data.questionId}`}
+                    state={{
+                        id: data.questionId,
+                    }}
+                >
                     <Title> {data.title}</Title>
                 </Link>
 
                 <SummaryMeta>
                     <nav className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</nav>
                     <span className="userCard">
-                        <span className="userLink">{data.user ? data.user : 'anonymous'}</span> <span>{'11 asked 2 mins ago'}</span>
+                        <span className="userLink">{data.nickname ? data.nickname : 'anonymous'}</span>{' '}
+                        <span>{data.modifiedAt ? data.modifiedAt.split('T')[0] : null}</span>
                     </span>
                 </SummaryMeta>
             </Question>
