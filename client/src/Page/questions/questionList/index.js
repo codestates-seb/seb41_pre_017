@@ -28,9 +28,9 @@ const Questions = () => {
     useEffect(() => {
         const fetchData = async () => {
             await axios
-                .get('https://jsonplaceholder.typicode.com/posts')
+                .get('http://localhost:8080/questions?page=1&size=200')
                 .then((res) => {
-                    return setData(res.data);
+                    return setData(res.data.data);
                 })
                 .then(() => setLoading(false))
                 .catch((error) => console.error(error));

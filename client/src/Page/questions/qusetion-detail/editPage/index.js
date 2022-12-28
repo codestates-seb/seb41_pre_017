@@ -1,9 +1,10 @@
 import { Sidebar, Container, Main } from '../../../global/Sidebar';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import InputBox from '../../../components/function/InputBox';
 import useInput from '../../../components/hook/useInput';
 import BlueBtn from '../../../components/style/blueBtn';
+import axios from 'axios';
 
 const ContentLayout = styled.div`
     display: flex;
@@ -44,17 +45,28 @@ const StyledTitle = styled.h2`
 `;
 
 const EditPage = () => {
-    let data = useLocation().state.data;
-    let category = useLocation().state.category;
-
+    const data = useLocation().state.data;
+    const category = useLocation().state.category;
+    const navigate = useNavigate();
+    console.log(data.questionId);
+    console.log(category);
     const sendToServer = () => {
         if (category === 'answer') {
-            console.log(Content);
+            const answerData = {
+                answerId: data.answerId,
+                content: Content,
+            };
+            axios.patch(`http://localhost:8080/answers/${data.answerId}`, answerData);
+            navigate(-1);
         } else if (category === 'question') {
-            console.log(Title);
-            console.log(Content);
+            const questionData = {
+                questionId: data.questionId,
+                title: Title,
+                content: Content,
+            };
+            axios.patch(`http://localhost:8080/questions/${data.questionId}`, questionData);
+            navigate(-1);
         }
-        // 수정된 데이터 서버에 보내기, ex) axios.post('http://localhost:3000/answer', data);
     };
 
     const [Content, setContent, ChangeContent] = useInput(data.content);
