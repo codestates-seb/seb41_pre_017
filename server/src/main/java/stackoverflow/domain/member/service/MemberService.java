@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import stackoverflow.exception.BusinessLogicException;
-import stackoverflow.exception.ExceptionCode;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.member.repository.MemberRepository;
+import stackoverflow.global.exception.BusinessLogicException;
+import stackoverflow.global.exception.ExceptionCode;
 
 import java.util.Optional;
 
