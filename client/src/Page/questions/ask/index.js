@@ -44,32 +44,21 @@ const QuestionAsk = () => {
     }
     // { title, expect: expect, problem: problem, tag: tag }
     const handleSubmit = (e) => {
-        axios.post('https://ed8f-121-184-8-159.jp.ngrok.io/questions', {
-                title,
-                content: problem
-            },
-            { 
-                headers:{ 
-                'Content-type': 'application/json;charset=UTF-8', 
-                'Accept': 'application/json' 
-                }, 
-                withCredentials: true
+        const data = {
+            title: 'title',
+            content: 'problem',
+            memberId : 1,
+        }
+        console.log(data);
+
+        axios.post('http://localhost:8080/questions', data)
+        .then(res => {
+            if(res.status === 201) {
+                alert('질문이 등록되었습니다.');
+                navigate('/');
             }
-        )
-            .then(function (response) {
-            console.log(response);
         })
-            .catch(function (error) {
-            console.log('');
-            
-        })
-            .then(res => {
-                if (res.status === 201) {
-                    alert('질문이 등록되었습니다')
-                    navigate("/");
-                }
-                
-        })
+        .catch(e => console.log(e))
     }
 
     return (
@@ -82,7 +71,7 @@ const QuestionAsk = () => {
                     tag={tag} setTag={setTag} 
                     handleReset={handleReset} setSubmit={setSubmit} />
                 <div className='buttonSubmit'>
-                    <StyledButton onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
+                    <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
                     <StyledButton onClick={handleReset} color="red" background="white">Discard draft</StyledButton>
                 </div>
             </Wrapper>
