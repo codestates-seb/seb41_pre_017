@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import AskHeader from './AskComponent/AskHeader';
 import StyledButton from './AskComponent/Btn';
 import ChainBox from './AskComponent/ChainBox';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -30,27 +34,31 @@ const QuestionAsk = () => {
     const [ problem, setProblem ] = useState('');
     const [ tag, setTag ] = useState('');
     const [ submit, setSubmit ] = useState(false);
+    const navigate = useNavigate();
 
     const handleReset = () => {
         // setInputData({problem: '', title: '', expect: '', tag: ''});
         setTitle('');
         setProblem('');
         setTag('');
-   }
+    }
     // { title, expect: expect, problem: problem, tag: tag }
-    // axios.post('/questions/ask', {
-    //     title,
-    //     content: problem,
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
     const handleSubmit = (e) => {
-        console.log({title, content : problem});
+        const data = {
+            title: 'title',
+            content: 'problem',
+            memberId : 1,
+        }
+        console.log(data);
+
+        axios.post('http://localhost:8080/questions', data)
+        .then(res => {
+            if(res.status === 201) {
+                alert('질문이 등록되었습니다.');
+                navigate('/');
+            }
+        })
+        .catch(e => console.log(e))
     }
 
     return (
@@ -63,7 +71,7 @@ const QuestionAsk = () => {
                     tag={tag} setTag={setTag} 
                     handleReset={handleReset} setSubmit={setSubmit} />
                 <div className='buttonSubmit'>
-                    <StyledButton onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
+                    <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
                     <StyledButton onClick={handleReset} color="red" background="white">Discard draft</StyledButton>
                 </div>
             </Wrapper>
