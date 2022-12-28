@@ -5,8 +5,6 @@ import stackoverflow.domain.answer.dto.AnswerPatchDto;
 import stackoverflow.domain.answer.dto.AnswerPostDto;
 import stackoverflow.domain.answer.dto.AnswerResponseDto;
 import stackoverflow.domain.answer.entity.Answer;
-import stackoverflow.domain.question.dto.QuestionResponseDto;
-import stackoverflow.domain.question.entity.Question;
 
 import java.util.List;
 

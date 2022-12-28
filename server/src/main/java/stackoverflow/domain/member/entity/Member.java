@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import stackoverflow.audit.BaseTime;
+import stackoverflow.global.audit.BaseTime;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.question.entity.Question;
 

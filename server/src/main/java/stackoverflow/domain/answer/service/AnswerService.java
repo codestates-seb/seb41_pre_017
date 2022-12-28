@@ -10,10 +10,9 @@ import stackoverflow.domain.answer.repository.AnswerRepository;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.member.service.MemberService;
 import stackoverflow.domain.question.entity.Question;
-import stackoverflow.domain.question.repository.QuestionRepository;
 import stackoverflow.domain.question.service.QuestionService;
-import stackoverflow.exception.BusinessLogicException;
-import stackoverflow.exception.ExceptionCode;
+import stackoverflow.global.exception.BusinessLogicException;
+import stackoverflow.global.exception.ExceptionCode;
 
 import java.util.List;
 import java.util.Optional;
