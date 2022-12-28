@@ -37,17 +37,13 @@ const QuestionAsk = () => {
     const [ submit, setSubmit ] = useState(false);
     const navigate = useNavigate();
 
-// useConfirm은 파라미터로는 message와 callback 함수로 onConfirm(확인 눌렀을 때), onCancel(취소 눌렀을 때)를 받습니다.
-// 그리고 confirm의 return 값이 true일 경우 onConfirm 이 반환, 아닐 경우 onCancel이 반환됩니다.
     const deleteConfirm = () => {
         setTitle('');
         setProblem('');
         setTag('');
     };
 
-    const cancelConfirm = () => {
-
-    };
+    const cancelConfirm = () => {};
 
     const confirmDelete = useConfirm(
         "정말 삭제하시겠습니까?", 
@@ -63,6 +59,14 @@ const QuestionAsk = () => {
             memberId : 1,
         }
         console.log(data);
+        if(title.length === 0){
+            alert('제목은 1글자 이상 입력해주세요')
+            return;
+        }
+        if(problem.length <= 5){
+            alert('본문은 20글자 이상 입력해주세요')
+            return;
+        }
 
         axios.post('http://localhost:8080/questions', data)
         .then(res => {
@@ -82,7 +86,7 @@ const QuestionAsk = () => {
                     title={title} setTitle={setTitle}
                     problem={problem} setProblem={setProblem}
                     tag={tag} setTag={setTag} 
-                     setSubmit={setSubmit} />
+                    setSubmit={setSubmit} />
                 <div className='buttonSubmit'>
                     <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
                     <StyledButton onClick={confirmDelete} color="red" background="white">Discard draft</StyledButton>
