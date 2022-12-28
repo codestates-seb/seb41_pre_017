@@ -11,17 +11,18 @@ import stackoverflow.domain.answer.dto.AnswerResponseDto;
 import stackoverflow.domain.answer.entity.Answer;
 import stackoverflow.domain.answer.mapper.AnswerMapper;
 import stackoverflow.domain.answer.service.AnswerService;
-import stackoverflow.domain.question.service.QuestionService;
-import stackoverflow.dto.MultiResponseDto;
-import stackoverflow.dto.SingleResponseDto;
+import stackoverflow.global.dto.MultiResponseDto;
+import stackoverflow.global.dto.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
+
 @RequestMapping("/answers")
 @RestController
 @Validated
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AnswerController {
 
     private final AnswerService answerService;

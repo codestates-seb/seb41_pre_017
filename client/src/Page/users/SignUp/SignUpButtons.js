@@ -1,4 +1,5 @@
 import styled from "styled-components";
+// import SignUpGoogle from "./SignUpGoogle";
 
 const OpenIdContainer = styled.div`
   max-width: calc(calc(97rem / 12) * 3);
@@ -74,18 +75,18 @@ const FaceBookButton = (
 );
 
 const GithubSignInButton = styled(SignInButton)`
-    svg {
-      margin-top: 5px;
-      width: 32px;
-      height: 32px;
-    }
+  svg {
+    margin-top: 5px;
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const FaceBookSignInButton = styled(SignInButton)`
-    svg {
-      width: 32px;
-      height: 32px;
-    }
+  svg {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const SignInMessage = styled.div`
@@ -99,6 +100,7 @@ const SignInMessage = styled.div`
 const SignUpButtons = () => {
     return (
         <OpenIdContainer>
+            {/*<SignUpGoogle/>*/}
             <SignInButton>
                 {GoogleButton}
                 <SignInMessage>
