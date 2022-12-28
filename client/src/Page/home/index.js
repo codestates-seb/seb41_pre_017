@@ -4,6 +4,7 @@ import db from '../../db.json';
 import BlueBtn from '../components/style/blueBtn';
 import { Sidebar, Container, Main } from '../global/Sidebar';
 import { Link } from 'react-router-dom';
+import Presentation from './presentation';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -28,30 +29,30 @@ const Suggestion = styled.div`
         color: var(--theme-link-text);
     }
 `;
-const data = db.questions;
-
+// Todo : 유저 쿠기 구현시 쿠키에 로그인정보가 있으면 Container 화면을 출력
 function Home() {
     return (
-        <Container>
-            <Sidebar />
-            <Main>
-                <StyledHeader>
-                    <H1>Top Questions</H1>
-                    <Link to="/questions/ask">
-                        <BlueBtn>Ask Question</BlueBtn>
-                    </Link>
-                </StyledHeader>
+        <Presentation></Presentation>
+        // <Container>
+        //     <Sidebar />
+        //     <Main>
+        //         <StyledHeader>
+        //             <H1>Top Questions</H1>
+        //             <Link to="/questions/ask">
+        //                 <BlueBtn>Ask Question</BlueBtn>
+        //             </Link>
+        //         </StyledHeader>
 
-                <section>
-                    {data.map((el) => (
-                        <Questions key={el.id} data={el} />
-                    ))}
-                    <Suggestion>
-                        Looking for more? Browse the <a href="/questions">complete list of questions</a> or popular tags. Help us answer unanswered questions.
-                    </Suggestion>
-                </section>
-            </Main>
-        </Container>
+        //         <section>
+        //             {data.map((el) => (
+        //                 <Questions key={el.id} data={el} />
+        //             ))}
+        //             <Suggestion>
+        //                 Looking for more? Browse the <a href="/questions">complete list of questions</a> or popular tags. Help us answer unanswered questions.
+        //             </Suggestion>
+        //         </section>
+        //     </Main>
+        // </Container>
     );
 }
 
