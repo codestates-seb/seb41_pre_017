@@ -8,6 +8,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import TimeForToday from '../../../components/function/timeForToday';
+
 const Post = styled.div`
     line-height: 30px;
     margin: 0px 20px;
@@ -77,7 +78,6 @@ const PostBody = styled.div`
 
 const Content = ({ category, data, dataHandler, answerData, index }) => {
     const Modified = TimeForToday(new Date(data.modifiedAt));
-    console.log(Modified);
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
     const [feat, setFeat] = useState([Math.floor(Math.random() * 101), Math.floor(Math.random() * 101), Math.floor(Math.random() * 101)]);

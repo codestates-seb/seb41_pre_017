@@ -3,7 +3,7 @@ import InputBox from '../../../components/function/InputBox';
 import useInput from '../../../components/hook/useInput';
 import Content from './Content';
 import axios from 'axios';
-
+import { TextToCode } from '../../../components/function/textConverter';
 const Section = styled.section`
     max-width: 1100px;
     width: calc(100% - 24px);
@@ -32,7 +32,7 @@ const ContentList = ({ dataList, dataHandler }) => {
 
     const sendToServer = (data) => {
         const answer = {
-            content: data,
+            content: TextToCode(data),
             questionId: questionData.questionId,
             memberId: 1,
         };
