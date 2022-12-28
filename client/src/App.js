@@ -8,6 +8,7 @@ import Questions from './Page/questions/questionList';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import QuestionAsk from './Page/questions/ask';
 import EditPage from './Page/questions/qusetion-detail/editPage';
+import Profile from './Page/users/profile';
 
 import {CookiesProvider} from "react-cookie";
 
@@ -25,6 +26,7 @@ function App() {
                         <Route path="/questions/edit/:category/:id" element={<EditPage/>}/>
                         <Route path="/users/login" element={<Login/>}/>
                         <Route path="/users/signUp" element={<SignUp/>}/>
+                        <Route path="/users/profile" element={<Profile />} />
                     </Routes>
                     <Footer/>
                 </BrowserRouter>

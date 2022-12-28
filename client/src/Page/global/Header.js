@@ -114,7 +114,7 @@ function Header() {
                 <StyledBtn>Products</StyledBtn>
                 <SearchInput type="text" placeholder="  Search..." />
                 
-                <UserInfoLink to="/members"> <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img"/></UserInfoLink>
+                <UserInfoLink to="/users/profile"> <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img"/></UserInfoLink>
                 <Links>
                     <li>
                         <ProfileLink to="/users/login">
