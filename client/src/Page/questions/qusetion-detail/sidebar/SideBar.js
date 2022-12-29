@@ -51,7 +51,7 @@ const SideBar = () => {
     return (
         <SideSection>
             <SideBarYellow>
-                <ui>
+                <ul>
                     <BorderDown>
                         <h3>The Overflow Blog</h3>
                     </BorderDown>
@@ -82,7 +82,7 @@ const SideBar = () => {
                         <Icon src={Icon3} />
                         Temporary policy: ChatGPT is banned
                     </BorderDown>
-                </ui>
+                </ul>
             </SideBarYellow>
             <Related />
             <HotNetworkQuestion />
