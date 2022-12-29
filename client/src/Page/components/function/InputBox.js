@@ -67,7 +67,7 @@ const TextArea = styled.textarea`
 
   :focus {
     outline: 1px solid #6BBBF7;
-    box-shadow: 3px 3px 30px rgb(193,213,227), -3px -3px 30px rgb(193,213,227);
+    box-shadow: 1px 1px 10px rgb(193,213,227), -1px -1px 10px rgb(193,213,227);
   }
 `;
 

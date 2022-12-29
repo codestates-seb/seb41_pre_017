@@ -26,7 +26,7 @@ code {
 
 input:focus {
     outline: 1px solid #6BBBF7;
-    box-shadow: 1px 1px 30px rgb(193,213,227), -1px -1px 30px rgb(193,213,227);
+    box-shadow: 1px 1px 10px rgb(193,213,227), -1px -1px 10px rgb(193,213,227);
 }
 
 .OrangeText {

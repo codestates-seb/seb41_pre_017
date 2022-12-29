@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
 
@@ -39,12 +41,25 @@ const Wrapper = styled.div`
             cursor: default;
         }
     }
-
 `
 
 const DeleteProfile = () => {
-
     const [isChecked, setIschecked] = useState(false);
+    const navigate = useNavigate();
+
+    const HandleDelete = () => {
+        axios.delete(`http://localhost:8080/members/1`, {
+            withCredentials: true,
+        })
+        .then((response) => {
+        console.log("삭제 요청 성공");
+        alert('계정이 삭제되었습니다');
+        navigate('/');
+        })
+        .catch(() => {
+        console.log("삭제 요청 실패");
+        });
+    }
 
     const HandleButton = (e) => {
         setIschecked(!isChecked);
@@ -62,7 +77,7 @@ const DeleteProfile = () => {
             <p>Confirming deletion will only delete your profile on Stack Overflow - it will not affect any of your other profiles on the Stack Exchange network. If you want to delete multiple profiles, you'll need to visit each site separately and request deletion of those individual profiles.</p>
             <input type='checkbox' id='checkbox' value={isChecked} onClick={HandleButton}/>
             <label for="checkbox"> I have read the information stated above and understand the implications of having my profile deleted. I wish to proceed with the deletion of my profile.</label>
-            <button disabled={isChecked ? false : true}>Delete profile</button>
+            <button onClick={HandleDelete} disabled={isChecked ? false : true}>Delete profile</button>
         </Wrapper>
     );
 }
