@@ -86,7 +86,7 @@ const Pagination = ({ _data }) => {
         <>
             <section>
                 {currentItems.map((el) => {
-                    return <QuestionsBox key={el.id} data={el} />;
+                    return <QuestionsBox key={el.questionId} data={el} />;
                 })}
             </section>
             <PageList>

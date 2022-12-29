@@ -47,7 +47,7 @@ const AdviceBox = ({data, isHide, idx}) => {
     return (
         <Wrapper isHide={isHide} idx={idx}>       
             <div className="title">{data.title}</div>
-            <Bottom>-
+            <Bottom>
                 <Pencil />
                 <div className="content">
                     <p>{data.content}</p>

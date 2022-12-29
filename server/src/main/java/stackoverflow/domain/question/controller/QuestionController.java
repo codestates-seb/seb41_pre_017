@@ -11,16 +11,18 @@ import stackoverflow.domain.question.dto.QuestionResponseDto;
 import stackoverflow.domain.question.entity.Question;
 import stackoverflow.domain.question.mapper.QuestionMapper;
 import stackoverflow.domain.question.service.QuestionService;
-import stackoverflow.dto.MultiResponseDto;
-import stackoverflow.dto.SingleResponseDto;
+import stackoverflow.global.dto.MultiResponseDto;
+import stackoverflow.global.dto.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
+
 @RestController
 @RequestMapping(value = "questions")
 @Validated
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class QuestionController {
     private final QuestionService questionService;
     private final QuestionMapper mapper;

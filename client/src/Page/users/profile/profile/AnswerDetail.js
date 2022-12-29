@@ -19,7 +19,9 @@ const AnswerDetail = () => {
     return (
         <Wrapper>
             <h2>0 Answers</h2>
-            <BorderBox></BorderBox>
+            <BorderBox>
+                
+            </BorderBox>
         </Wrapper>
     )
 }

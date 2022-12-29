@@ -6,9 +6,7 @@ import ChainBox from './AskComponent/ChainBox';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useConfirm from '../../components/hook/useConfirm';
-
-
-
+import { TextToCode } from '../../components/function/textConverter';
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -25,16 +23,16 @@ const Wrapper = styled.div`
 
     button:disabled {
         border: 0px;
-        background-color : #82C7FC;
+        background-color: #82c7fc;
         cursor: default;
     }
-`
+`;
 
-const QuestionAsk = () => {    
-    const [ title, setTitle ] = useState('');
-    const [ problem, setProblem ] = useState('');
-    const [ tag, setTag ] = useState('');
-    const [ submit, setSubmit ] = useState(false);
+const QuestionAsk = () => {
+    const [title, setTitle] = useState('');
+    const [problem, setProblem] = useState('');
+    const [tag, setTag] = useState('');
+    const [submit, setSubmit] = useState(false);
     const navigate = useNavigate();
 
     const deleteConfirm = () => {
@@ -52,7 +50,7 @@ const QuestionAsk = () => {
     );     
         
     // { title, expect: expect, problem: problem, tag: tag }
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         const data = {
             title: 'title',
             content: 'problem',
@@ -86,14 +84,14 @@ const QuestionAsk = () => {
                     title={title} setTitle={setTitle}
                     problem={problem} setProblem={setProblem}
                     tag={tag} setTag={setTag} 
-                    setSubmit={setSubmit} />
+                     setSubmit={setSubmit} />
                 <div className='buttonSubmit'>
                     <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
                     <StyledButton onClick={confirmDelete} color="red" background="white">Discard draft</StyledButton>
                 </div>
             </Wrapper>
         </>
-    )
-}
+    );
+};
 
 export default QuestionAsk;

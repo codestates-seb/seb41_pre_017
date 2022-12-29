@@ -11,8 +11,8 @@ import stackoverflow.domain.member.dto.MemberResponseDto;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.member.mapper.MemberMapper;
 import stackoverflow.domain.member.service.MemberService;
-import stackoverflow.dto.MultiResponseDto;
-import stackoverflow.dto.SingleResponseDto;
+import stackoverflow.global.dto.MultiResponseDto;
+import stackoverflow.global.dto.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -21,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "members")
 @Validated
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
