@@ -1,6 +1,6 @@
 const profileAnswerData = [
     {
-        "AnswerId": 1,
+        "answerId": 1,
         "memberId": 1,
         "title": "답변테스트1",
         "content": "aaaaa",
@@ -8,7 +8,7 @@ const profileAnswerData = [
         "createdAt": "2022-12-28"
     },
     {
-        "AnswerId": 2,
+        "answerId": 2,
         "memberId": 1,
         "title": "답변테스트22222",
         "content": "bbbbb",
@@ -16,7 +16,7 @@ const profileAnswerData = [
         "createdAt": "2022-12-27"
     },
     {
-        "AnswerId": 3,
+        "answerId": 3,
         "memberId": 1,
         "title": "답변테스트3입니다",
         "content": "ccccc",
@@ -24,7 +24,7 @@ const profileAnswerData = [
         "createdAt": "2022-12-26"
     },
     {
-        "AnswerId": 4,
+        "answerId": 4,
         "memberId": 1,
         "title": "답변테스트4ㅇㅇㅇㅇ",
         "content": "ddddd",
@@ -32,7 +32,39 @@ const profileAnswerData = [
         "createdAt": "2022-12-25"
     },
     {
-        "AnswerId": 5,
+        "answerId": 5,
+        "memberId": 1,
+        "title": "답변테스트5",
+        "content": "eeeee",
+        "votes": 0,
+        "createdAt": "2022-12-24"
+    },
+    {
+        "answerId": 6,
+        "memberId": 1,
+        "title": "답변테스트5",
+        "content": "eeeee",
+        "votes": 0,
+        "createdAt": "2022-12-24"
+    },
+    {
+        "answerId": 7,
+        "memberId": 1,
+        "title": "답변테스트5",
+        "content": "eeeee",
+        "votes": 0,
+        "createdAt": "2022-12-24"
+    },
+    {
+        "answerId": 8,
+        "memberId": 1,
+        "title": "답변테스트5",
+        "content": "eeeee",
+        "votes": 0,
+        "createdAt": "2022-12-24"
+    },
+    {
+        "answerId": 9,
         "memberId": 1,
         "title": "답변테스트5",
         "content": "eeeee",

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import AnswerDetail from './AnswerDetail';
 import QuestionoDetail from './QuestionDetail';
 import Summary from './Summary';
+import profileAnswerData from './data/profileAnswerData';
+import profileQuestionData from './data/profileQuestionData';
 
 const Wrapper = styled.div`
     display: flex;
@@ -25,28 +27,25 @@ const Wrapper = styled.div`
     }
 `;
 
-
-
-
 const Activity = ({qnaBtn, setQnaBtn}) => {
     return (
-                <Wrapper>
-                    <div>
-                        <div className='menu'>
-                            <button className={qnaBtn === 0 && "buttonClicked"} onClick={(e) => setQnaBtn(0)}>Summary</button>
-                            <button className={qnaBtn === 1 && "buttonClicked"} onClick={(e) => setQnaBtn(1)}>Answers</button>
-                            <button className={qnaBtn === 2 && "buttonClicked"} onClick={(e) => setQnaBtn(2)}>Questions</button>
-                        </div>
+            <Wrapper>
+                <div>
+                    <div className='menu'>
+                        <button className={qnaBtn === 0 && "buttonClicked"} onClick={(e) => setQnaBtn(0)}>Summary</button>
+                        <button className={qnaBtn === 1 && "buttonClicked"} onClick={(e) => setQnaBtn(1)}>Answers</button>
+                        <button className={qnaBtn === 2 && "buttonClicked"} onClick={(e) => setQnaBtn(2)}>Questions</button>
                     </div>
-                    {
-                        qnaBtn === 0 ? <Summary /> 
-                        : 
-                        (
-                            qnaBtn === 1 ? <AnswerDetail /> : <QuestionoDetail />
-                        )
-                    }
-                </Wrapper>   
+                </div>
+                {
+                    qnaBtn === 0 ? <Summary profileAnswerData={profileAnswerData} profileQuestionData={profileQuestionData}/> 
+                    : 
+                    (
+                        qnaBtn === 1 ? <AnswerDetail profileAnswerData={profileAnswerData}/> : <QuestionoDetail profileQuestionData={profileQuestionData} />
+                    )
+                }
+            </Wrapper>   
     )
-}
+}   
 
 export default Activity;

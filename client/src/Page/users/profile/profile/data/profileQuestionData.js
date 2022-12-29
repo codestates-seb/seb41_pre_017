@@ -34,6 +34,46 @@ const profileQuestionData = [
     {
         "questionId": 5,
         "memberId": 1,
+        "title": "테스트4ㅇㅇㅇㅇ",
+        "content": "ddddd",
+        "votes": 0,
+        "createdAt": "2022-12-25"
+    },
+    {
+        "questionId": 6,
+        "memberId": 1,
+        "title": "테스트4ㅇㅇㅇㅇ",
+        "content": "ddddd",
+        "votes": 0,
+        "createdAt": "2022-12-25"
+    },
+    {
+        "questionId": 7,
+        "memberId": 1,
+        "title": "테스트4ㅇㅇㅇㅇ",
+        "content": "ddddd",
+        "votes": 0,
+        "createdAt": "2022-12-25"
+    },
+    {
+        "questionId": 8,
+        "memberId": 1,
+        "title": "테스트4ㅇㅇㅇㅇ",
+        "content": "ddddd",
+        "votes": 0,
+        "createdAt": "2022-12-25"
+    },
+    {
+        "questionId": 9,
+        "memberId": 1,
+        "title": "테스트4ㅇㅇㅇㅇ",
+        "content": "ddddd",
+        "votes": 0,
+        "createdAt": "2022-12-25"
+    },
+    {
+        "questionId": 10,
+        "memberId": 1,
         "title": "테스트5",
         "content": "eeeee",
         "votes": 1,

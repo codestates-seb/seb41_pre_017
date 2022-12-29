@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Activity from './profile/Activity';
 import Settings from './profile/Settings';
+import { userInfo } from './profile/data/userInfo';
 import { ReactComponent as Created } from './profile/img/createdAt.svg'
 import { ReactComponent as Email } from './profile/img/email.svg'
 
@@ -16,11 +17,25 @@ const StyledHeader = styled.div`
     }
 
     .userinfo {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
         margin-left: 20px;
+
+        p {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
         
         span {
-            margin-right: 10px;;
             color: gray;
+            font-size: 13px;
+            margin: 0px 10px 5px 0px;
+
+            svg {
+                height: 12px;
+                margin-right: 5px;
+            }
         }
     }
 `;
@@ -55,16 +70,18 @@ const Profile = () => {
     const HandleSettings = (e) => {
         setClickedBtn(1)
     }
+
+    // https://avatars.githubusercontent.com/u/110921798?s=400&v=4
     return (
         <Container>
             <Sidebar />
             <Main>
                 <StyledHeader>
-                    <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img"/>
+                    <img src="http://www.gravatar.com/avatar/iml1111?d=identicon&s=400" alt="profile img"/>
                     <div className='userinfo'>
-                        <h1>username</h1>
-                        <span><Created /> createdAt </span>
-                        <span><Email />  email address</span>
+                        <p>{userInfo[0].nickname}</p>
+                        <span><Created />{userInfo[0].createdAt} </span>
+                        <span><Email />{userInfo[0].email}</span>
                     </div>
                 </StyledHeader>
                 <Wrapper>

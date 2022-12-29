@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import profileAnswerData from './profileAnswerData';
-import profileQuestionData from './profileQuestionData';
 
 const Wrapper = styled.div`
     display: flex;
@@ -62,35 +60,43 @@ const VoteButton = styled.button`
 `;
 
 
-const Summary = () => {
+
+const Summary = ({profileAnswerData, profileQuestionData}) => {
+    const recentAnswer = profileAnswerData.filter((data,idx) => {
+        return data.answerId <= 5
+    });
+
+    const recentQuestion = profileQuestionData.filter((data,idx) => {
+        return data.questionId <=5
+    });
+        
     return (
             <Wrapper>
                 <div>
                     <div>
                         <h3>Stats</h3>
                         <div className='borderbox stats'>
-                            {/* <span>{profileAnswerData.votes+profileAnswerData.votes}</span> */}
-                            <span>10</span>
+                            <strong>10{/*수정필요*/}</strong>
                             <p>total votes</p>
-                            <span>{profileAnswerData.length}</span>
+                            <strong>{profileAnswerData.length}</strong>
                             <p>answers</p>
-                            <span>{profileQuestionData.length}</span>
+                            <strong>{profileQuestionData.length}</strong>
                             <p>quetions</p>
                         </div>
                     </div>
                 </div>
                 <StyledQnA>
                     <div>
-                        <h3>Answers</h3>
+                        <h3>Recent 5 Answers</h3>
                         <div className='borderbox answer'>
                         {
-                            profileAnswerData.map((el,idx) => {
+                            recentAnswer.map((answerData,idx) => {
                                 return (
                                     <>
                                         <p>
-                                            <VoteButton>{el.votes}</VoteButton>
-                                            {el.title}
-                                            <span>{el.createdAt}</span>
+                                            <VoteButton>{answerData.votes}</VoteButton>
+                                            {answerData.title}
+                                            <span>{answerData.createdAt}</span>
                                         </p>
                                     </>
                                 )
@@ -99,16 +105,16 @@ const Summary = () => {
                         </div> 
                     </div>
                     <div>
-                        <h3>Questionos</h3>
+                        <h3>Recent 5 Questions</h3>
                         <div className='borderbox answer'>
                         {
-                            profileQuestionData.map((el,idx) => {
+                            recentQuestion.map((questionData,idx) => {
                                 return (
                                     <>
                                         <p>
-                                            <VoteButton>{el.votes}</VoteButton>
-                                            {el.title}
-                                            <span>{el.createdAt}</span>
+                                            <VoteButton>{questionData.votes}</VoteButton>
+                                            {questionData.title}
+                                            <span>{questionData.createdAt}</span>
                                         </p>
                                     </>
                                 )

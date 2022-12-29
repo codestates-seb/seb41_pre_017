@@ -13,14 +13,50 @@ const BorderBox = styled.div`
     padding: 15px;
     margin-top: 10px;
     width: 100%;
-`
 
-const QuestionDetail = () => {
+    p {
+        margin-bottom: 5px;
+        border-bottom: 1px solid var(--theme-border);
+        cursor: pointer;
+
+        span {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 12px;
+            margin-left: 600px;
+        }
+
+        .zero {
+            background-color: #F1F2F3;
+            color: black;
+        }
+    }
+`;
+const VoteButton = styled.button`
+    background-color: #52BA7D;
+    width: 30px;
+    height: 20px;
+    border-radius: 5px;
+    color: white;
+    margin-right: 10px;
+`;
+
+const QuestionDetail = ({profileQuestionData}) => {
     return (
         <Wrapper>
-            <h2>0 Questions</h2>
+            <h2>{profileQuestionData.length} Questions</h2>
             <BorderBox>
-                
+                {
+                    profileQuestionData.map((data,idx) => {
+                        return (
+                            <p>
+                                <VoteButton className={data.votes === 0 && "zero"}>{data.votes}</VoteButton>
+                                {data.title}
+                                <span>{data.createdAt}</span>
+                            </p>
+                        )
+                    })
+                }
             </BorderBox>
         </Wrapper>
     )

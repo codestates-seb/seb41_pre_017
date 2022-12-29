@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BlueBtn from '../components/style/blueBtn';
 import { ReactComponent as Logo } from '../../Img/logo.svg';
+import SearchInput from '../components/style/SearchInput';
 
 const Container = styled.div`
     position: fixed;
@@ -30,28 +31,20 @@ const StyledLogo = styled(Logo)`
     padding-top: 10px;
 `;
 
-const SearchInput = styled.input`
-    flex-grow: 1;
-    height: 30px;
-    border-radius: 3px;
-    border: 1px solid var(--theme-searchBar-border);
-    margin: 0px 10px 0 10px;
-`;
 const UserInfoLink = styled(Link)`
-    
     img {
         width: 40px;
         height: 40px;
         -webkit-transform: scale(1);
-	    transform: scale(1);
+        transform: scale(1);
         :hover {
             -webkit-transform: scale(1.2);
-	        transform: scale(1.2);
-	        -webkit-transition: .3s ease-in-out;
-	        transition: .3s ease-in-out;
+            transform: scale(1.2);
+            -webkit-transition: 0.3s ease-in-out;
+            transition: 0.3s ease-in-out;
         }
     }
-`
+`;
 
 const ProfileLink = styled(Link)`
     text-decoration: none;
@@ -100,7 +93,6 @@ const Links = styled.ul`
     ::-webkit-scrollbar-track {
         background: rgba(33, 122, 244, 0.1);
     }
-    
 `;
 
 function Header() {
@@ -113,8 +105,11 @@ function Header() {
 
                 <StyledBtn>Products</StyledBtn>
                 <SearchInput type="text" placeholder="  Search..." />
-                
-                <UserInfoLink to="/users/profile"> <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img"/></UserInfoLink>
+
+                <UserInfoLink to="/users/profile">
+                    {' '}
+                    <img src="http://www.gravatar.com/avatar/iml1111?d=identicon&s=400" alt="profile img" />
+                </UserInfoLink>
                 <Links>
                     <li>
                         <ProfileLink to="/users/login">

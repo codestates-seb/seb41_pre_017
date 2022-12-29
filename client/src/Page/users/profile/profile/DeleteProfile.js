@@ -13,11 +13,18 @@ const Wrapper = styled.div`
     p {
         margin-bottom: 15px;
         line-height: 18px; 
+        letter-spacing: 0.7px;
     }
 
     li {
         margin: 0px 0px 20px 30px;
-        line-height: 25px;    
+        line-height: 25px;
+        font-size: 15px;    
+    }
+
+    label {
+        font-size: 15px;
+        letter-spacing: 0.5px;
     }
 
     button {
