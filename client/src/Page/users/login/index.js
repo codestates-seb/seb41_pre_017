@@ -21,7 +21,6 @@ const Content = styled.div`
   border-right: 0;
   box-sizing: border-box;
   border-radius: 0;
-  //border: 1px solid hsl(210, 8%, 85%);
   border-top-width: 0;
   border-bottom-width: 0;
   display: flex;

@@ -247,22 +247,17 @@ const SignUpForm = () => {
                         <label htmlFor={'display-name'}>Display name</label>
                         {name.length > 0 &&
                             <span
-                                className={
-
-                                    `message ${isName ? 'success' : 'error'}`
-
-                                }>
+                                className={`message ${isName ? 'success' : 'error'}`}>
                                 {nameMessage}
                             </span>
                         }
                     </LabelBox>
                     <InputBox>
                         <input
+                            className={`${isName ? 'correct' : 'wrong'}`}
                             type={'text'}
                             id={'display-name'}
-                            name={'display-name'}
                             onChange={onChangeName}
-                            className={`${isName ? 'correct' : 'wrong'}`}
                         />
                     </InputBox>
                 </div>
@@ -271,22 +266,17 @@ const SignUpForm = () => {
                         <label htmlFor={'email'}>Email</label>
                         {email.length > 0 &&
                             <span
-                                className={
-
-                                    `message ${isEmail ? 'success' : 'error'}`
-
-                                }>
+                                className={`message ${isEmail ? 'success' : 'error'}`}>
                                 {emailMessage}
                             </span>
                         }
                     </LabelBox>
                     <InputBox>
                         <input
+                            className={`${isEmail ? 'correct' : 'wrong'}`}
                             type={'email'}
                             id={'email'}
-                            name={'email'}
                             onChange={onChangeEmail}
-                            className={`${isEmail ? 'correct' : 'wrong'}`}
                         />
                     </InputBox>
                 </div>
@@ -295,22 +285,17 @@ const SignUpForm = () => {
                         <label htmlFor={'password'}>Password</label>
                         {password.length > 0 &&
                             <span
-                                className={
-
-                                    `message ${isPassword ? 'success' : 'error'}`
-
-                                }>
+                                className={`message ${isPassword ? 'success' : 'error'}`}>
                                 {passwordMessage}
                             </span>
                         }
                     </LabelBox>
                     <InputBox>
                         <input
+                            className={`${isPassword ? 'correct' : 'wrong'}`}
                             type={'password'}
                             id={'password'}
-                            name={'password'}
                             onChange={onChangePassword}
-                            className={`${isPassword ? 'correct' : 'wrong'}`}
                         />
                     </InputBox>
                     <p className={'caption'}>Passwords must contain at least eight characters, including at least 1
