@@ -85,7 +85,6 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
     const Delete = () => {
         if (category === 'question') {
             axios.delete(`http://localhost:8080/questions/${data.questionId}`);
-            navigate('/questions');
         } else if (category === 'answer') {
             axios.delete(`http://localhost:8080/answers/${data.answerId}`);
             const deleted = answerData.filter((el) => el !== data);
@@ -114,7 +113,13 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                         >
                             <Button>Edit</Button>
                         </Link>
-                        <Button onClick={Delete}>Delete</Button>
+                        {category === 'question' ? (
+                            <Link to={'/questions'}>
+                                <Button onClick={Delete}>Delete</Button>
+                            </Link>
+                        ) : (
+                            <Button onClick={Delete}>Delete</Button>
+                        )}
                         {/* <Button>Follow</Button> */}
                     </ul>
                     <User>
