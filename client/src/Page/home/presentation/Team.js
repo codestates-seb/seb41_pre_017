@@ -33,25 +33,6 @@ const TeamItem = styled.li`
         flex-basis: 140px;
         margin: 0 20px;
     }
-    .profile_red {
-        color: #ff4949;
-    }
-
-    .profile_beige {
-        color: beige;
-    }
-
-    .profile_green {
-        color: darkseagreen;
-    }
-
-    .profile_pink {
-        color: pink;
-    }
-
-    .profile_purple {
-        color: violet;
-    }
 `;
 const Profile = styled.div`
     background-color: #222;
@@ -85,6 +66,30 @@ const Contents = styled.div`
     }
 `;
 
+const Num1 = styled.h2`
+    color: #ff4949;
+`;
+const Num2 = styled.h2`
+    color: beige;
+`;
+const Num3 = styled.h2`
+    color: darkseagreen;
+`;
+const Num4 = styled.h2`
+    color: pink;
+`;
+const Num5 = styled.h2`
+    color: violet;
+`;
+const Num6 = styled.h2`
+    color: #808080;
+`;
+
+const Job = styled.span`
+    color: white;
+    font-weight: 100;
+`;
+
 const TeamIntroduction = () => {
     return (
         <main>
@@ -94,9 +99,9 @@ const TeamIntroduction = () => {
                         <Profile className="profile_red">
                             <img src={A_img} />
                             <Contents>
-                                <h2>
-                                    김민성<span>Back-end</span>
-                                </h2>
+                                <Num1>
+                                    김민성<Job>Back-end</Job>
+                                </Num1>
                             </Contents>
                         </Profile>
                     </TeamItem>
@@ -104,9 +109,9 @@ const TeamIntroduction = () => {
                         <Profile className="profile_beige">
                             <img src={B_img} />
                             <Contents>
-                                <h2>
-                                    김승현<span>Front-end</span>
-                                </h2>
+                                <Num2>
+                                    김승현<Job>Front-end</Job>
+                                </Num2>
                             </Contents>
                         </Profile>
                     </TeamItem>
@@ -114,9 +119,9 @@ const TeamIntroduction = () => {
                         <Profile className="profile_green">
                             <img src={C_img} />
                             <Contents>
-                                <h2>
-                                    박시환<span>Back-end</span>
-                                </h2>
+                                <Num3>
+                                    박시환<Job>Back-end</Job>
+                                </Num3>
                             </Contents>
                         </Profile>
                     </TeamItem>
@@ -124,9 +129,9 @@ const TeamIntroduction = () => {
                         <Profile className="profile_pink">
                             <img src={D_img} />
                             <Contents>
-                                <h2>
-                                    방재영<span>Back-end</span>
-                                </h2>
+                                <Num4>
+                                    방재영<Job>Back-end</Job>
+                                </Num4>
                             </Contents>
                         </Profile>
                     </TeamItem>
@@ -134,9 +139,9 @@ const TeamIntroduction = () => {
                         <Profile className="profile_purple">
                             <img src={E_img} />
                             <Contents>
-                                <h2>
-                                    이중원<span>Front-end</span>
-                                </h2>
+                                <Num5>
+                                    이중원<Job>Front-end</Job>
+                                </Num5>
                             </Contents>
                         </Profile>
                     </TeamItem>
@@ -144,9 +149,9 @@ const TeamIntroduction = () => {
                         <Profile className="num_6">
                             <img src={F_img} />
                             <Contents>
-                                <h2>
-                                    장은지<span>Front-end</span>
-                                </h2>
+                                <Num6>
+                                    장은지<Job>Front-end</Job>
+                                </Num6>
                             </Contents>
                         </Profile>
                     </TeamItem>

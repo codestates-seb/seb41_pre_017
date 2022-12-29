@@ -8,6 +8,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import TimeForToday from '../../../components/function/timeForToday';
+
 const Post = styled.div`
     line-height: 30px;
     margin: 0px 20px;
@@ -77,7 +78,6 @@ const PostBody = styled.div`
 
 const Content = ({ category, data, dataHandler, answerData, index }) => {
     const Modified = TimeForToday(new Date(data.modifiedAt));
-    console.log(Modified);
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
     const [feat, setFeat] = useState([Math.floor(Math.random() * 101), Math.floor(Math.random() * 101), Math.floor(Math.random() * 101)]);
@@ -85,7 +85,6 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
     const Delete = () => {
         if (category === 'question') {
             axios.delete(`http://localhost:8080/questions/${data.questionId}`);
-            navigate('/questions');
         } else if (category === 'answer') {
             axios.delete(`http://localhost:8080/answers/${data.answerId}`);
             const deleted = answerData.filter((el) => el !== data);
@@ -100,7 +99,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                 {/* 질문&답변  contentData 출력 */}
                 <Post dangerouslySetInnerHTML={{ __html: contentData }} />
                 {/* 질문&답변  태그들 출력 */}
-                <Tags className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</Tags>
+                <Tags className="tags">{data.tags ? data.tags.map((tag, index) => <TagNav key={index}>{tag}</TagNav>) : null}</Tags>
                 {/* 유저기능 = 질문&답변 수정, 해당유저 정보 */}
                 <UserCard>
                     <ul>
@@ -114,7 +113,13 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                         >
                             <Button>Edit</Button>
                         </Link>
-                        <Button onClick={Delete}>Delete</Button>
+                        {category === 'question' ? (
+                            <Link to={'/questions'}>
+                                <Button onClick={Delete}>Delete</Button>
+                            </Link>
+                        ) : (
+                            <Button onClick={Delete}>Delete</Button>
+                        )}
                         {/* <Button>Follow</Button> */}
                     </ul>
                     <User>

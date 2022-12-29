@@ -57,7 +57,9 @@ const Title = styled.h2`
     margin-top: 5px;
     font-size: 16px;
 `;
-
+const Time = styled.span`
+    margin-left: 10px;
+`;
 const questions = ({ data }) => {
     const time = data.modifiedAt ? TimeForToday(new Date(data.modifiedAt)) : TimeForToday(new Date());
     return (
@@ -81,7 +83,7 @@ const questions = ({ data }) => {
                     <nav className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</nav>
                     <span className="userCard">
                         <span className="userLink">{data.nickname ? data.nickname : 'anonymous'}</span>
-                        <span>{data.modifiedAt ? time : time}</span>
+                        <Time>{data.modifiedAt ? time : time}</Time>
                     </span>
                 </SummaryMeta>
             </Question>
