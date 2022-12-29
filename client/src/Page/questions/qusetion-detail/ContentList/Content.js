@@ -100,7 +100,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                 {/* 질문&답변  contentData 출력 */}
                 <Post dangerouslySetInnerHTML={{ __html: contentData }} />
                 {/* 질문&답변  태그들 출력 */}
-                <Tags className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</Tags>
+                <Tags className="tags">{data.tags ? data.tags.map((tag, index) => <TagNav key={index}>{tag}</TagNav>) : null}</Tags>
                 {/* 유저기능 = 질문&답변 수정, 해당유저 정보 */}
                 <UserCard>
                     <ul>
