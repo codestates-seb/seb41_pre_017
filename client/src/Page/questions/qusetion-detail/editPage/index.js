@@ -5,7 +5,7 @@ import InputBox from '../../../components/function/InputBox';
 import useInput from '../../../components/hook/useInput';
 import BlueBtn from '../../../components/style/blueBtn';
 import axios from 'axios';
-import { TextToCode } from '../../../components/function/textConverter';
+import { TextToCode, CodeToText } from '../../../components/function/textConverter';
 const ContentLayout = styled.div`
     display: flex;
 `;
@@ -48,7 +48,7 @@ const EditPage = () => {
     const data = useLocation().state.data;
     const category = useLocation().state.category;
     const navigate = useNavigate();
-    const [Content, setContent, ChangeContent] = useInput(data.content);
+    const [Content, setContent, ChangeContent] = useInput(CodeToText(data.content));
     const [Title, setTitle, ChangeTitle] = useInput(data.title);
 
     const sendToServer = () => {
