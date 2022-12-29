@@ -8,6 +8,7 @@ import ContentSidebar from './sidebar/SideBar';
 import axios from 'axios';
 import Loading from '../../components/style/loading';
 import TimeForToday from '../../components/function/timeForToday';
+import { useGet } from '../../components/hook/API';
 const StyledHeader = styled.header`
     display: flex;
     flex-flow: row nowrap;
@@ -71,18 +72,21 @@ const ContentLayout = styled.div`
 const SingleQuestion = () => {
     //서버에서 받아와야 될 데이터
     const data = useLocation();
-    const [questionData, setQuestionData] = useState({});
-    const [answerData, setAnswerData] = useState([]);
+    // const [questionData, setQuestionData] = useState({});
+    // const [answerData, setAnswerData] = useState([]);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        setLoading(true);
-        axios.get(`http://localhost:8080/questions/${data.state.id}`).then((res) => setQuestionData(res.data.data));
-        axios
-            .get(`http://localhost:8080/answers/${data.state.id}?page=1&size=10`)
-            .then((res) => setAnswerData(res.data.data))
-            .then(() => setLoading(false))
-            .catch((error) => console.error(error));
-    }, []);
+
+    const [questionData, setQuestionData] = useGet(`questions/${data.state.id}`, setLoading);
+    const [answerData, setAnswerData] = useGet(`answers/${data.state.id}?page=1&size=10`, setLoading);
+    // useEffect(() => {
+    //     setLoading(true);
+    //     axios.get(`http://localhost:8080/questions/${data.state.id}`).then((res) => setQuestionData(res.data.data));
+    //     axios
+    //         .get(`http://localhost:8080/answers/${data.state.id}?page=1&size=10`)
+    //         .then((res) => setAnswerData(res.data.data))
+    //         .then(() => setLoading(false))
+    //         .catch((error) => console.error(error));
+    // }, []);
     const Asked = TimeForToday(new Date(questionData.createdAt));
     const Modified = TimeForToday(new Date(questionData.modifiedAt));
     return (
