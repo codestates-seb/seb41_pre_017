@@ -67,17 +67,17 @@ const ContentLayout = styled.div`
         float: none;
     }
 `;
-//.get(`http://localhost:8080/questions/${data.state.id}`)
 //개별 질문 페이지 구성 화면입니다
 const SingleQuestion = () => {
     //서버에서 받아와야 될 데이터
     const data = useLocation();
-    // const [questionData, setQuestionData] = useState({});
-    // const [answerData, setAnswerData] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const [questionData, setQuestionData] = useGet(`questions/${data.state.id}`, setLoading);
     const [answerData, setAnswerData] = useGet(`answers/${data.state.id}?page=1&size=10`, setLoading);
+
+    // const [questionData, setQuestionData] = useState({});
+    // const [answerData, setAnswerData] = useState([]);
     // useEffect(() => {
     //     setLoading(true);
     //     axios.get(`http://localhost:8080/questions/${data.state.id}`).then((res) => setQuestionData(res.data.data));
@@ -87,6 +87,7 @@ const SingleQuestion = () => {
     //         .then(() => setLoading(false))
     //         .catch((error) => console.error(error));
     // }, []);
+
     const Asked = TimeForToday(new Date(questionData.createdAt));
     const Modified = TimeForToday(new Date(questionData.modifiedAt));
     return (
