@@ -22,23 +22,17 @@ const H1 = styled.h1`
 
 const Questions = () => {
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
 
     // 서버에서 데이더 받아오기
     useEffect(() => {
-        const fetchData = async () => {
-            await axios
-                .get('http://localhost:8080/questions?page=1&size=200')
-                .then((res) => {
-                    return setData(res.data.data);
-                })
-                .then(() => setLoading(false))
-                .catch((error) => console.error(error));
-        };
-        setTimeout(() => {
-            fetchData();
-        }, 1000);
-        setLoading(true);
+        axios
+            .get('http://localhost:8080/questions?page=1&size=200')
+            .then((res) => {
+                setData(res.data.data);
+            })
+            .catch((error) => console.error(error));
+        setLoading(false);
     }, []);
     return (
         <>
