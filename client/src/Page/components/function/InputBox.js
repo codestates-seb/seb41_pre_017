@@ -134,7 +134,7 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
     //input입력값을 value로 변경하는 이벤트 함수
     const ConvertText = (e) => {
         OnChange(e);
-        setPreviewText(TextToCode(Value));
+        setPreviewText(TextToCode(e.target.value));
     };
 
     /* Submit버튼을 눌렀을때 이벤트
