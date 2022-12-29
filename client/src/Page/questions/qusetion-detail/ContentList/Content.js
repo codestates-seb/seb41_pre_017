@@ -81,7 +81,6 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
     const [feat, setFeat] = useState([Math.floor(Math.random() * 101), Math.floor(Math.random() * 101), Math.floor(Math.random() * 101)]);
-    const navigate = useNavigate();
     const Delete = () => {
         if (category === 'question') {
             axios.delete(`http://localhost:8080/questions/${data.questionId}`);
