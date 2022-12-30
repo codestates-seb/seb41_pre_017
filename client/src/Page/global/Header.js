@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import BlueBtn from '../components/style/blueBtn';
 import { ReactComponent as Logo } from '../../Img/logo.svg';
 import SearchInput from '../components/style/SearchInput';
-
+import useInput from '../components/hook/useInput';
+import { useNavigate } from 'react-router-dom';
 const Container = styled.div`
     position: fixed;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
@@ -96,6 +97,15 @@ const Links = styled.ul`
 `;
 
 function Header() {
+    const [value, setValue, ChangeValue] = useInput();
+    const navigate = useNavigate();
+    const Submit = (e) => {
+        if (e.key === 'Enter') {
+            navigate('/questions', { state: value });
+            window.location.reload();
+        }
+    };
+
     return (
         <Container>
             <StyledHeader>
@@ -104,10 +114,9 @@ function Header() {
                 </StyledLink>
 
                 <StyledBtn>Products</StyledBtn>
-                <SearchInput type="text" placeholder="  Search..." />
+                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
 
                 <UserInfoLink to="/users/profile">
-                    {' '}
                     <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img" />
                 </UserInfoLink>
                 <Links>
