@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100vw;
 `;
 
 const Content = styled.div`
@@ -28,7 +28,6 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px;
 `;
 
 const Container = styled.div`

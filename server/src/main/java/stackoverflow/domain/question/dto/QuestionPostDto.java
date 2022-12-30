@@ -2,15 +2,11 @@ package stackoverflow.domain.question.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import stackoverflow.domain.member.entity.Member;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class QuestionPostDto {
     @NotBlank

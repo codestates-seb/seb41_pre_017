@@ -39,7 +39,6 @@ const Buttons = styled.div`
             height: 18px;
         }
     }
-
     .selected {
         background-color: #c7e0f4;
         padding-bottom: 23px;
@@ -56,21 +55,13 @@ const Buttons = styled.div`
 const TextArea = styled.textarea`
     border-radius: 3px;
     width: 100%;
-    height: 250px;
-    line-height: 25px;
-    font-size: 1em;
-    letter-spacing: 1px;
-    resize: none;
-    overflow: scroll;
+    height: 220px;
     border-bottom: 1px solid var(--theme-border);
     border-top: 1px solid var(--theme-border);
-
-  :focus {
-    outline: 1px solid #6BBBF7;
-    box-shadow: 1px 1px 10px rgb(193,213,227), -1px -1px 10px rgb(193,213,227);
-  }
+    line-height: 40px;
+    font-size: 1em;
+    letter-spacing: 1px;
 `;
-
 const Title = styled.h2`
     margin-bottom: 10px;
     color: #232629;
@@ -91,7 +82,7 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
     const [selectBtn, isSelectBtn] = useState(); //버튼 선택중
 
     // 텍스트를 html 로 바꾸기 위한
-    const [PreviewText, setPreviewText] = useState(TextToCode(Value)); //프리뷰
+    const [PreviewText, setPreviewText] = useState(Value); //프리뷰
     const [isBold, setBold] = useState(false);
     const [isItalic, setItalic] = useState(false);
     const [isInlineCode, setInlineCode] = useState(false);
@@ -100,9 +91,11 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
     const Bold = () => {
         setBold((current) => !current);
         if (isBold) {
+            setPreviewText(PreviewText + '</b>');
             setValue(Value + '</b>');
             isSelectBtn(null);
         } else {
+            setPreviewText(PreviewText + '<b>');
             setValue(Value + '<b>');
             isSelectBtn('Bold');
         }
@@ -111,9 +104,11 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
     const Italic = () => {
         setItalic((current) => !current);
         if (isItalic) {
+            setPreviewText(PreviewText + '</i>');
             setValue(Value + '</i>');
             isSelectBtn(null);
         } else {
+            setPreviewText(PreviewText + '<i>');
             setValue(Value + '<i>');
             isSelectBtn('Italic');
         }
@@ -122,9 +117,11 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
     const InlineCode = () => {
         setInlineCode((current) => !current);
         if (isInlineCode) {
+            setPreviewText(PreviewText + '</code>');
             setValue(Value + '</code>');
             isSelectBtn(null);
         } else {
+            setPreviewText(PreviewText + '<code>');
             setValue(Value + '<code>');
             isSelectBtn('InlineCode');
         }
