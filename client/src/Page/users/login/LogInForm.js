@@ -103,11 +103,20 @@ const LogInForm = () => {
             password: passwordRef.current.value,
         })
             .then(res => {
-                setCookie('memberId', res.data);
-                navigate('/questions');
+                if (res.data === 'Login failed!' || res.status === 500) {
+                    alert('이메일과 비밀번호를 확인해주세요.');
+                    emailRef.current.value = '';
+                    passwordRef.current.value = '';
+                } else {
+                    setCookie('memberId', res.data);
+                    navigate('/questions');
+                }
             })
-            .catch(err => console.log(err.message))
-    }
+            .catch(err => {
+                console.log(err)
+            })
+    };
+
     return (
         <FromContainer>
             <Form onSubmit={loginRequestHandler}>
