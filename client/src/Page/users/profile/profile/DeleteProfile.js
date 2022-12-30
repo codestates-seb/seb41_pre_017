@@ -57,13 +57,13 @@ const DeleteProfile = () => {
     const [cookie, removeCookie] = useCookies(['memberId']);
 
     const HandleDelete = () => {
-        axios.delete(`http://localhost:8080/members/${cookie}`, {
+        axios.delete(`http://localhost:8080/members/${cookie.memberId}`, {
         })
         .then((response) => {
             console.log("삭제 요청 성공");
             alert('계정이 삭제되었습니다');
-            removeCookie('memberId', {path: "/"});
-            // navigate('/');
+            removeCookie('memberId');
+            navigate('/');
             // 로그아웃 상태로 진입
             })
         .catch(() => {

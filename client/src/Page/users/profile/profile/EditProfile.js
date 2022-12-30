@@ -49,30 +49,18 @@ const BorderBox = styled.div`
 
 const EditProfile = ({setChangeNickname, changeNickname, changePwd, setChangePwd}) => {
     const [cookie] = useCookies(['memberId']);
-
+    
     const onChange = (e) => {
         setChangeNickname(e.target.value);
     }
 
-    const onChangePwd = (e) => {
-        setChangePwd(e.target.value);
-    }
-
     const handleNickname = () => {
-        axios.patch('http://localhost:8080/members/${cookie}',{
+        axios.patch(`http://localhost:8080/members/${cookie.memberId}`,{
             "nickname": changeNickname,   
         })
         .then(res => window.location.reload())
         console.log(changeNickname);
         }
-
-    const handlePassword = () => {
-        axios.patch('http://localhost:8080/members/${cookie}',{
-            "pwd": changePwd,   
-        })
-        .then(res => window.location.reload())
-        console.log(changePwd);
-    }
 
     return (
         <Wrapper>
@@ -87,16 +75,7 @@ const EditProfile = ({setChangeNickname, changeNickname, changePwd, setChangePwd
                 <p>Location</p>
                 <input />
             </BorderBox>
-            <BlueBtn onClick={handleNickname}>Save</BlueBtn>
-            <strong>Private information</strong>
-            <BorderBox>
-                <p>Password</p>
-                <input />
-                <p>Password confirm</p>
-                <input onChange={onChangePwd} value={changePwd}/>
-            </BorderBox>
-            <BlueBtn onClick={handlePassword}>Save</BlueBtn>
-            
+            <BlueBtn onClick={handleNickname}>Save Profile</BlueBtn>
         </Wrapper>
     )
 };

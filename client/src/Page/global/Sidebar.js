@@ -82,11 +82,18 @@ export function Sidebar() {
                                 Questions
                             </StyledLink>
                         )}
+                        {select === 'users' ? (
+                            <SelectLink className="subNav" to="/users">
+                                Users
+                            </SelectLink>
+                        ) : (
+                            <StyledLink className="subNav" to="/users">
+                                Users
+                            </StyledLink>
+                        )}
+
                         <StyledLink className="subNav" to="/">
-                            Tags
-                        </StyledLink>
-                        <StyledLink className="subNav" to="/users">
-                            Users
+                            Profile
                         </StyledLink>
                     </NavList>
                 </NavList>
