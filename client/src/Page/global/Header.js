@@ -131,7 +131,7 @@ function Header() {
 
     useEffect(() => {
         authCheck();
-    }, []);
+    }, [authCheck]);
 
     const logoutHandler = () => {
         axios
@@ -159,7 +159,7 @@ function Header() {
                     </UserInfoLink>
                 )}
                 <Links>
-                    {cookie.memberId === undefined ? (
+                    {cookie.memberId === 'undefined' && (
                         <Fragment>
                             <li>
                                 <ProfileLink to="/users/login">
@@ -172,14 +172,14 @@ function Header() {
                                 </ProfileLink>
                             </li>
                         </Fragment>
-                    ) : null}
-                    {cookie.memberId !== undefined ? (
+                    )}
+                    {cookie.memberId !== 'undefined' && (
                         <li>
                             <ProfileLink to={'/'}>
                                 <BlueBtn onClick={logoutHandler}>Log Out</BlueBtn>
                             </ProfileLink>
                         </li>
-                    ) : null}
+                    )}
                 </Links>
             </StyledHeader>
         </Container>

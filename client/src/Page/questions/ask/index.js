@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useConfirm from '../../components/hook/useConfirm';
 import { TextToCode } from '../../components/function/textConverter';
+import { useCookies } from 'react-cookie';
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -34,7 +35,7 @@ const QuestionAsk = () => {
     const [tag, setTag] = useState('');
     const [submit, setSubmit] = useState(false);
     const navigate = useNavigate();
-
+    const [cookie, removeCookie] = useCookies(['memberId']);
     // useConfirm은 파라미터로는 message와 callback 함수로 onConfirm(확인 눌렀을 때), onCancel(취소 눌렀을 때)를 받습니다.
     // 그리고 confirm의 return 값이 true일 경우 onConfirm 이 반환, 아닐 경우 onCancel이 반환됩니다.
     const deleteConfirm = () => {
@@ -52,7 +53,7 @@ const QuestionAsk = () => {
         const data = {
             title: title,
             content: TextToCode(problem),
-            memberId: 1,
+            memberId: cookie.memberId,
         };
         if (title === '') alert('제목을 입력해주세요');
         else if (problem === '') alert('질문을 입력해주세요');
