@@ -3,7 +3,7 @@ import BlueBtn from '../../components/style/blueBtn';
 import {useRef} from "react";
 import {useCookies} from "react-cookie";
 import {useNavigate} from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 const FromContainer = styled.div`
   max-width: calc(calc(97rem / 12) * 3);
@@ -91,15 +91,22 @@ const ButtonBox = styled.div`
 const LogInForm = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const [cookies, setCookies] = useCookies(['']);
+
+    const [cookie, setCookie] = useCookies(['memberId']);
     const navigate = useNavigate();
 
     const loginRequestHandler = (event) => {
         event.preventDefault();
 
-        // return axios
-        //     .post('/')
-        // navigate()
+        return axios.post('http://localhost:8080/users/login', {
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+        })
+            .then(res => {
+                setCookie('memberId', res.data);
+                navigate('/questions');
+            })
+            .catch(err => console.log(err.message))
     }
     return (
         <FromContainer>

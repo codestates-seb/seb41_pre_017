@@ -1,10 +1,14 @@
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import BlueBtn from '../components/style/blueBtn';
 import { ReactComponent as Logo } from '../../Img/logo.svg';
 import SearchInput from '../components/style/SearchInput';
 import useInput from '../components/hook/useInput';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import { Fragment, useEffect, useState } from 'react';
+import axios from 'axios';
+
 const Container = styled.div`
     position: fixed;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
@@ -38,6 +42,7 @@ const UserInfoLink = styled(Link)`
         height: 40px;
         -webkit-transform: scale(1);
         transform: scale(1);
+
         :hover {
             -webkit-transform: scale(1.2);
             transform: scale(1.2);
@@ -57,6 +62,7 @@ const StyledBtn = styled.button`
     padding-left: 10px;
     padding-right: 10px;
     background-color: white;
+
     :hover {
         background: var(--theme-button-hover-background-color);
         color: var(--theme-button-hover-color);
@@ -68,6 +74,7 @@ const StyledLink = styled(Link)`
         background: var(--theme-button-hover-background-color);
         color: var(--theme-button-hover-color);
     }
+
     height: 55px;
 `;
 
@@ -84,12 +91,14 @@ const Links = styled.ul`
     ::-webkit-scrollbar {
         height: 10px; // 스크롤바의 크기
     }
+
     ::-webkit-scrollbar-thumb {
         height: 30%; /* 스크롤바의 길이 */
         background: #217af4; /* 스크롤바의 색상 */
 
         border-radius: 10px;
     }
+
     // 스크롤바 뒷 배경 색상
     ::-webkit-scrollbar-track {
         background: rgba(33, 122, 244, 0.1);
@@ -98,12 +107,39 @@ const Links = styled.ul`
 
 function Header() {
     const [value, setValue, ChangeValue] = useInput();
+    const [cookie, removeCookie] = useCookies(['memberId']);
+    const [userName, setUserName] = useState('');
     const navigate = useNavigate();
     const Submit = (e) => {
         if (e.key === 'Enter') {
             navigate('/questions', { state: value });
             window.location.reload();
         }
+    };
+
+    const authCheck = () => {
+        const memberId = cookie.memberId;
+        if (memberId !== 'undefined') {
+            return axios
+                .get(`http://localhost:8080/members/${memberId}`)
+                .then((res) => {
+                    setUserName(res.data.data.nickname);
+                })
+                .catch((err) => console.log(err.message));
+        }
+    };
+
+    useEffect(() => {
+        authCheck();
+    }, [authCheck]);
+
+    const logoutHandler = () => {
+        axios
+            .post('http://localhost:8080/users/logout')
+            .then((res) => {
+                removeCookie('memberId');
+            })
+            .catch((err) => console.log(err.message));
     };
 
     return (
@@ -114,22 +150,36 @@ function Header() {
                 </StyledLink>
 
                 <StyledBtn>Products</StyledBtn>
-                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
 
-                <UserInfoLink to="/users/profile">
-                    <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img" />
-                </UserInfoLink>
+                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
+                {cookie.memberId !== 'undefined' && (
+                    <UserInfoLink to="/users/profile">
+                        <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img" />
+                        <span>{userName}</span>
+                    </UserInfoLink>
+                )}
                 <Links>
-                    <li>
-                        <ProfileLink to="/users/login">
-                            <BlueBtn>Log in</BlueBtn>
-                        </ProfileLink>
-                    </li>
-                    <li>
-                        <ProfileLink to="/users/signUp" className="profile">
-                            <BlueBtn>Sign Up</BlueBtn>
-                        </ProfileLink>
-                    </li>
+                    {cookie.memberId === 'undefined' && (
+                        <Fragment>
+                            <li>
+                                <ProfileLink to="/users/login">
+                                    <BlueBtn>Log in</BlueBtn>
+                                </ProfileLink>
+                            </li>
+                            <li>
+                                <ProfileLink to="/users/signUp" className="profile">
+                                    <BlueBtn>Sign Up</BlueBtn>
+                                </ProfileLink>
+                            </li>
+                        </Fragment>
+                    )}
+                    {cookie.memberId !== 'undefined' && (
+                        <li>
+                            <ProfileLink to={'/'}>
+                                <BlueBtn onClick={logoutHandler}>Log Out</BlueBtn>
+                            </ProfileLink>
+                        </li>
+                    )}
                 </Links>
             </StyledHeader>
         </Container>

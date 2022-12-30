@@ -182,7 +182,6 @@ const SignUpForm = () => {
                     })
                     .then((response) => {
                         console.log('login data sent successfully!!')
-                        console.log(response.data);
                         alert('회원가입이 완료되었습니다!');
                         navigate('../users/login');
                     })
@@ -194,7 +193,7 @@ const SignUpForm = () => {
                     setEmailMessage('');
                 }
             }
-        }, [name, email, password]);
+        }, [name, email, password, navigate]);
 
     // 이름
     const onChangeName = useCallback((event) => {
