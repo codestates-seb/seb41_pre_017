@@ -156,7 +156,6 @@ function Header() {
                 {cookie.memberId !== undefined ? (
                     <UserInfoLink to={`/users/${cookie.memberId}`}>
                         <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img" />
-                        <span>{userName}</span>
                     </UserInfoLink>
                 ) : null}
                 <Links>
