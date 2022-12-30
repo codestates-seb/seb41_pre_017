@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import stackoverflow.global.audit.BaseTime;
+import stackoverflow.audit.BaseTime;
 import stackoverflow.domain.answer.entity.Answer;
+import stackoverflow.domain.comment.entity.Comment;
 import stackoverflow.domain.question.entity.Question;
 
 import javax.persistence.*;
@@ -33,6 +34,9 @@ public class Member extends BaseTime {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();

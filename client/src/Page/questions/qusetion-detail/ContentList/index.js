@@ -2,12 +2,10 @@ import styled from 'styled-components';
 import InputBox from '../../../components/function/InputBox';
 import useInput from '../../../components/hook/useInput';
 import Content from './Content';
-import axios from 'axios';
-import { TextToCode } from '../../../components/function/textConverter';
-import { useCookies } from 'react-cookie';
+
 const Section = styled.section`
     max-width: 1100px;
-    width: calc(100% - 24px);
+    width: calc(100% - 164px);
     height: 100%;
     margin-bottom: 50px;
     display: flex;
@@ -17,42 +15,34 @@ const Section = styled.section`
 `;
 
 const H1 = styled.h1`
+    margin-left: 50px;
     font-weight: 100;
-    margin: 0 0 1em;
+    margin-top: 30px;
 `;
 
 const EnterAnswer = styled.div`
     margin: 20px;
     margin-top: 50px;
-    width: 100%;
 `;
 
 const ContentList = ({ dataList, dataHandler }) => {
     const questionData = dataList.questionData;
     const answerData = dataList.answerData;
-    const [cookie, removeCookie] = useCookies(['memberId']);
 
     const sendToServer = (data) => {
-        const answer = {
-            content: TextToCode(data),
-            questionId: questionData.questionId,
-            memberId: cookie.memberId,
-        };
-        axios
-            .post(`http://localhost:8080/answers/`, answer)
-            .then((res) => dataHandler.setAnswerData([...answerData, res.data.data]))
-            .catch((error) => console.error(error));
+        console.log('질문에 대한 답변 서버에 보내기', data);
+        // 질문에 대한 답변을 서버에 보내기, ex) axios.post('http://localhost:3000/answer', data);
     };
     const [inputValue, setInputValue, handleChange, handleSubmit] = useInput('', sendToServer);
 
     return (
         <Section>
             {/*질문 */}
-            <Content key={questionData.questionId} data={questionData} category={'question'} dataHandler={dataHandler.setQuestionData} />
+            <Content key={questionData.id} data={questionData} category={'question'} dataHandler={dataHandler.setQuestionData} />
             {/* 답변 */}
             <H1>{answerData.length} Answers</H1>
             {answerData.map((el, index) => (
-                <Content key={index} category={'answer'} data={el} dataHandler={dataHandler.setAnswerData} answerData={answerData} index={index} />
+                <Content key={el.id} category={'answer'} data={el} dataHandler={dataHandler.setAnswerData} answerData={answerData} index={index} />
             ))}
             {/*질문에 대한 답변 작성*/}
             <EnterAnswer>

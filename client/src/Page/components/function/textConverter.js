@@ -1,7 +1,6 @@
 export const TextToCode = (data) => {
     let result = data;
     result = result
-        .replaceAll(/(\n|\r\n)/g, '<br>')
         .replaceAll(/(<script>)/g, `<red>Don't &nbsp use  &nbsp script &nbsp commands</red>`)
         .replaceAll(/(<[/]script>)/g, `<red>Don't &nbsp use &nbsp script &nbsp commands</red>`)
         .replaceAll(/((int)\s)/g, `<orange>int&nbsp</orange>`)
@@ -30,7 +29,8 @@ export const TextToCode = (data) => {
         .replaceAll(/(('undefined')\s)/g, `<green>'undefined'&nbsp</green>`)
         .replaceAll(/(('function')\s)/g, `<green> 'function'&nbsp</green>`)
 
-        .replaceAll(/((import)\s)/g, `<purple>import&nbsp</purple>`);
+        .replaceAll(/((import)\s)/g, `<purple>import&nbsp</purple>`)
+        .replaceAll(/(\n|\r\n)/g, '<br>');
 
     return result;
 };
@@ -48,13 +48,6 @@ export const CodeToHtml = (data) => {
         .replaceAll(/(<[/]purple>)/g, '</span>')
         .replaceAll(/(<green>)/g, '<span class=GreenText>')
         .replaceAll(/(<[/]green>)/g, '</span>');
-
-    return result;
-};
-
-export const CodeToText = (data) => {
-    let result = data;
-    result = result.replaceAll(/(<br>)/g, '\n');
 
     return result;
 };

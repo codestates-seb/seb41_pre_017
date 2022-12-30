@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import AskHeader from './AskComponent/AskHeader';
 import StyledButton from './AskComponent/Btn';
 import ChainBox from './AskComponent/ChainBox';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import useConfirm from '../../components/hook/useConfirm';
-import { TextToCode } from '../../components/function/textConverter';
-import { useCookies } from 'react-cookie';
 
 const Wrapper = styled.div`
     display: flex;
@@ -22,64 +17,35 @@ const Wrapper = styled.div`
         margin-top: -20px;
         margin-bottom: 60px;
     }
+`
 
-    button:disabled {
-        border: 0px;
-        background-color: #82c7fc;
-        cursor: default;
-    }
-`;
+const QuestionAsk = () => {    
+    const [ title, setTitle ] = useState('');
+    const [ expect, setExpect ] = useState('');
+    const [ problem, setProblem ] = useState('');
+    const [ tag, setTag ] = useState('');
 
-const QuestionAsk = () => {
-    const [title, setTitle] = useState('');
-    const [problem, setProblem] = useState('');
-    const [tag, setTag] = useState('');
-    const [submit, setSubmit] = useState(false);
-    const navigate = useNavigate();
-
-    const deleteConfirm = () => {
-        setTitle('');
-        setProblem('');
-        setTag('');
-    };
-
-    const cancelConfirm = () => {};
-
-    const confirmDelete = useConfirm(
-        "정말 삭제하시겠습니까?", 
-        deleteConfirm,
-        cancelConfirm   
-    );     
-        
+    const handleReset = () => {
+        // setInputData({problem: '', title: '', expect: '', tag: ''});
+        setTitle('')
+        setExpect('')
+        setProblem('')
+        setTag('')
+   }
     // { title, expect: expect, problem: problem, tag: tag }
+    // axios.post('/questions/ask', {
+    //     title,
+    //     expect,
+    //     problem,
+    //     tag
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
 
-    const [cookie] = useCookies(['memberId']);
-
-    const handleSubmit = () => {
-        const data = {
-            title: title,
-            content: problem,
-            memberId : cookie.memberId,
-        }
-        console.log(data);
-        if(title.length === 0){
-            alert('제목은 1글자 이상 입력해주세요')
-            return;
-        }
-        if(problem.length <= 5){
-            alert('본문은 20글자 이상 입력해주세요')
-            return;
-        }
-
-        axios.post('http://localhost:8080/questions', data)
-        .then(res => {
-            if(res.status === 201) {
-                alert('질문이 등록되었습니다.');
-                navigate('/questions');
-            }
-        })
-        .catch(e => console.log(e))
-    }
 
     return (
         <>
@@ -87,16 +53,17 @@ const QuestionAsk = () => {
                 <AskHeader />
                 <ChainBox 
                     title={title} setTitle={setTitle}
+                    expect={expect} setExpect={setExpect}
                     problem={problem} setProblem={setProblem}
-                    tag={tag} setTag={setTag} 
-                     setSubmit={setSubmit} />
+                    tag={tag} setTag={setTag}  
+                    handleReset={handleReset}  />
                 <div className='buttonSubmit'>
-                    <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
-                    <StyledButton onClick={confirmDelete} color="red" background="white">Discard draft</StyledButton>
+                    <StyledButton onClick={()=>console.log({title, expect, problem, tag})}>Review your question</StyledButton>
+                    <StyledButton onClick={handleReset} color="red" background="white">Discard draft</StyledButton>
                 </div>
             </Wrapper>
         </>
-    );
-};
+    )
+}
 
 export default QuestionAsk;

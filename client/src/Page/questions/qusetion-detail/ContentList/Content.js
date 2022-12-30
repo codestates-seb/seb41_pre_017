@@ -4,21 +4,16 @@ import Vote from '../vote';
 import TagNav from '../../../components/style/tagNav';
 import ProfilePicture from '../../img/unnamed.png';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import axios from 'axios';
-import TimeForToday from '../../../components/function/timeForToday';
-import { useCookies } from 'react-cookie';
 
 const Post = styled.div`
     line-height: 30px;
-    margin: 0px 20px;
+    margin: 50px 20px;
 `;
 
 const Container = styled.div`
     display: flex;
     padding-bottom: 50px;
-    width: 100%;
-    justify-content: space-between;
+    border-bottom: 1px solid var(--theme-border);
 `;
 
 const Tags = styled.nav`
@@ -32,8 +27,6 @@ const UserCard = styled.article`
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    margin-left: 10px;
-    width: 100%;
     button {
         margin-right: 15px;
         margin-left: 5px;
@@ -41,111 +34,63 @@ const UserCard = styled.article`
 `;
 const User = styled.div`
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
     padding: 8px;
     width: 200px;
     border-radius: 5px;
-    background-color: rgb(213, 229, 241);
-
+    background-color: rgb(191, 217, 236);
     div {
         color: rgb(0 116 204);
-        font-size: 10px;
-        margin-left: 5px;
-        margin-bottom: 2px;
+        font-size: 13px;
+        margin: 5px;
     }
     span {
         margin: 5px;
-    }
-    .time {
-        color: rgb(106 115 124);
     }
 `;
 const Button = styled.button`
     cursor: pointer;
 `;
-const UserContainer = styled.div`
-    display: flex;
-`;
-const ProfileImg = styled.img`
-    width: 35px;
-    height: 35px;
-`;
-
-const PostBody = styled.div`
-    flex-grow: 1;
-`;
 
 const Content = ({ category, data, dataHandler, answerData, index }) => {
-    const Modified = TimeForToday(new Date(data.modifiedAt));
+    // Vote 투표수정을 위해 answerData는 원본 데이터가 필요, questionData데이터는 에초에 원본데이터
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
-    const [feat, setFeat] = useState([Math.floor(Math.random() * 101), Math.floor(Math.random() * 101), Math.floor(Math.random() * 101)]);
-    const [cookie, removeCookie] = useCookies(['memberId']);
-    const Delete = () => {
-        if (category === 'question') {
-            axios.delete(`http://localhost:8080/questions/${data.questionId}`);
-        } else if (category === 'answer') {
-            axios.delete(`http://localhost:8080/answers/${data.answerId}`);
-            const deleted = answerData.filter((el) => el !== data);
-            dataHandler([...deleted]);
-        }
-    };
     return (
         <Container>
             {/* 투표기능 */}
             <Vote data={category === 'answer' ? answerData : data} index={index} dataHandler={dataHandler}></Vote>
-            <PostBody>
+            <div>
                 {/* 질문&답변  contentData 출력 */}
                 <Post dangerouslySetInnerHTML={{ __html: contentData }} />
                 {/* 질문&답변  태그들 출력 */}
-                <Tags className="tags">{data.tags ? data.tags.map((tag, index) => <TagNav key={index}>{tag}</TagNav>) : null}</Tags>
+                <Tags className="tags">{data.tags ? data.tags.map((tag) => <TagNav key={tag}>{tag}</TagNav>) : null}</Tags>
                 {/* 유저기능 = 질문&답변 수정, 해당유저 정보 */}
                 <UserCard>
                     <ul>
-                        {/* <Button>Share</Button> */}
-                        {Number(cookie.memberId) === data.memberId ? (
-                            <>
-                                <Link
-                                    to={`/questions/edit/${category}/${data.questionId}`}
-                                    state={{
-                                        category: category,
-                                        data: data,
-                                    }}
-                                >
-                                    <Button>Edit</Button>
-                                </Link>
-                                {category === 'question' ? (
-                                    <Link to={'/questions'}>
-                                        <Button onClick={Delete}>Delete</Button>
-                                    </Link>
-                                ) : (
-                                    <Button onClick={Delete}>Delete</Button>
-                                )}
-                            </>
-                        ) : null}
-
-                        {/* <Button>Follow</Button> */}
+                        <Button>Share</Button>
+                        <Link
+                            to={`/questions/edit/${category}/${data.id}`}
+                            state={{
+                                category: category,
+                                data: data,
+                            }}
+                        >
+                            <Button>Edit</Button>
+                        </Link>
+                        <Button>Follow</Button>
                     </ul>
                     <User>
-                        <div className="time">
-                            {category === 'answer' ? 'answered : ' : 'asked : '}
-                            {Modified}
+                        <img src={ProfilePicture} alt="profile" />
+                        <div>
+                            <div>{data.user}</div>
+                            <span>
+                                {/* 업적 = 랜덤함수로 임의의 숫자를 생성 API가 구현된다면 바꿔야됨 */}
+                                {Math.floor(Math.random() * 101)}🥇 {Math.floor(Math.random() * 101)}🥈 {Math.floor(Math.random() * 101)}🥉
+                            </span>
                         </div>
-
-                        <UserContainer>
-                            <ProfileImg src={ProfilePicture} alt="profile" />
-                            <div>
-                                <div>{data.nickname}</div>
-                                <span>
-                                    {/* 업적 = 랜덤함수로 임의의 숫자를 생성 API가 구현된다면 바꿔야됨 */}
-                                    {feat[0]}🥇 {feat[1]}🥈 {feat[2]}🥉
-                                </span>
-                            </div>
-                        </UserContainer>
                     </User>
                 </UserCard>
-            </PostBody>
+            </div>
         </Container>
     );
 };
