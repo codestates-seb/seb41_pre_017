@@ -63,7 +63,6 @@ const Time = styled.span`
   margin-left: 10px;
 `;
 const questions = ({data}) => {
-    console.log(data.memberId)
     const time = data.modifiedAt ? TimeForToday(new Date(data.modifiedAt)) : TimeForToday(new Date());
     return (
         <QuestionRow>
