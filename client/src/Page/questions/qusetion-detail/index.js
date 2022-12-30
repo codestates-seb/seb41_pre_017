@@ -8,6 +8,7 @@ import ContentSidebar from './sidebar/SideBar';
 import Loading from '../../components/style/loading';
 import TimeForToday from '../../components/function/timeForToday';
 import { useGet } from '../../components/hook/API';
+import {useCookies} from "react-cookie";
 const StyledHeader = styled.header`
     display: flex;
     flex-flow: row nowrap;
@@ -28,19 +29,19 @@ const H1 = styled.h1`
 `;
 
 const Information = styled.div`
-    display: flex;
-    font-size: 15px;
-    padding-bottom: 8px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-    border-color: hsl(210, 8%, 90%);
-    border-bottom: 1px solid var(--theme-border);
+  display: flex;
+  font-size: 15px;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  border-color: hsl(210, 8%, 90%);
+  border-bottom: 1px solid var(--theme-border);
 `;
 
 const ElContainer = styled.div`
-    white-space: nowrap;
-    margin-bottom: 8px;
-    margin-right: 16px;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  margin-right: 16px;
 `;
 
 const AmvTitle = styled.span`
@@ -77,6 +78,8 @@ const SingleQuestion = () => {
 
     const Asked = TimeForToday(new Date(questionData.createdAt));
     const Modified = TimeForToday(new Date(questionData.modifiedAt));
+    const [cookie] = useCookies(['memberId']);
+
     return (
         <Container>
             <Sidebar />
@@ -84,18 +87,25 @@ const SingleQuestion = () => {
                 {/* 헤더 = 제목, 질문생성 버튼, 질문정보(날짜등등) */}
                 <StyledHeader>
                     <H1>{questionData.title}</H1>
-                    <Link to={'/questions/ask'}>
-                        <BlueBtn>Ask Question</BlueBtn>
-                    </Link>
+                    {cookie.memberId !== undefined ? (
+                        <Link to="/questions/ask">
+                            <BlueBtn>Ask Question</BlueBtn>
+                        </Link>
+                    ) : (
+                        <Link to="../users/login">
+                            <BlueBtn>Ask Question</BlueBtn>
+                        </Link>
+                    )
+                    }
                 </StyledHeader>
                 <Information>
                     <ElContainer>
                         <AmvTitle>Asked</AmvTitle>
-                        <Time>{Asked}</Time>
+                        <Time>{Asked} ago</Time>
                     </ElContainer>
                     <ElContainer>
                         <AmvTitle>Modified</AmvTitle>
-                        <Time>{Modified}</Time>
+                        <Time>{Modified} ago</Time>
                     </ElContainer>
                 </Information>
                 {/* 질문과, 답변 = 콘텐츠 영역 */}

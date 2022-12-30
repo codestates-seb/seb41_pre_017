@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import BlueBtn from '../components/style/blueBtn';
-import { ReactComponent as Logo } from '../../Img/logo.svg';
+import {ReactComponent as Logo} from '../../Img/logo.svg';
 import SearchInput from '../components/style/SearchInput';
 import useInput from '../components/hook/useInput';
-import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-import { Fragment, useEffect, useState } from 'react';
+import {useCookies} from 'react-cookie';
+import {Fragment, useEffect, useState} from 'react';
 import axios from 'axios';
 
 const Container = styled.div`
@@ -107,42 +106,43 @@ const Links = styled.ul`
 
 function Header() {
     const [value, setValue, ChangeValue] = useInput();
-    const [cookie, removeCookie] = useCookies(['memberId']);
+    const [cookie, , setCookie] = useCookies();
     const [userName, setUserName] = useState('');
     const navigate = useNavigate();
     const Submit = (e) => {
         if (e.key === 'Enter') {
-            navigate('/questions', { state: value });
+            navigate('/questions', {state: value});
             window.location.reload();
         }
     };
 
-    const authCheck = () => {
-        const memberId = cookie.memberId;
-        if (memberId !== 'undefined') {
-            return axios
-                .get(`http://localhost:8080/members/${memberId}`)
-                .then((res) => {
-                    setUserName(res.data.data.nickname);
-                })
-                .catch((err) => console.log(err.message));
-        }
-    };
-
     useEffect(() => {
-        authCheck();
-    }, [authCheck]);
+        async function fetchData() {
+            // You can await here
+            if (cookie.memberId === undefined) return;
+            else {
+                const response = axios
+                    .get(`http://localhost:8080/members/${cookie.memberId}`)
+                    .then((res) => {
+                        setUserName(res.data.data.nickname);
+                    })
+                    .catch((err) => console.log(err.message));
+            }
+        }
+
+        fetchData();
+    }, [cookie.memberId]);
 
     const logoutHandler = () => {
         axios
             .post('http://localhost:8080/users/logout')
             .then((res) => {
-                removeCookie('memberId');
+                setCookie('memberId', undefined);
                 setUserName('');
+                navigate('/', {replace: false});
             })
             .catch((err) => console.log(err.message));
     };
-
     return (
         <Container>
             <StyledHeader>
@@ -152,14 +152,16 @@ function Header() {
 
                 <StyledBtn>Products</StyledBtn>
 
-                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
-                {cookie.memberId !== 'undefined' && (
-                    <UserInfoLink to="/users/profile">
-                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqGhr6%2FbtrCOJ8rccY%2FBhZcEFwWj2ccg2nmvfrvWk%2Fimg.png" alt="profile img" />
+                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value}
+                             setValue={setValue} onKeyPress={Submit}/>
+                {cookie.memberId !== undefined ? (
+                    <UserInfoLink to={`/users/${cookie.memberId}`}>
+                        <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img"/>
+                        <span>{userName}</span>
                     </UserInfoLink>
-                )}
+                ) : null}
                 <Links>
-                    {cookie.memberId === 'undefined' && (
+                    {cookie.memberId === undefined ? (
                         <Fragment>
                             <li>
                                 <ProfileLink to="/users/login">
@@ -172,8 +174,8 @@ function Header() {
                                 </ProfileLink>
                             </li>
                         </Fragment>
-                    )}
-                    {cookie.memberId !== 'undefined' && (
+                    ) : null}
+                    {cookie.memberId !== undefined && (
                         <li>
                             <ProfileLink to={'/'}>
                                 <BlueBtn onClick={logoutHandler}>Log Out</BlueBtn>

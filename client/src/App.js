@@ -24,7 +24,7 @@ function App() {
                 <Route path="/users" element={<UserList/>}/>
                 <Route path="/users/login" element={<Login/>}/>
                 <Route path="/users/signUp" element={<SignUp/>}/>
-                <Route path="/users/profile" element={<Profile/>}/>
+                <Route path={`/users/:memberId`} element={<Profile/>}/>
             </Routes>
             <Footer/>
         </div>
