@@ -32,21 +32,15 @@ const Wrapper = styled.div`
     }
 `;
 
-const InputBox = ({ data, setIsHide, idx, title, setTitle, problem, setProblem, tag, setTag, refs }) => {
+const InputBox = ({data, setIsHide, idx, title, setTitle, 
+    problem, setProblem, tag, setTag, refs}) => {
+
     const [secondInput, lastInput, setSubmit] = refs;
 
     const handleTitle = (e) => {
-        // let updatedData = inputData;
-        // updatedData[data.id] = e.target.value;
-        // setInputData(updatedData);
-        // // console.log(inputData);
         setTitle(e.target.value);
     };
     const handleTag = (e) => {
-        // let updatedData = inputData;
-        // updatedData[data.id] = e.target.value;
-        // setInputData(updatedData);
-        // // console.log(inputData);
         setTag(e.target.value);
     };
 
@@ -77,19 +71,24 @@ const InputBox = ({ data, setIsHide, idx, title, setTitle, problem, setProblem, 
         <Wrapper>
             <label htmlFor={data.id}>{data.label1}</label>
             <label htmlFor={data.id}>{data.label2}</label>
-            {data.type === 0 ? (
-                <input
+            {
+                data.type === 0 ? 
+                <input 
                     onChange={data.id === 'title' ? handleTitle : handleTag}
-                    onFocus={handleHide}
-                    value={data.id === 'title' ? title : tag}
-                    type="text"
-                    id={data.id}
+                    onFocus={handleHide} 
+                    value={data.id=== 'title' ? title : tag}
+                    type="text" id={data.id} 
                     placeholder={data.placeholder}
-                    ref={data.id === 'tag' ? lastInput : null}
+                    ref={ data.id === 'tag' ? lastInput : null} 
                 />
-            ) : (
-                <TextEditor data={data} handleHide={handleHide} secondInput={secondInput} problem={problem} setProblem={setProblem} />
-            )}
+                :<TextEditor
+                    data={data}
+                    handleHide={handleHide} 
+                    handler={{problem, setProblem}}
+                    secondInput={secondInput}
+                    problem={problem} setProblem={setProblem}
+                />
+            }
             <StyledButton onClick={() => HandleNextInput(data.id)}>Next</StyledButton>
         </Wrapper>
     );

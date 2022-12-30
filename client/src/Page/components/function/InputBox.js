@@ -65,10 +65,10 @@ const TextArea = styled.textarea`
     border-bottom: 1px solid var(--theme-border);
     border-top: 1px solid var(--theme-border);
 
-    :focus {
-        outline: 1px solid #6bbbf7;
-        box-shadow: 3px 3px 30px rgb(193, 213, 227), -3px -3px 30px rgb(193, 213, 227);
-    }
+  :focus {
+    outline: 1px solid #6BBBF7;
+    box-shadow: 1px 1px 10px rgb(193,213,227), -1px -1px 10px rgb(193,213,227);
+  }
 `;
 
 const Title = styled.h2`

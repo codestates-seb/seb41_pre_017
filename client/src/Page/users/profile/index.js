@@ -1,8 +1,46 @@
 import {Container, Main, Sidebar} from '../../global/Sidebar';
 import styled from 'styled-components';
 import { useState } from 'react';
-import profileAnswerData from './profile/profileAnswerData';
-import profileQuestionData from './profile/profileQuestionData';
+import Activity from './profile/Activity';
+import Settings from './profile/Settings';
+import { ReactComponent as Created } from './profile/img/createdAt.svg';
+import { ReactComponent as Email } from './profile/img/email.svg';
+import { useGet } from '../../components/hook/API';
+import TimeForToday from '../../components/function/timeForToday'
+import { useCookies } from 'react-cookie';
+
+const StyledHeader = styled.div`
+    display: flex;
+    
+    img {
+        width: 128px;
+        height: 128px;
+        box-shadow: 1px 0 5px -2px rgb(90, 90, 90);
+    }
+
+    .userinfo {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 20px;
+
+        p {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+        
+        span {
+            color: gray;
+            font-size: 13px;
+            margin: 0px 10px 5px 0px;
+
+            svg {
+                height: 12px;
+                margin-right: 5px;
+            }
+        }
+    }
+`;
 
 const Wrapper = styled.div`
     height: 100vh;
@@ -14,165 +52,58 @@ const Wrapper = styled.div`
     }
 `
 
-const StyledHeader = styled.div`
-    display: flex;
-    
-    img {
-    width: 128px;
-    height: 128px;
-    }
-
-    p {
-        font-size: 30px;
-    }
-
-    .userinfo {
-        margin-left: 20px;
-    }
-`;
 const StyledButton = styled.button`
     border-radius: 40px;
+    background-color: white;
     width: 100px;
     height: 40px;
-    margin-right: 10px;
+    margin: 25px 10px 25px 0px;
+    box-shadow: 1px 0 5px -2px rgb(90, 90, 90);
     cursor: pointer;
 
-`;
-const Content = styled.div`
-    display: flex;
-    margin-top: 20px;
-
-    .menu {
-        display:flex;
-        flex-direction: column;
-        margin-right: 80px;
-        span {
-            margin-bottom: 15px;
-        }
-    }
-    .borderbox {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid var(--theme-border);
-        border-radius: 5px;
-        margin-right: 40px;
-        padding: 15px;
-        width: 100%;
-
-        p {
-            margin-bottom: 20px;
-        }
-    }
-    .answer {
-        width: 600px;
-        span{
-            margin-bottom: 5px;
-            border-bottom: 1px solid var(--theme-border);
-        }
-    }
-
-    .title {
-        font-size: 20px;
-    }
-    .stats {
-        display:flex;
-        flex-direction: column;
-
-        span {
-            margin-bottom: 15px;
-        }
-    }
-`;
-
-const StyledQnA = styled.div`
-    margin-left: 60px;
-
-    > div {
-        margin-bottom: 20px;
-    }
-`;
-
-const VoteButton = styled.button`
-    background-color: #52BA7D;
-    width: 30px;
-    height: 20px;
-    border-radius: 5px;
-    color: white;
-    margin-right: 10px;
 `;
 
 const Profile = () => {
     const [ clickedBtn, setClickedBtn ] = useState(0);
+    const [ qnaBtn, setQnaBtn ] = useState(0);
+    const [ settingBtn, setSettingBtn ] = useState(0);
+    const [changeNickname, setChangeNickname] = useState('');
+    const [changePwd, setChangePwd] = useState('');
+  
+    const [loading, setLoading] = useState(false);
+    const [cookie] = useCookies(['memberId']);
+    const [userData] = useGet(`members/${cookie}`, setLoading);
+    /*프로필 컴포넌트 get 요청을 보내서 응답으로 랜더링하는 것 까지 완료했습니다. 나중에 로그인 완성되시면 쿠키에 담아두신 memberId 
+    프로필 컴포넌트 get요청 보내는 hook 엔드포인트에 담아주세요*/
 
+    const HandleSettings = (e) => {
+        setClickedBtn(1)
+    }
+
+    const time = TimeForToday(new Date(userData.createdAt))
+    
+    // https://avatars.githubusercontent.com/u/110921798?s=400&v=4
+    
     return (
         <Container>
             <Sidebar />
-                <Main>
-                    <Wrapper>
-                    <StyledHeader>
-                        <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img"/>
-                        <div className='userinfo'>
-                            <p>username</p>
-                            <span>Logout /</span>
-                            <span> Edit /</span>
-                            <span> Delete profile</span>
-                        </div>
-                    </StyledHeader>
+            <Main>
+                <StyledHeader>
+                    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqGhr6%2FbtrCOJ8rccY%2FBhZcEFwWj2ccg2nmvfrvWk%2Fimg.png" alt="profile img" />
+                    <div className='userinfo'>
+                        <p>{userData.nickname}</p>
+                        <span><Created />Member for {time}</span>
+                        <span><Email />{userData.email}</span>
+                    </div>
+                </StyledHeader>
+                <Wrapper>
                     <StyledButton className={clickedBtn === 0 && "active"} onClick={(e) => setClickedBtn(0)}>Activity</StyledButton>
-                    <StyledButton className={clickedBtn === 1 && "active"} onClick={(e) => setClickedBtn(1)}>Settings</StyledButton>
-                    <Content>
-                        <div>
-                            <div className='menu'>
-                                <span>Summary</span>
-                                <span>Answers</span>
-                                <span>Questions</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <span className='title'>Stats</span>
-                                <div className='borderbox stats'>
-                                    {/* <span>{profileAnswerData.votes+profileAnswerData.votes}</span> */}
-                                    <span>17</span>
-                                    <p>total votes</p>
-                                    <span>{profileAnswerData.length}</span>
-                                    <p>answers</p>
-                                    <span>{profileQuestionData.length}</span>
-                                    <p>quetions</p>
-                                </div>
-                            </div>
-                        </div>
-                        <StyledQnA>
-                            <div>
-                                <span className='title'>Answers</span>
-                                <div className='borderbox answer'>
-                                {
-                                    profileAnswerData.map((el,idx) => {
-                                        return (
-                                            <>
-                                                <span><VoteButton>{el.votes}</VoteButton>{el.title}</span>
-                                            </>
-                                        )
-                                    })
-                                }
-                                </div> 
-                            </div>
-                            <div>
-                                <span className='title'>Questionos</span>
-                                <div className='borderbox answer'>
-                                {
-                                    profileQuestionData.map((el,idx) => {
-                                        return (
-                                            <>
-                                                <span><VoteButton>{el.votes}</VoteButton>{el.title}</span>
-                                            </>
-                                        )
-                                    })
-                                }
-                                </div>
-                            </div>
-                        </StyledQnA>
-                    </Content>
+                    <StyledButton className={clickedBtn === 1 && "active"} onClick={HandleSettings}>Settings</StyledButton>
+                    {
+                        clickedBtn === 0 
+                        ? <Activity userData={userData} qnaBtn={qnaBtn} setQnaBtn={setQnaBtn} /> 
+                        : <Settings changePwd={changePwd} setChangePwd={setChangePwd} changeNickname={changeNickname} setChangeNickname={setChangeNickname} userData={userData} settingBtn={settingBtn} setSettingBtn={setSettingBtn} />
+                    }
                 </Wrapper>
             </Main>
         </Container>
