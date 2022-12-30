@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import BlueBtn from '../../components/style/blueBtn';
 import { Sidebar, Container, Main } from '../../global/Sidebar';
 import Contents from './Contents';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import Loading from '../../components/style/loading';
 import { useGet } from '../../components/hook/API';
@@ -21,22 +21,34 @@ const H1 = styled.h1`
 
 const Questions = () => {
     const [loading, setLoading] = useState(true);
+    const { state } = useLocation();
     const [data] = useGet(`questions?page=1&size=200`, setLoading);
     return (
-        <>
-            <Container>
-                <Sidebar />
-                <Main>
-                    <StyledHeader>
-                        <H1>All Questions</H1>
-                        <Link to="/questions/ask">
-                            <BlueBtn>Ask Question</BlueBtn>
-                        </Link>
-                    </StyledHeader>
-                    {loading ? <Loading /> : <Contents _data={data}></Contents>}
-                </Main>
-            </Container>
-        </>
+        <Container>
+            <Sidebar />
+            <Main>
+                <StyledHeader>
+                    <H1>All Questions</H1>
+                    <Link to="/questions/ask">
+                        <BlueBtn>Ask Question</BlueBtn>
+                    </Link>
+                </StyledHeader>
+                {loading ? (
+                    <Loading />
+                ) : (
+                    <Contents
+                        _data={
+                            state === null
+                                ? data
+                                : data.filter((el) => {
+                                      if (el.title.includes(state)) return el;
+                                      else if (el.nickname.includes(state)) return el;
+                                  })
+                        }
+                    ></Contents>
+                )}
+            </Main>
+        </Container>
     );
 };
 
