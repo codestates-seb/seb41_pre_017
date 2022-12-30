@@ -33,7 +33,7 @@ const Questions = () => {
             <Main>
                 <StyledHeader>
                     <H1>All Questions</H1>
-                    {cookie.memberId !== 'undefined' ? (
+                    {cookie.memberId !== undefined ? (
                         <Link to="/questions/ask">
                             <BlueBtn>Ask Question</BlueBtn>
                         </Link>

@@ -21,41 +21,43 @@ import p17 from './Img/p17.jpg';
 import p18 from './Img/p18.jpg';
 import p19 from './Img/p19.jpg';
 import p20 from './Img/p20.jpg';
+import {Link} from "react-router-dom";
 
 const UserCard = styled.div`
-    margin: 10px;
-    padding: 10px;
-    width: 150px;
-    display: flex;
+  margin: 10px;
+  padding: 10px;
+  width: 150px;
+  display: flex;
 `;
 const Name = styled.div`
-    color: blue;
-    font-size: 14px;
+  color: blue;
+  font-size: 14px;
 `;
 
 const Container = styled.div`
-    display: flex;
-    margin-left: 5px;
-    flex-direction: column;
-    flex-wrap: nowrap;
+  display: flex;
+  margin-left: 5px;
+  flex-direction: column;
+  flex-wrap: nowrap;
 
-    justify-content: space-around;
+  justify-content: space-around;
 `;
 const CreatedAt = styled.div`
-    font-size: 12px;
+  font-size: 12px;
 `;
 const UserImg = styled.img`
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 `;
-const User = ({ data, index }) => {
+const User = ({data, index}) => {
     const ImgArr = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20];
     return (
         <UserCard>
             <UserImg src={ImgArr[index] ? ImgArr[index] : a1}></UserImg>
             <Container>
-                <Name>{data.nickname}</Name>
-
+                <Link to={`/users/${data.memberId}`}>
+                    <Name>{data.nickname}</Name>
+                </Link>
                 <CreatedAt>가입일: {TimeForToday(new Date(data.createdAt))}</CreatedAt>
             </Container>
         </UserCard>
