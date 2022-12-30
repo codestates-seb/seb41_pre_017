@@ -51,7 +51,7 @@ const HotNetworkQuestion = () => {
             {
                 hotData.map((el,idx) => {
                   return (
-                      <li>
+                      <li key={idx}>
                         <img src={el.img} alt="img" />
                         <span>{el.title}</span>
                       </li>

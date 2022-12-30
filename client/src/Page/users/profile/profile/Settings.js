@@ -28,8 +28,8 @@ const Settings = ({settingBtn, setSettingBtn, userData, changeNickname, setChang
     return (
         <Wrapper>
             <div>
-                <StyledButton className={settingBtn === 0 && "buttonClicked"} onClick={(e) => setSettingBtn(0)}>Edit profile</StyledButton>
-                <StyledButton className={settingBtn === 1 && "buttonClicked"} onClick={(e) => setSettingBtn(1)}>Delete profile</StyledButton>
+                <StyledButton className={settingBtn === 0 ? "buttonClicked" : null} onClick={(e) => setSettingBtn(0)}>Edit profile</StyledButton>
+                <StyledButton className={settingBtn === 1 ? "buttonClicked" : null} onClick={(e) => setSettingBtn(1)}>Delete profile</StyledButton>
             </div>
             <div>
                 {

@@ -51,7 +51,7 @@ const AnswerDetail = ({profileAnswerData}) => {
                     profileAnswerData.map((data, idx) => {
                         return (
                             <p key={idx}>
-                                <VoteButton className={data.votes === 0 && "zero"}>{data.votes}</VoteButton>
+                                <VoteButton className={data.votes === 0 ? "zero" : null}>{data.votes}</VoteButton>
                                 {data.title}
                                 <span>{data.createdAt}</span>
                             </p>
