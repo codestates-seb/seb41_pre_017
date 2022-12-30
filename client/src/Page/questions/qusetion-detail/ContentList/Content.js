@@ -6,8 +6,8 @@ import ProfilePicture from '../../img/unnamed.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import TimeForToday from '../../../components/function/timeForToday';
+import { useCookies } from 'react-cookie';
 
 const Post = styled.div`
     line-height: 30px;
@@ -81,6 +81,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
     const [feat, setFeat] = useState([Math.floor(Math.random() * 101), Math.floor(Math.random() * 101), Math.floor(Math.random() * 101)]);
+    const [cookie, removeCookie] = useCookies(['memberId']);
     const Delete = () => {
         if (category === 'question') {
             axios.delete(`http://localhost:8080/questions/${data.questionId}`);
@@ -103,22 +104,27 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                 <UserCard>
                     <ul>
                         {/* <Button>Share</Button> */}
-                        <Link
-                            to={`/questions/edit/${category}/${data.questionId}`}
-                            state={{
-                                category: category,
-                                data: data,
-                            }}
-                        >
-                            <Button>Edit</Button>
-                        </Link>
-                        {category === 'question' ? (
-                            <Link to={'/questions'}>
-                                <Button onClick={Delete}>Delete</Button>
-                            </Link>
-                        ) : (
-                            <Button onClick={Delete}>Delete</Button>
-                        )}
+                        {Number(cookie.memberId) === data.memberId ? (
+                            <>
+                                <Link
+                                    to={`/questions/edit/${category}/${data.questionId}`}
+                                    state={{
+                                        category: category,
+                                        data: data,
+                                    }}
+                                >
+                                    <Button>Edit</Button>
+                                </Link>
+                                {category === 'question' ? (
+                                    <Link to={'/questions'}>
+                                        <Button onClick={Delete}>Delete</Button>
+                                    </Link>
+                                ) : (
+                                    <Button onClick={Delete}>Delete</Button>
+                                )}
+                            </>
+                        ) : null}
+
                         {/* <Button>Follow</Button> */}
                     </ul>
                     <User>
