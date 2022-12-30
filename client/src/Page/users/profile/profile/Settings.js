@@ -22,10 +22,7 @@ const StyledButton = styled.button`
         background-color: white;
         border-radius: 10px;
         cursor: pointer;
-
-        
 `
-// 다크모드 
 
 const Settings = ({settingBtn, setSettingBtn, userData, changeNickname, setChangeNickname, changePwd, setChangePwd}) => {
     return (
