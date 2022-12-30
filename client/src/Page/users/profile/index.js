@@ -8,6 +8,7 @@ import {ReactComponent as Email} from './profile/img/email.svg';
 import {useGet} from '../../components/hook/API';
 import TimeForToday from '../../components/function/timeForToday'
 import { useCookies } from 'react-cookie';
+import {useParams} from "react-router-dom";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -64,14 +65,14 @@ const StyledButton = styled.button`
 `;
 
 const Profile = () => {
+    const {memberId} = useParams();
     const [ clickedBtn, setClickedBtn ] = useState(0);
     const [ qnaBtn, setQnaBtn ] = useState(0);
     const [ settingBtn, setSettingBtn ] = useState(0);
     const [changeNickname, setChangeNickname] = useState('');
     const [changePwd, setChangePwd] = useState('');
     const [loading, setLoading] = useState(false);
-    const [cookie] = useCookies(['memberId']);
-    const [userData] = useGet(`members/${cookie.memberId}`, setLoading);
+    const [userData] = useGet(`members/${memberId}`, setLoading);
 
     const HandleSettings = (e) => {
         setClickedBtn(1)
