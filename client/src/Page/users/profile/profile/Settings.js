@@ -27,7 +27,7 @@ const StyledButton = styled.button`
 `
 // 다크모드 
 
-const Settings = ({settingBtn, setSettingBtn}) => {
+const Settings = ({settingBtn, setSettingBtn, userData, changeNickname, setChangeNickname}) => {
     return (
         <Wrapper>
             <div>
@@ -36,7 +36,7 @@ const Settings = ({settingBtn, setSettingBtn}) => {
             </div>
             <div>
                 {
-                    settingBtn === 0 ? <EditProfile /> : <DeleteProfile />
+                    settingBtn === 0 ? <EditProfile userData={userData} changeNickname={changeNickname} setChangeNickname={setChangeNickname} /> : <DeleteProfile />
                 }
             </div>
         </Wrapper>

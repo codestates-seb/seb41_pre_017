@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useState } from "react";
+import { useGet } from "../../../components/hook/API";
 
 const Wrapper = styled.div`
     display: flex;
@@ -61,13 +63,17 @@ const VoteButton = styled.button`
 
 
 
-const Summary = ({profileAnswerData, profileQuestionData}) => {
-    const recentAnswer = profileAnswerData.filter((data,idx) => {
-        return data.answerId <= 5
+const Summary = ({profileAnswerData, profileQuestionData, data}) => {
+    const [loading, setLoading] = useState(false);
+    const [questionData] = useGet(`questions/2`, setLoading);
+    console.log(questionData);
+
+    const recentAnswer = profileAnswerData.filter((aData,idx) => {
+        return aData.answerId <= 5
     });
 
-    const recentQuestion = profileQuestionData.filter((data,idx) => {
-        return data.questionId <=5
+    const recentQuestion = profileQuestionData.filter((qData,idx) => {
+        return qData.questionId <=5
     });
         
     return (

@@ -28,6 +28,8 @@ const Wrapper = styled.div`
 `;
 
 const Activity = ({qnaBtn, setQnaBtn}) => {
+    /* 특정 질문에 대한 모든 답변 조회*/
+
     return (
             <Wrapper>
                 <div>

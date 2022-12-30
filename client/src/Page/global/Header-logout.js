@@ -105,18 +105,15 @@ function Header() {
 
                 <StyledBtn>Products</StyledBtn>
                 <SearchInput type="text" placeholder="  Search..." />
+
                 <UserInfoLink to="/users/profile">
+                    {' '}
                     <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqGhr6%2FbtrCOJ8rccY%2FBhZcEFwWj2ccg2nmvfrvWk%2Fimg.png" alt="profile img" />
                 </UserInfoLink>
                 <Links>
                     <li>
-                        <ProfileLink to="/users/login">
-                            <BlueBtn>Log in</BlueBtn>
-                        </ProfileLink>
-                    </li>
-                    <li>
-                        <ProfileLink to="/users/signUp" className="profile">
-                            <BlueBtn>Sign Up</BlueBtn>
+                        <ProfileLink to="/">
+                            <BlueBtn>Log out</BlueBtn>
                         </ProfileLink>
                     </li>
                 </Links>

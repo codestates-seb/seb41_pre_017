@@ -56,16 +56,16 @@ const DeleteProfile = () => {
 
     const HandleDelete = () => {
         axios.delete(`http://localhost:8080/members/1`, {
-            withCredentials: true,
         })
         .then((response) => {
-        console.log("삭제 요청 성공");
-        alert('계정이 삭제되었습니다');
-        navigate('/');
-        })
+            console.log("삭제 요청 성공");
+            alert('계정이 삭제되었습니다');
+            navigate('/');
+            // 로그아웃 상태로 진입
+            })
         .catch(() => {
-        console.log("삭제 요청 실패");
-        });
+            console.log("삭제 요청 실패");
+            });
     }
 
     const HandleButton = (e) => {

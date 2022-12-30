@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BlueBtn from "../../../components/style/blueBtn";
+import axios from 'axios';
 
 const Wrapper = styled.div`
     display: flex;
@@ -25,6 +26,7 @@ const Wrapper = styled.div`
     button {
         width: 120px;
         height: 40px;
+        margin-top: 10px;
     }
 `
 const BorderBox = styled.div`
@@ -53,7 +55,20 @@ const BorderBox = styled.div`
         }
 `
 
-const EditProfile = () => {
+const EditProfile = ({setChangeNickname, changeNickname}) => {
+    const onChange = (e) => {
+        setChangeNickname(e.target.value);
+    }
+
+    const handleNickname = () => {
+    
+            axios.patch('http://localhost:8080/members/2',{
+                "nickname": changeNickname,   
+            })
+            .then(res => window.location.reload())
+            console.log(changeNickname);
+        }
+
     return (
         <Wrapper>
             <h2>Edit your profile</h2>
@@ -61,15 +76,13 @@ const EditProfile = () => {
             <strong>Public information</strong>
             <BorderBox>
             <p>profile image</p>
-                <img src="http://www.gravatar.com/avatar/iml1111?d=identicon&s=400" alt="profile img"/>
-                
-                <button type="button">change picture</button>
+                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqGhr6%2FbtrCOJ8rccY%2FBhZcEFwWj2ccg2nmvfrvWk%2Fimg.png" alt="profile img"/>
                 <p>Display name</p>
-                <input value='omegle'></input>
+                <input onChange={onChange} value={changeNickname}></input>
                 <p>Location</p>
                 <input />
             </BorderBox>
-            <BlueBtn>Save profile</BlueBtn>
+            <BlueBtn onClick={handleNickname}>Save profile</BlueBtn>
         </Wrapper>
     )
 };

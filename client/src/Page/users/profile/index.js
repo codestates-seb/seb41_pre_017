@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Activity from './profile/Activity';
 import Settings from './profile/Settings';
-import { userInfo } from './profile/data/userInfo';
-import { ReactComponent as Created } from './profile/img/createdAt.svg'
-import { ReactComponent as Email } from './profile/img/email.svg'
+import { ReactComponent as Created } from './profile/img/createdAt.svg';
+import { ReactComponent as Email } from './profile/img/email.svg';
+import { useGet } from '../../components/hook/API';
+import TimeForToday from '../../components/function/timeForToday'
 
 const StyledHeader = styled.div`
     display: flex;
@@ -65,30 +66,41 @@ const Profile = () => {
     const [ clickedBtn, setClickedBtn ] = useState(0);
     const [ qnaBtn, setQnaBtn ] = useState(0);
     const [ settingBtn, setSettingBtn ] = useState(0);
+    const [changeNickname, setChangeNickname] = useState('');
   
+    const [loading, setLoading] = useState(false);
+    const [userData] = useGet(`members/2`, setLoading);
+    console.log(userData)
 
     const HandleSettings = (e) => {
         setClickedBtn(1)
     }
 
+    const time = TimeForToday(new Date(userData.createdAt))
+    /*프로필 컴포넌트 get 요청을 보내서 응답으로 랜더링하는 것 까지 완료했습니다. 나중에 로그인 완성되시면 쿠키에 담아두신 memberId 
+    프로필 컴포넌트 get요청 보내는 hook 엔드포인트에 담아주세요*/
+    
     // https://avatars.githubusercontent.com/u/110921798?s=400&v=4
+    
     return (
         <Container>
             <Sidebar />
             <Main>
                 <StyledHeader>
-                    <img src="http://www.gravatar.com/avatar/iml1111?d=identicon&s=400" alt="profile img"/>
+                    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqGhr6%2FbtrCOJ8rccY%2FBhZcEFwWj2ccg2nmvfrvWk%2Fimg.png" alt="profile img" />
                     <div className='userinfo'>
-                        <p>{userInfo[0].nickname}</p>
-                        <span><Created />{userInfo[0].createdAt} </span>
-                        <span><Email />{userInfo[0].email}</span>
+                        <p>{userData.nickname}</p>
+                        <span><Created />Member for {time}</span>
+                        <span><Email />{userData.email}</span>
                     </div>
                 </StyledHeader>
                 <Wrapper>
                     <StyledButton className={clickedBtn === 0 && "active"} onClick={(e) => setClickedBtn(0)}>Activity</StyledButton>
                     <StyledButton className={clickedBtn === 1 && "active"} onClick={HandleSettings}>Settings</StyledButton>
                     {
-                        clickedBtn === 0 ? <Activity qnaBtn={qnaBtn} setQnaBtn={setQnaBtn} /> : <Settings settingBtn={settingBtn} setSettingBtn={setSettingBtn} />
+                        clickedBtn === 0 
+                        ? <Activity userData={userData} qnaBtn={qnaBtn} setQnaBtn={setQnaBtn} /> 
+                        : <Settings changeNickname={changeNickname} setChangeNickname={setChangeNickname} userData={userData} settingBtn={settingBtn} setSettingBtn={setSettingBtn} />
                     }
                 </Wrapper>
             </Main>
