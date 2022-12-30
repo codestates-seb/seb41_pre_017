@@ -106,7 +106,7 @@ const Links = styled.ul`
 
 function Header() {
     const [value, setValue, ChangeValue] = useInput();
-    const [cookie, , setCookie] = useCookies();
+    const [cookie, , removeCookie] = useCookies();
     const [userName, setUserName] = useState('');
     const navigate = useNavigate();
     const Submit = (e) => {
@@ -137,7 +137,7 @@ function Header() {
         axios
             .post('http://localhost:8080/users/logout')
             .then((res) => {
-                setCookie('memberId', undefined);
+                removeCookie('memberId');
                 setUserName('');
                 navigate('/', { replace: false });
             })
