@@ -69,10 +69,9 @@ const Profile = () => {
     const [ settingBtn, setSettingBtn ] = useState(0);
     const [changeNickname, setChangeNickname] = useState('');
     const [changePwd, setChangePwd] = useState('');
-  
     const [loading, setLoading] = useState(false);
     const [cookie] = useCookies(['memberId']);
-    const [userData] = useGet(`members/${cookie}`, setLoading);
+    const [userData] = useGet(`members/${cookie.memberId}`, setLoading);
     /*프로필 컴포넌트 get 요청을 보내서 응답으로 랜더링하는 것 까지 완료했습니다. 나중에 로그인 완성되시면 쿠키에 담아두신 memberId 
     프로필 컴포넌트 get요청 보내는 hook 엔드포인트에 담아주세요*/
 
@@ -84,7 +83,6 @@ const Profile = () => {
 
     const time = TimeForToday(new Date(userData.createdAt))
     
-    // https://avatars.githubusercontent.com/u/110921798?s=400&v=4
     
     return (
         <Container>

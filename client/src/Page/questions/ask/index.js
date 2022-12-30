@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useConfirm from '../../components/hook/useConfirm';
 import { TextToCode } from '../../components/function/textConverter';
+import { useCookies } from 'react-cookie';
+
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -50,11 +52,14 @@ const QuestionAsk = () => {
     );     
         
     // { title, expect: expect, problem: problem, tag: tag }
+
+    const [cookie] = useCookies(['memberId']);
+
     const handleSubmit = () => {
         const data = {
-            title: 'title',
-            content: 'problem',
-            memberId : 1,
+            title: title,
+            content: problem,
+            memberId : cookie.memberId,
         }
         console.log(data);
         if(title.length === 0){
@@ -70,7 +75,7 @@ const QuestionAsk = () => {
         .then(res => {
             if(res.status === 201) {
                 alert('질문이 등록되었습니다.');
-                navigate('/');
+                navigate('/questions');
             }
         })
         .catch(e => console.log(e))

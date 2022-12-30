@@ -155,8 +155,7 @@ function Header() {
                 <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
                 {cookie.memberId !== 'undefined' && (
                     <UserInfoLink to="/users/profile">
-                        <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img" />
-                        <span>{userName}</span>
+                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqGhr6%2FbtrCOJ8rccY%2FBhZcEFwWj2ccg2nmvfrvWk%2Fimg.png" alt="profile img" />
                     </UserInfoLink>
                 )}
                 <Links>
