@@ -47,7 +47,7 @@ const BorderBox = styled.div`
         }
 `
 
-const EditProfile = ({setChangeNickname, changeNickname, changePwd, setChangePwd}) => {
+const EditProfile = ({setChangeNickname, changeNickname}) => {
     const [cookie] = useCookies(['memberId']);
     
     const onChange = (e) => {
@@ -59,7 +59,6 @@ const EditProfile = ({setChangeNickname, changeNickname, changePwd, setChangePwd
             "nickname": changeNickname,   
         })
         .then(res => window.location.reload())
-        console.log(changeNickname);
         }
 
     return (

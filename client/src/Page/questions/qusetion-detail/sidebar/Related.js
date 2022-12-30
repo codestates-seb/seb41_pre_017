@@ -70,7 +70,7 @@ const RelatedBox = (
             {
               related.map((el,idx) => {
                 return (
-                <ChainBox>
+                <ChainBox key={idx}>
                   <VotedScoreBox>{el.voted}</VotedScoreBox>
                   <RelatedLink>{el.title}</RelatedLink>
                 </ChainBox>

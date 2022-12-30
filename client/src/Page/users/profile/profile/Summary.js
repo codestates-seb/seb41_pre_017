@@ -65,10 +65,6 @@ const VoteButton = styled.button`
 
 
 const Summary = ({profileAnswerData, profileQuestionData, data}) => {
-    const [loading, setLoading] = useState(false);
-    const [questionData] = useGet(`questions/2`, setLoading);
-    console.log(questionData);
-
     const recentAnswer = profileAnswerData.filter((aData,idx) => {
         return aData.answerId <= 5
     });
@@ -83,7 +79,7 @@ const Summary = ({profileAnswerData, profileQuestionData, data}) => {
                     <div>
                         <h3>Stats</h3>
                         <div className='borderbox stats'>
-                            <strong>31{/*수정필요*/}</strong>
+                            <strong>31</strong>
                             <p>total votes</p>
                             <strong>{profileAnswerData.length}</strong>
                             <p>answers</p>
@@ -100,7 +96,7 @@ const Summary = ({profileAnswerData, profileQuestionData, data}) => {
                             recentAnswer.map((answerData,idx) => {
                                 return (
                                     <>
-                                        <p>
+                                        <p key={idx}>
                                             <VoteButton>{answerData.votes}</VoteButton>
                                             {answerData.title}
                                             <span>{answerData.createdAt}</span>
@@ -118,7 +114,7 @@ const Summary = ({profileAnswerData, profileQuestionData, data}) => {
                             recentQuestion.map((questionData,idx) => {
                                 return (
                                     <>
-                                        <p>
+                                        <p key={idx}>
                                             <VoteButton>{questionData.votes}</VoteButton>
                                             {questionData.title}
                                             <span>{questionData.createdAt}</span>
