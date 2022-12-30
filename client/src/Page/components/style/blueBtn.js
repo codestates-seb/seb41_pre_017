@@ -10,6 +10,11 @@ const BlueBtn = styled.button`
     :hover {
         background-color: rgb(0 116 204);
     }
+    
+    :disabled {
+      background-color: gray;
+      cursor: unset;
+    }
 `;
 
 export default BlueBtn;

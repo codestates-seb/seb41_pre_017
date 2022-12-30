@@ -4,14 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import stackoverflow.audit.BaseTime;
-import stackoverflow.domain.comment.entity.Comment;
+import stackoverflow.global.audit.BaseTime;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.question.entity.Question;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -34,7 +31,7 @@ public class Answer extends BaseTime {
         return member.getMemberId();
     }
 
-    public String getMemberNickname() {
+    public String getNickname() {
         return member.getNickname();
     }
 
@@ -45,7 +42,4 @@ public class Answer extends BaseTime {
     public long getQuestionId() {
         return question.getQuestionId();
     }
-
-    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL)
-    private List<Comment> comments = new ArrayList<>();
 }

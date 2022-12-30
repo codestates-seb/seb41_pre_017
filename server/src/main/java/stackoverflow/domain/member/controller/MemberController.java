@@ -11,6 +11,8 @@ import stackoverflow.domain.member.dto.MemberResponseDto;
 import stackoverflow.domain.member.entity.Member;
 import stackoverflow.domain.member.mapper.MemberMapper;
 import stackoverflow.domain.member.service.MemberService;
+import stackoverflow.global.dto.MultiResponseDto;
+import stackoverflow.global.dto.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -19,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "members")
 @Validated
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
@@ -31,19 +34,21 @@ public class MemberController {
     // 회원 가입
     @PostMapping
     public ResponseEntity postMember(@Valid @RequestBody MemberPostDto memberPostDto) {
-        Member member = mapper.memberPostDtoToMember(memberPostDto);
+        Member member = memberService.createMember(mapper.memberPostDtoToMember(memberPostDto));
 
-        Member response = memberService.createMember(member);
+        MemberResponseDto response = mapper.memberToMemberResponseDto(member);
 
-        return new ResponseEntity<>(mapper.memberToMemberResponseDto(response), HttpStatus.CREATED);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.CREATED);
     }
 
     // 회원 정보 조회
     @GetMapping("/{member-id}")
     public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
-        Member response = memberService.findMember(memberId);
+        Member member = memberService.findMember(memberId);
 
-        return new ResponseEntity<>(mapper.memberToMemberResponseDto(response), HttpStatus.OK);
+        MemberResponseDto response = mapper.memberToMemberResponseDto(member);
+
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
     // 모든 회원 조회
@@ -57,7 +62,7 @@ public class MemberController {
 
         List<MemberResponseDto> response = mapper.membersToMemberResponseDtos(members);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(new MultiResponseDto<>(response, pageMembers), HttpStatus.OK);
     }
 
     // 특정 회원 정보 수정
@@ -67,11 +72,11 @@ public class MemberController {
 
         memberPatchDto.setMemberId(memberId);
 
-        Member member = mapper.memberPatchDtoToMember(memberPatchDto);
+        Member member = memberService.updateMember(mapper.memberPatchDtoToMember(memberPatchDto));
 
-        Member response = memberService.updateMember(member);
+        MemberResponseDto response = mapper.memberToMemberResponseDto(member);
 
-        return new ResponseEntity<>(mapper.memberToMemberResponseDto(response), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
     // 특정 회원 탈퇴

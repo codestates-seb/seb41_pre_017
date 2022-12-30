@@ -30,7 +30,7 @@ const EmpMessageBox = styled.div`
 const SignUpMessages = (
     <span>Don't have an account?
         <Link to={'/users/signUp'}>
-            <a href={'#!'}> Sign up</a>
+            Sign up
         </Link>
     </span>
 );

@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
 `;
 
 const Content = styled.div`
