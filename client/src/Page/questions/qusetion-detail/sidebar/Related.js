@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import related from "./data/relatedData";
+import { Link } from "react-router-dom";
 
 const ModuleSideBarRelated = styled.div`
   word-wrap: break-word;
@@ -25,6 +27,7 @@ const RelatedQuestions = styled.div`
 
 const RelatedContainer = styled.div`
   display: flex;
+  flex-direction: column;
   margin-bottom: 12px;
 `;
 
@@ -43,27 +46,37 @@ const VotedScoreBox = styled.div`
   transform: translateY(-1px);
   border: 1px solid transparent;
   cursor: pointer;
+  margin-bottom: 10px;
 `;
 
-const RelatedLink = styled.span`
+const RelatedLink = styled(Link)`
   padding-left: 10px;
   font-size: 13px;
-  display: inline-block;
   padding-top: 2px;
   width: calc(100% - 48px);
-  margin-bottom: 0;
+  margin-bottom: 10px;
   color: blue;
   line-height: 1.3;
   cursor: pointer;
 `;
+const ChainBox = styled.div`
+  display: flex;
+  align-items: center;
+`
 
 const RelatedBox = (
     <RelatedQuestions>
         <RelatedContainer>
-            <VotedScoreBox>
-                500
-            </VotedScoreBox>
-            <RelatedLink>Solution for other questions!</RelatedLink>
+            {
+              related.map((el,idx) => {
+                return (
+                <ChainBox>
+                  <VotedScoreBox>{el.voted}</VotedScoreBox>
+                  <RelatedLink>{el.title}</RelatedLink>
+                </ChainBox>
+                )
+              })
+            }
         </RelatedContainer>
     </RelatedQuestions>
 )
@@ -73,15 +86,6 @@ const Related = () => {
         <ModuleSideBarRelated>
             {/*sidebar related*/}
             <RelatedTitle>Related</RelatedTitle>
-                {RelatedBox}
-                {RelatedBox}
-                {RelatedBox}
-                {RelatedBox}
-                {RelatedBox}
-                {RelatedBox}
-                {RelatedBox}
-                {RelatedBox}
-                {RelatedBox}
                 {RelatedBox}
         </ModuleSideBarRelated>
     )
