@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LoginController {
 
     private final LoginService loginService;
@@ -40,7 +39,7 @@ public class LoginController {
         response.addCookie(cookieId);
         System.out.println("Cookie Info : " + cookieId);
         System.out.println("Login successful!");
-        return String.valueOf(loginMember.getMemberId());
+        return "Login successful!";
     }
 
     // 서버에서 쿠키 제거

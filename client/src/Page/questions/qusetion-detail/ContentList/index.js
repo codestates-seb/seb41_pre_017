@@ -4,6 +4,7 @@ import useInput from '../../../components/hook/useInput';
 import Content from './Content';
 import axios from 'axios';
 import { TextToCode } from '../../../components/function/textConverter';
+import { useCookies } from 'react-cookie';
 const Section = styled.section`
     max-width: 1100px;
     width: calc(100% - 24px);
@@ -29,12 +30,13 @@ const EnterAnswer = styled.div`
 const ContentList = ({ dataList, dataHandler }) => {
     const questionData = dataList.questionData;
     const answerData = dataList.answerData;
+    const [cookie, removeCookie] = useCookies(['memberId']);
 
     const sendToServer = (data) => {
         const answer = {
             content: TextToCode(data),
             questionId: questionData.questionId,
-            memberId: 1,
+            memberId: cookie.memberId,
         };
         axios
             .post(`http://localhost:8080/answers/`, answer)
