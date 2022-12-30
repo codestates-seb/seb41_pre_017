@@ -46,14 +46,19 @@ const QuestionAsk = () => {
 
     const cancelConfirm = () => {};
 
-    const confirmDelete = useConfirm(
-        "정말 삭제하시겠습니까?", 
-        deleteConfirm,
-        cancelConfirm   
-    );     
-        
+    const confirmDelete = useConfirm('정말 삭제하시겠습니까?', deleteConfirm, cancelConfirm);
+
     // { title, expect: expect, problem: problem, tag: tag }
     const handleSubmit = () => {
+        if (title.length === 0) {
+            alert('제목은 1글자 이상 입력해주세요');
+            return;
+        }
+        if (problem.length <= 5) {
+            alert('본문은 20글자 이상 입력해주세요');
+            return;
+        }
+
         const data = {
             title: title,
             content: TextToCode(problem),
@@ -72,38 +77,20 @@ const QuestionAsk = () => {
                 })
                 .catch((e) => console.log(e));
         }
-        console.log(data);
-        if(title.length === 0){
-            alert('제목은 1글자 이상 입력해주세요')
-            return;
-        }
-        if(problem.length <= 5){
-            alert('본문은 20글자 이상 입력해주세요')
-            return;
-        }
-
-        axios.post('http://localhost:8080/questions', data)
-        .then(res => {
-            if(res.status === 201) {
-                alert('질문이 등록되었습니다.');
-                navigate('/');
-            }
-        })
-        .catch(e => console.log(e))
-    }
+    };
 
     return (
         <>
             <Wrapper>
                 <AskHeader />
-                <ChainBox 
-                    title={title} setTitle={setTitle}
-                    problem={problem} setProblem={setProblem}
-                    tag={tag} setTag={setTag} 
-                     setSubmit={setSubmit} />
-                <div className='buttonSubmit'>
-                    <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
-                    <StyledButton onClick={confirmDelete} color="red" background="white">Discard draft</StyledButton>
+                <ChainBox title={title} setTitle={setTitle} problem={problem} setProblem={setProblem} tag={tag} setTag={setTag} setSubmit={setSubmit} />
+                <div className="buttonSubmit">
+                    <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>
+                        Review your question
+                    </StyledButton>
+                    <StyledButton onClick={confirmDelete} color="red" background="white">
+                        Discard draft
+                    </StyledButton>
                 </div>
             </Wrapper>
         </>
