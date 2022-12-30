@@ -56,6 +56,11 @@ const TextArea = styled.textarea`
     border-radius: 3px;
     width: 845px;
     height: 220px;
+
+    :focus {
+    outline: 1px solid #6BBBF7;
+    box-shadow: 1px 1px 10px rgb(193,213,227), -1px -1px 10px rgb(193,213,227);
+    }
 `;
 
 const Preview = styled.div`
@@ -63,21 +68,11 @@ const Preview = styled.div`
     line-height: 25px; // 텍스트 줄간격(행간) 조절
 `;
 
-const TextEditor = ({ data, handleHide, handler }) => {
-    // const imageData = [ heading, bold, italic, inlineCode, link, quote, insertImage, grid, numlist, list, more, help ];
+const TextEditor = ({ data, handleHide, secondInput, problem, setProblem }) => {
     const TextAreaFocus = useRef(null); // TextArea포커스 기능을 위한
     const [selectBtn, isSelectBtn] = useState(); //버튼 선택중
-
-    const handleExpect = (e) => {
-        // let updatedData = inputData;
-        // updatedData[data.id] = e.target.value;
-        // setInputData(updatedData);
-        // // console.log(inputData);
-        handler.setExpect(e.target.value);
-    };
-
+    const [PreviewText, setPreviewText] = useState(problem);
     // 텍스트를 html 로 바꾸기 위한
-    const [problem, setProblem] = useState(''); //프리뷰
     const [isBold, setBold] = useState(false);
     const [isItalic, setItalic] = useState(false);
     const [isInlineCode, setInlineCode] = useState(false);
@@ -87,55 +82,47 @@ const TextEditor = ({ data, handleHide, handler }) => {
         setBold((current) => !current);
         if (isBold) {
             setProblem(problem + '</b>');
-            handler.setProblem(handler.problem + '</b>');
             isSelectBtn(null);
         } else {
             setProblem(problem + '<b>');
-            handler.setProblem(handler.problem + '<b>');
             isSelectBtn('Bold');
         }
-        TextAreaFocus.current.focus();
+        // TextAreaFocus.current.focus();
+        secondInput.current.focus();
     };
     const Italic = () => {
         setItalic((current) => !current);
         if (isItalic) {
             setProblem(problem + '</i>');
-            handler.setProblem(handler.problem + '</i>');
             isSelectBtn(null);
         } else {
             setProblem(problem + '<i>');
-            handler.setProblem(handler.problem + '<i>');
             isSelectBtn('Italic');
         }
-        TextAreaFocus.current.focus();
+        // TextAreaFocus.current.focus();
+        secondInput.current.focus();
     };
     const InlineCode = () => {
         setInlineCode((current) => !current);
         if (isInlineCode) {
             setProblem(problem + '</code>');
-            handler.setProblem(handler.problem + '</code>');
             isSelectBtn(null);
         } else {
             setProblem(problem + '<code>');
-            handler.setProblem(handler.problem + '<code>');
             isSelectBtn('InlineCode');
         }
-        TextAreaFocus.current.focus();
+        // TextAreaFocus.current.focus();
+        secondInput.current.focus();
     };
     // 정규식으로 줄바꿈 태그 넣는 부분
     const handleProblem = (e) => {
-        setProblem(TextToCode(e.target.value));
-        handler.setProblem(e.target.value);
+        setPreviewText(TextToCode(e.target.value));
+        setProblem(e.target.value);
     };
 
     return (
         <Wrapper>
             <Buttons>
-                {/* {
-                    imageData.map((el,idx) => {
-                       return <img src={el[idx]} key={idx} alt={el[idx]} ></img>
-                    })
-                } */}
                 <button type="button">
                     <img src={heading} alt="heading" />
                 </button>
@@ -176,15 +163,8 @@ const TextEditor = ({ data, handleHide, handler }) => {
                     </a>
                 </button>
             </Buttons>
-            <TextArea
-                ref={TextAreaFocus}
-                onFocus={handleHide}
-                onChange={data.id === 'expect' ? handleExpect : handleProblem}
-                id={data.id}
-                placeholder={data.placeholder}
-                value={data.id === 'expect' ? handler.expect : handler.problem}
-            ></TextArea>
-            <Preview dangerouslySetInnerHTML={{ __html: CodeToHtml(problem) }} /> {/* 문자열의 html 태그를 출력 */}
+            <TextArea ref={secondInput} onFocus={handleHide} onChange={handleProblem} id={data.id} placeholder={data.placeholder} value={problem}></TextArea>
+            {problem ? <Preview dangerouslySetInnerHTML={{ __html: CodeToHtml(PreviewText) }} /> : null}
         </Wrapper>
     );
 };

@@ -11,16 +11,18 @@ import stackoverflow.domain.question.dto.QuestionResponseDto;
 import stackoverflow.domain.question.entity.Question;
 import stackoverflow.domain.question.mapper.QuestionMapper;
 import stackoverflow.domain.question.service.QuestionService;
-import stackoverflow.dto.MultiResponseDto;
-import stackoverflow.dto.SingleResponseDto;
+import stackoverflow.global.dto.MultiResponseDto;
+import stackoverflow.global.dto.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
+
 @RestController
 @RequestMapping(value = "questions")
 @Validated
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class QuestionController {
     private final QuestionService questionService;
     private final QuestionMapper mapper;
@@ -68,8 +70,6 @@ public class QuestionController {
     @PatchMapping("/{question-id}")
     public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                         @Valid @RequestBody QuestionPatchDto questionPatchDto) {
-        // TODO: 수정 시 로그인 필요
-
         questionPatchDto.setQuestionId(questionId);
 
         Question question = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto));
@@ -82,8 +82,6 @@ public class QuestionController {
     // 특정 질문 삭제
     @DeleteMapping("/{question-id}")
     public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId) {
-        // TODO: 삭제 시 로그인 필요
-
         questionService.deleteQuestion(questionId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);

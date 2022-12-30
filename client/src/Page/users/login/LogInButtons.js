@@ -9,7 +9,7 @@ const OpenIdContainer = styled.div`
   margin-right: 0;
 `;
 
-const GoogleLoginButton = styled.button`
+const LoginButton = styled.button`
   display: flex;
   flex-direction: row;
   margin-right: 0;
@@ -21,16 +21,18 @@ const GoogleLoginButton = styled.button`
   text-align: center;
   height: auto;
   width: auto;
+  border-radius: 5px;
+  border-color: hsl(210, 8% 85%);
 
   svg {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     margin: auto;
     margin-left: 10px;
   }
 
   &:hover {
-    background-color: hsl(210, 8%, 97.5%);
+    background-color: hsl(210, 2%, 82%);
   }
 `;
 
@@ -71,28 +73,38 @@ const FaceBookButton = (
     </svg>
 );
 
-const GithubLoginButton = styled(GoogleLoginButton)`
+const GithubLoginButton = styled(LoginButton)`
+  svg {
+    margin-top: 5px;
+    width: 32px;
+    height: 32px;
+  }
 `;
 
-const FaceBookLoginButton = styled(GoogleLoginButton)`
+const FaceBookLoginButton = styled(LoginButton)`
+  svg {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const SignInMessage = styled.div`
   width: 100%;
-  font-size: 18px;
+  font-size: 15px;
   margin: 10px;
   text-align: center;
+  color: black;
 `;
 
 const LogInButtons = () => {
     return (
         <OpenIdContainer>
-            <GoogleLoginButton>
+            <LoginButton>
                 {GoogleButton}
                 <SignInMessage>
                     Log in with Google
                 </SignInMessage>
-            </GoogleLoginButton>
+            </LoginButton>
             <GithubLoginButton>
                 {GithubButton}
                 <SignInMessage>

@@ -11,6 +11,14 @@ const MessageContainer = styled.div`
     font-size: 2rem;
     margin-bottom: 32px;
   }
+
+  svg {
+    fill: hsl(206, 100%, 52%);
+  }
+
+  @media (max-width: 816px) {
+    display: none;
+  }
 `;
 
 const SingleMessageContainer = styled.div`
@@ -55,9 +63,10 @@ const TrophySvg = (
     </svg>
 );
 const JoinMessageBox = () => {
+
     return (
         <MessageContainer>
-            <h1>Join the Stack Overflow Community</h1>
+            <h1>Join the Stack Overflow community</h1>
             <SingleMessageContainer>
                 <div>{MessageBoxSvg}</div>
                 <div>Get unstuck — ask a question</div>
