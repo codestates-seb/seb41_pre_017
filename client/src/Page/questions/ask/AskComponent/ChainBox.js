@@ -2,7 +2,7 @@ import styled from "styled-components";
 import formData from "./formData";
 import AdviceBox from "./AdviceBox";
 import InputBox from "./InputBox";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const Wrapper = styled.div`
     display: flex;
@@ -14,14 +14,12 @@ const Wrapper = styled.div`
         align-items: flex-start
     }
 `
-// expect 부분을 지운다.
-// thirdInput 부분을 지운다.
+// input박스로 내려주고 조건부 렌더링
+// chainBox 
 
-const ChainBox = ({inputData, setInputData, title, setTitle, 
-    problem, setProblem, tag, setTag, setSubmit}) => {
-    const [isHide, setIsHide] = useState([true,false,false]);
-    const secondInput = useRef(null);
-    const lastInput = useRef(null);
+const ChainBox = ({inputData, setInputData, title, setTitle, expect, 
+    setExpect, problem, setProblem, tag, setTag}) => {
+    const [isHide, setIsHide] = useState([true,false,false,false]);
 
     return (
         <Wrapper> 
@@ -36,10 +34,9 @@ const ChainBox = ({inputData, setInputData, title, setTitle,
                                 inputData={inputData} 
                                 setInputData={setInputData} 
                                 title={title} setTitle={setTitle}
+                                expect={expect} setExpect={setExpect}
                                 problem={problem} setProblem={setProblem}
-                                tag={tag} setTag={setTag} 
-                                refs={[secondInput, lastInput, setSubmit]}
-                                />
+                                tag={tag} setTag={setTag}  />
                             <AdviceBox 
                                 idx={idx} 
                                 isHide={isHide} 
