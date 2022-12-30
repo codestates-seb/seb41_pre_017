@@ -7,6 +7,7 @@ import { ReactComponent as Created } from './profile/img/createdAt.svg';
 import { ReactComponent as Email } from './profile/img/email.svg';
 import { useGet } from '../../components/hook/API';
 import TimeForToday from '../../components/function/timeForToday'
+import { useCookies } from 'react-cookie';
 
 const StyledHeader = styled.div`
     display: flex;
@@ -67,18 +68,19 @@ const Profile = () => {
     const [ qnaBtn, setQnaBtn ] = useState(0);
     const [ settingBtn, setSettingBtn ] = useState(0);
     const [changeNickname, setChangeNickname] = useState('');
+    const [changePwd, setChangePwd] = useState('');
   
     const [loading, setLoading] = useState(false);
-    const [userData] = useGet(`members/2`, setLoading);
-    console.log(userData)
+    const [cookie] = useCookies(['memberId']);
+    const [userData] = useGet(`members/${cookie}`, setLoading);
+    /*프로필 컴포넌트 get 요청을 보내서 응답으로 랜더링하는 것 까지 완료했습니다. 나중에 로그인 완성되시면 쿠키에 담아두신 memberId 
+    프로필 컴포넌트 get요청 보내는 hook 엔드포인트에 담아주세요*/
 
     const HandleSettings = (e) => {
         setClickedBtn(1)
     }
 
     const time = TimeForToday(new Date(userData.createdAt))
-    /*프로필 컴포넌트 get 요청을 보내서 응답으로 랜더링하는 것 까지 완료했습니다. 나중에 로그인 완성되시면 쿠키에 담아두신 memberId 
-    프로필 컴포넌트 get요청 보내는 hook 엔드포인트에 담아주세요*/
     
     // https://avatars.githubusercontent.com/u/110921798?s=400&v=4
     
@@ -100,7 +102,7 @@ const Profile = () => {
                     {
                         clickedBtn === 0 
                         ? <Activity userData={userData} qnaBtn={qnaBtn} setQnaBtn={setQnaBtn} /> 
-                        : <Settings changeNickname={changeNickname} setChangeNickname={setChangeNickname} userData={userData} settingBtn={settingBtn} setSettingBtn={setSettingBtn} />
+                        : <Settings changePwd={changePwd} setChangePwd={setChangePwd} changeNickname={changeNickname} setChangeNickname={setChangeNickname} userData={userData} settingBtn={settingBtn} setSettingBtn={setSettingBtn} />
                     }
                 </Wrapper>
             </Main>

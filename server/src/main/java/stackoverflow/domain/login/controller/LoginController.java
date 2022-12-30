@@ -40,7 +40,7 @@ public class LoginController {
         response.addCookie(cookieId);
         System.out.println("Cookie Info : " + cookieId);
         System.out.println("Login successful!");
-        return "Login successful!";
+        return String.valueOf(loginMember.getMemberId());
     }
 
     // 서버에서 쿠키 제거

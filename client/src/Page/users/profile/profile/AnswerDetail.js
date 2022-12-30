@@ -18,6 +18,7 @@ const BorderBox = styled.div`
             margin-bottom: 5px;
             border-bottom: 1px solid var(--theme-border);
             cursor: pointer;
+            font-size: 14px;
 
             span {
                display: flex;

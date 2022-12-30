@@ -25,6 +25,7 @@ const Wrapper = styled.div`
             margin-bottom: 5px;
             border-bottom: 1px solid var(--theme-border);
             cursor: pointer;
+            font-size: 14px;
 
             span {
                display: flex;
@@ -82,7 +83,7 @@ const Summary = ({profileAnswerData, profileQuestionData, data}) => {
                     <div>
                         <h3>Stats</h3>
                         <div className='borderbox stats'>
-                            <strong>10{/*수정필요*/}</strong>
+                            <strong>31{/*수정필요*/}</strong>
                             <p>total votes</p>
                             <strong>{profileAnswerData.length}</strong>
                             <p>answers</p>

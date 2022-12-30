@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Wrapper = styled.div`
 
@@ -53,14 +54,16 @@ const Wrapper = styled.div`
 const DeleteProfile = () => {
     const [isChecked, setIschecked] = useState(false);
     const navigate = useNavigate();
+    const [cookie, removeCookie] = useCookies(['memberId']);
 
     const HandleDelete = () => {
-        axios.delete(`http://localhost:8080/members/1`, {
+        axios.delete(`http://localhost:8080/members/${cookie}`, {
         })
         .then((response) => {
             console.log("삭제 요청 성공");
             alert('계정이 삭제되었습니다');
-            navigate('/');
+            removeCookie('memberId', {path: "/"});
+            // navigate('/');
             // 로그아웃 상태로 진입
             })
         .catch(() => {
