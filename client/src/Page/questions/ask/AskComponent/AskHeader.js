@@ -50,6 +50,10 @@ const BlueBox = styled.div`
 
     ul {
         padding : 0px 0px 0px 30px;
+        
+        li {
+            font-size: 14px;
+        }
     }
 
     a {

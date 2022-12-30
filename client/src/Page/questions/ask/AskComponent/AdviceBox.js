@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Pencil from "../../img/pencil.png";
+import { ReactComponent as Pencil } from '../../img/pencil.svg'
 
 const Wrapper = styled.div`
     display: ${({isHide, idx}) => isHide[idx] ? 'block': 'none'};
@@ -48,7 +48,7 @@ const AdviceBox = ({data, isHide, idx}) => {
         <Wrapper isHide={isHide} idx={idx}>       
             <div className="title">{data.title}</div>
             <Bottom>
-                <img src={Pencil} alt="pencil"/>
+                <Pencil />
                 <div className="content">
                     <p>{data.content}</p>
                     <p>{data.content2}</p>

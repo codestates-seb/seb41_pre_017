@@ -9,6 +9,7 @@
 
 body {
     padding-top: 55px; /* 탑 바(헤더)와 안겹치게 해줌 */
+    min-width: auto;
 }
 
 code {
@@ -22,6 +23,12 @@ code {
     line-height: 20px;
     padding: 10px;
 }
+
+input:focus {
+    outline: 1px solid #6BBBF7;
+    box-shadow: 1px 1px 10px rgb(193,213,227), -1px -1px 10px rgb(193,213,227);
+}
+
 .OrangeText {
     color: #f48225;
 }

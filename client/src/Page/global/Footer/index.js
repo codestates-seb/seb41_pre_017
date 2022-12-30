@@ -33,7 +33,7 @@ const Container = styled.div`
     h5 {
         width: 300px;
         display: flex;
-        color: white;
+        color: #BABFC4;
         margin-bottom: 15px;
     }
 
@@ -42,7 +42,7 @@ const Container = styled.div`
     }
 
     li {
-        color: white;
+        color: #9199A1;
         margin-bottom: 8px;
         font-size: 12px;
     }
@@ -60,7 +60,7 @@ const Container = styled.div`
     }
     p {
         margin-top: 200px;
-        color: white;
+        color: #9199A1;
         width: 260px;
         font-size: 10px;
     }
