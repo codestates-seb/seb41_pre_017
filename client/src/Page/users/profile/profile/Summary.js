@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
-import { useGet } from "../../../components/hook/API";
 
 const Wrapper = styled.div`
     display: flex;
@@ -95,13 +93,11 @@ const Summary = ({profileAnswerData, profileQuestionData, data}) => {
                         {
                             recentAnswer.map((answerData,idx) => {
                                 return (
-                                    <>
                                         <p key={idx}>
                                             <VoteButton>{answerData.votes}</VoteButton>
                                             {answerData.title}
                                             <span>{answerData.createdAt}</span>
                                         </p>
-                                    </>
                                 )
                             })
                         }
@@ -113,13 +109,11 @@ const Summary = ({profileAnswerData, profileQuestionData, data}) => {
                         {
                             recentQuestion.map((questionData,idx) => {
                                 return (
-                                    <>
                                         <p key={idx}>
                                             <VoteButton>{questionData.votes}</VoteButton>
                                             {questionData.title}
                                             <span>{questionData.createdAt}</span>
                                         </p>
-                                    </>
                                 )
                             })
                         }

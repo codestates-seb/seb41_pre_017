@@ -32,9 +32,9 @@ const Activity = ({qnaBtn, setQnaBtn}) => {
             <Wrapper>
                 <div>
                     <div className='menu'>
-                        <button className={qnaBtn === 0 && "buttonClicked"} onClick={(e) => setQnaBtn(0)}>Summary</button>
-                        <button className={qnaBtn === 1 && "buttonClicked"} onClick={(e) => setQnaBtn(1)}>Answers</button>
-                        <button className={qnaBtn === 2 && "buttonClicked"} onClick={(e) => setQnaBtn(2)}>Questions</button>
+                        <button className={qnaBtn === 0 ? "buttonClicked" : null} onClick={(e) => setQnaBtn(0)}>Summary</button>
+                        <button className={qnaBtn === 1 ? "buttonClicked" : null} onClick={(e) => setQnaBtn(1)}>Answers</button>
+                        <button className={qnaBtn === 2 ? "buttonClicked" : null} onClick={(e) => setQnaBtn(2)}>Questions</button>
                     </div>
                 </div>
                 {

@@ -50,8 +50,8 @@ const QuestionDetail = ({profileQuestionData}) => {
                 {
                     profileQuestionData.map((data,idx) => {
                         return (
-                            <p>
-                                <VoteButton className={data.votes === 0 && "zero"}>{data.votes}</VoteButton>
+                            <p key={idx}>
+                                <VoteButton className={data.votes === 0 ? "zero" : null}>{data.votes}</VoteButton>
                                 {data.title}
                                 <span>{data.createdAt}</span>
                             </p>
