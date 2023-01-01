@@ -114,6 +114,7 @@ export const Main = styled.main`
     max-width: 1100px; // 최대 너비를 지정  -> 이 값 이상으로는 안커짐
     width: calc(100% - 200px); // css 함수 너비 100%에서 164px만큼 크기를 줄임(여백을 위해) https://developer.mozilla.org/ko/docs/Web/CSS/calc
     padding: 24px;
+    z-index: 100;
 
     @media screen and (max-width: 980px) {
         padding-left: 16px;

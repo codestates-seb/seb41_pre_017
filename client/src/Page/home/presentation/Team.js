@@ -110,7 +110,7 @@ const TeamIntroduction = () => {
                             <img src={B_img} />
                             <Contents>
                                 <Num2>
-                                    김승현<Job>Front-end</Job>
+                                    김승헌<Job>Front-end</Job>
                                 </Num2>
                             </Contents>
                         </Profile>

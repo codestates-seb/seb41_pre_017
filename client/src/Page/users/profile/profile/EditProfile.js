@@ -46,7 +46,14 @@ const BorderBox = styled.div`
         img {
             width: 128px;
             height: 128px;
+            margin-bottom: 30px;
         }
+        
+        span {
+            color: red;
+            font-size: 12px;
+        }
+        
 `
 
 const EditProfile = ({setChangeNickname, changeNickname, userData}) => {
@@ -57,8 +64,8 @@ const EditProfile = ({setChangeNickname, changeNickname, userData}) => {
     }
 
     const handleNickname = () => {
-        if(changeNickname.length <= 1) { 
-            alert("닉네임은 두 글자 이상 5글자 미만으로 입력해주세요.") 
+        if(changeNickname.length <= 1 || changeNickname.length > 4) { 
+            alert("닉네임은 2글자 이상 5글자 미만으로 입력해주세요.")
             return;
         }
         
@@ -67,8 +74,6 @@ const EditProfile = ({setChangeNickname, changeNickname, userData}) => {
         })
         .then(res => window.location.reload())
     }
-    
-    
 
     const memberImg = ImgArr[userData.memberId];
 
@@ -78,11 +83,15 @@ const EditProfile = ({setChangeNickname, changeNickname, userData}) => {
             <div className="border"></div>
             <strong>Public information</strong>
             <BorderBox>
-            <p>Profile image</p>
+                <p>Profile image</p>
                 <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img"/>
-                <p>Change Nickname</p>
-                <input onChange={onChange} value={changeNickname} />
-            </BorderBox>
+                <label htmlFor="input">Change Nickname</label>
+                <input id="input"  onChange={onChange} value={changeNickname} placeholder={userData.nickname} />
+                { changeNickname.length >= 1 
+                ? <span>닉네임은 2글자 이상 5글자 미만으로 입력해주세요</span>
+                : null
+                }
+                </BorderBox>
             <BlueBtn onClick={handleNickname}>Save Profile</BlueBtn>
         </Wrapper>
     )

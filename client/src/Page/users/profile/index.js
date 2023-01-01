@@ -36,10 +36,15 @@ const Profile = () => {
     const [changeNickname, setChangeNickname] = useState('');
     const [loading, setLoading] = useState(false);
     const [userData] = useGet(`members/${memberId}`, setLoading);
+    const [cookie, , removeCookie] = useCookies(['memberId']);
 
     const HandleSettings = (e) => {
         setClickedBtn(1)
     }
+
+    const checkId = () => {
+        return cookie.memberId === memberId;
+    };   
 
     return (
         <Container>
@@ -48,7 +53,11 @@ const Profile = () => {
                 <ProfileHeader userData={userData} />
                 <Wrapper>
                     <StyledButton className={clickedBtn === 0 ? "active" : null} onClick={(e) => setClickedBtn(0)}>Activity</StyledButton>
-                    <StyledButton className={clickedBtn === 1 ? "active" : null} onClick={HandleSettings}>Settings</StyledButton>
+                    { 
+                        checkId() 
+                        ? <StyledButton className={clickedBtn === 1 ? "active" : null} onClick={HandleSettings}>Settings</StyledButton>
+                        : null
+                    }
                     {
                         clickedBtn === 0 
                         ? <Activity userData={userData} qnaBtn={qnaBtn} setQnaBtn={setQnaBtn} /> 

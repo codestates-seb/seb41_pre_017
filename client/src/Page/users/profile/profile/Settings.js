@@ -26,7 +26,7 @@ const StyledButton = styled.button`
         cursor: pointer;
 `
 
-const Settings = ({settingBtn, setSettingBtn, userData, changeNickname, setChangeNickname}) => {
+const Settings = ({ settingBtn, setSettingBtn, userData, changeNickname, setChangeNickname }) => {
     return (
         <Wrapper>
             <div>

@@ -109,6 +109,7 @@ function Header() {
     const [value, setValue, ChangeValue] = useInput();
     const [cookie, , removeCookie] = useCookies();
     const [userName, setUserName] = useState('');
+    const [dropdown, setDropdown] = useState(false);
     const navigate = useNavigate();
     const Submit = (e) => {
         if (e.key === 'Enter') {
@@ -116,6 +117,10 @@ function Header() {
             window.location.reload();
         }
     };
+
+    const handleDropdown = () => {
+        setDropdown(!dropdown);
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -151,10 +156,8 @@ function Header() {
                 <StyledLink className="blue_button_hover" to="/">
                     <StyledLogo></StyledLogo>
                 </StyledLink>
-
                 <StyledBtn>Products</StyledBtn>
-
-                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
+                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} onClick={handleDropdown} />
                 {cookie.memberId !== undefined ? (
                     <UserInfoLink to={`/users/${cookie.memberId}`}>
                         <img src={ImgArr[cookie.memberId] ? ImgArr[cookie.memberId] : ImgArr[0]} alt="profile img" />
