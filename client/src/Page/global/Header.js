@@ -7,6 +7,7 @@ import useInput from '../components/hook/useInput';
 import { useCookies } from 'react-cookie';
 import { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
+import { ImgArr } from '../users/userList/ImgArr';
 
 const Container = styled.div`
     position: fixed;
@@ -143,6 +144,7 @@ function Header() {
             })
             .catch((err) => console.log(err.message));
     };
+
     return (
         <Container>
             <StyledHeader>
@@ -155,7 +157,7 @@ function Header() {
                 <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
                 {cookie.memberId !== undefined ? (
                     <UserInfoLink to={`/users/${cookie.memberId}`}>
-                        <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img" />
+                        <img src={ImgArr[cookie.memberId] ? ImgArr[cookie.memberId] : ImgArr[0]} alt="profile img" />
                     </UserInfoLink>
                 ) : null}
                 <Links>

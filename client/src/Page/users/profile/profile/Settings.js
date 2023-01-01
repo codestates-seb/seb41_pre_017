@@ -6,9 +6,11 @@ const Wrapper = styled.div`
     display:flex;
 
     .buttonClicked {
-        background-color: #F1F2F3;
+        background-color: var(--theme-Orange);
         box-shadow: 1px 0 5px -2px rgb(90, 90, 90);
-        }
+        color: white;
+        border-radius: 30px;
+    }
 `
 
 const StyledButton = styled.button`
@@ -24,7 +26,7 @@ const StyledButton = styled.button`
         cursor: pointer;
 `
 
-const Settings = ({settingBtn, setSettingBtn, userData, changeNickname, setChangeNickname, changePwd, setChangePwd}) => {
+const Settings = ({settingBtn, setSettingBtn, userData, changeNickname, setChangeNickname}) => {
     return (
         <Wrapper>
             <div>
@@ -33,7 +35,7 @@ const Settings = ({settingBtn, setSettingBtn, userData, changeNickname, setChang
             </div>
             <div>
                 {
-                    settingBtn === 0 ? <EditProfile changePwd={changePwd} setChangePwd={setChangePwd} userData={userData} changeNickname={changeNickname} setChangeNickname={setChangeNickname} /> : <DeleteProfile />
+                    settingBtn === 0 ? <EditProfile userData={userData} changeNickname={changeNickname} setChangeNickname={setChangeNickname} /> : <DeleteProfile />
                 }
             </div>
         </Wrapper>
