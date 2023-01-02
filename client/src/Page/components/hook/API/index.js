@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 const baseUrl = `http://localhost:8080/`;
 
-export const useGet = (path, setLoading) => {
+export const useGet = (path, setLoading, dependencies) => {
     const [data, setData] = useState([]);
     useEffect(() => {
         setLoading(true);
@@ -16,6 +16,6 @@ export const useGet = (path, setLoading) => {
                 console.error(error);
                 setLoading(false);
             });
-    }, []);
+    }, [dependencies]);
     return [data, setData];
 };

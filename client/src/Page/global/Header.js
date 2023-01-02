@@ -16,7 +16,7 @@ const Container = styled.div`
     top: 0px;
     border-top: 3px solid var(--theme-Orange);
     background-color: #ffffff;
-    z-index: 1; // 화면 겹쳤을때 화면 최상위로 끌어올림
+    z-index: 999; // 화면 겹쳤을때 화면 최상위로 끌어올림
 `;
 
 const StyledHeader = styled.header`
@@ -108,44 +108,18 @@ const Links = styled.ul`
 function Header() {
     const [value, setValue, ChangeValue] = useInput();
     const [cookie, , removeCookie] = useCookies();
-    const [userName, setUserName] = useState('');
-    const [dropdown, setDropdown] = useState(false);
     const navigate = useNavigate();
     const Submit = (e) => {
         if (e.key === 'Enter') {
             navigate('/questions', { state: value });
-            window.location.reload();
         }
     };
-
-    const handleDropdown = () => {
-        setDropdown(!dropdown);
-    }
-
-    useEffect(() => {
-        async function fetchData() {
-            // You can await here
-            if (cookie.memberId === undefined) return;
-            else {
-                const response = axios
-                    .get(`http://localhost:8080/members/${cookie.memberId}`)
-                    .then((res) => {
-                        setUserName(res.data.data.nickname);
-                    })
-                    .catch((err) => console.log(err.message));
-            }
-        }
-
-        fetchData();
-    }, [cookie.memberId]);
 
     const logoutHandler = () => {
         axios
             .post('http://localhost:8080/users/logout')
             .then((res) => {
                 removeCookie('memberId');
-                setUserName('');
-                navigate('/', { replace: false });
             })
             .catch((err) => console.log(err.message));
     };
@@ -157,7 +131,7 @@ function Header() {
                     <StyledLogo></StyledLogo>
                 </StyledLink>
                 <StyledBtn>Products</StyledBtn>
-                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} onClick={handleDropdown} />
+                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
                 {cookie.memberId !== undefined ? (
                     <UserInfoLink to={`/users/${cookie.memberId}`}>
                         <img src={ImgArr[cookie.memberId] ? ImgArr[cookie.memberId] : ImgArr[0]} alt="profile img" />

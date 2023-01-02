@@ -1,85 +1,85 @@
 import styled from 'styled-components';
-import {CodeToHtml} from '../../../components/function/textConverter';
+import { CodeToHtml } from '../../../components/function/textConverter';
 import Vote from '../vote';
 import TagNav from '../../../components/style/tagNav';
 import ProfilePicture from '../../img/unnamed.png';
-import {Link} from 'react-router-dom';
-import {useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import axios from 'axios';
 import TimeForToday from '../../../components/function/timeForToday';
-import {useCookies} from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 const Post = styled.div`
-  line-height: 30px;
-  margin: 0px 20px;
+    line-height: 30px;
+    margin: 0px 20px;
 `;
 
 const Container = styled.div`
-  display: flex;
-  padding-bottom: 50px;
-  width: 100%;
-  justify-content: space-between;
+    display: flex;
+    padding-bottom: 50px;
+    width: 100%;
+    justify-content: space-between;
 `;
 
 const Tags = styled.nav`
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
 `;
 
 const UserCard = styled.article`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  margin-left: 10px;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-left: 10px;
+    width: 100%;
 
-  button {
-    margin-right: 15px;
-    margin-left: 5px;
-  }
+    button {
+        margin-right: 15px;
+        margin-left: 5px;
+    }
 `;
 const User = styled.div`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  padding: 8px;
-  width: 200px;
-  border-radius: 5px;
-  background-color: rgb(213, 229, 241);
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 8px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: rgb(213, 229, 241);
 
-  div {
-    color: rgb(0 116 204);
-    font-size: 10px;
-    margin-left: 5px;
-    margin-bottom: 2px;
-  }
+    div {
+        color: rgb(0 116 204);
+        font-size: 10px;
+        margin-left: 5px;
+        margin-bottom: 2px;
+    }
 
-  span {
-    margin: 5px;
-  }
+    span {
+        margin: 5px;
+    }
 
-  .time {
-    color: rgb(106 115 124);
-  }
+    .time {
+        color: rgb(106 115 124);
+    }
 `;
 const Button = styled.button`
-  cursor: pointer;
+    cursor: pointer;
 `;
 const UserContainer = styled.div`
-  display: flex;
+    display: flex;
 `;
 const ProfileImg = styled.img`
-  width: 35px;
-  height: 35px;
+    width: 35px;
+    height: 35px;
 `;
 
 const PostBody = styled.div`
-  flex-grow: 1;
+    flex-grow: 1;
 `;
 
-const Content = ({category, data, dataHandler, answerData, index}) => {
+const Content = ({ category, data, dataHandler, answerData, index }) => {
     const Modified = TimeForToday(new Date(data.modifiedAt));
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
@@ -100,10 +100,9 @@ const Content = ({category, data, dataHandler, answerData, index}) => {
             <Vote data={category === 'answer' ? answerData : data} index={index} dataHandler={dataHandler}></Vote>
             <PostBody>
                 {/* 질문&답변  contentData 출력 */}
-                <Post dangerouslySetInnerHTML={{__html: contentData}}/>
+                <Post dangerouslySetInnerHTML={{ __html: contentData }} />
                 {/* 질문&답변  태그들 출력 */}
-                <Tags className="tags">{data.tags ? data.tags.map((tag, index) => <TagNav
-                    key={index}>{tag}</TagNav>) : null}</Tags>
+                <Tags className="tags">{data.tags ? data.tags.map((tag, index) => <TagNav key={index}>{tag}</TagNav>) : null}</Tags>
                 {/* 유저기능 = 질문&답변 수정, 해당유저 정보 */}
                 <UserCard>
                     <ul>
@@ -138,10 +137,9 @@ const Content = ({category, data, dataHandler, answerData, index}) => {
                         </div>
 
                         <UserContainer>
-                            <ProfileImg src={ProfilePicture} alt="profile"/>
+                            <ProfileImg src={ProfilePicture} alt="profile" />
                             <div>
-                                <Link
-                                    to={`/users/${data.memberId}`}>
+                                <Link to={`/users/${data.memberId}`}>
                                     <div>{data.nickname}</div>
                                 </Link>
                                 <span>
