@@ -37,13 +37,18 @@ const StyledHeader = styled.div`
     }
 `;
 
+
+
 const ProfileHeader = ({ userData }) => {
     const time = TimeForToday(new Date(userData.createdAt));
-    const memberImg = ImgArr[userData.memberId];
+    const memberImg = () => {
+        if(userData.memberId > 21 ) return ImgArr[0];
+        else return ImgArr[userData.memberId];
+        }
 
     return (
         <StyledHeader>
-            <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img" />
+            <img src={ImgArr[userData.memberId] ? memberImg() : ImgArr[0]} alt="profile img" />
             <div className="userinfo">
                 <p>{userData.nickname}</p>
                 <span>

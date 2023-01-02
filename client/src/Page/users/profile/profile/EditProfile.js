@@ -83,7 +83,10 @@ const EditProfile = ({ setChangeNickname, changeNickname, userData, setUserData 
             });
     };
 
-    const memberImg = ImgArr[userData.memberId];
+    const memberImg = () => {
+    if(userData.memberId > 21 ) return ImgArr[0];
+    else return ImgArr[userData.memberId];
+    }
 
     return (
         <Wrapper>
@@ -92,7 +95,7 @@ const EditProfile = ({ setChangeNickname, changeNickname, userData, setUserData 
             <strong>Public information</strong>
             <BorderBox>
                 <p>Profile image</p>
-                <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img" />
+                <img src={ImgArr[userData.memberId] ? memberImg() : ImgArr[0]} alt="profile img" />
                 <label htmlFor="input">Change Nickname</label>
                 <input id="input" onChange={onChange} value={changeNickname} placeholder={userData.nickname} />
                 {nickNameLengthCheck ? <span>닉네임은 2글자 이상 10글자 미만으로 입력해주세요</span> : null}
