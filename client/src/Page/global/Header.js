@@ -125,6 +125,11 @@ function Header() {
             .catch((err) => console.log(err.message));
     };
 
+    const memberImg = () => {
+        if(cookie.memberId > 21 ) return ImgArr[0];
+        else return ImgArr[cookie.memberId];
+    }
+
     return (
         <Container>
             <StyledHeader>
@@ -135,7 +140,7 @@ function Header() {
                 <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
                 {cookie.memberId !== undefined ? (
                     <UserInfoLink to={`/users/${cookie.memberId}`}>
-                        <img src={ImgArr[cookie.memberId] ? ImgArr[cookie.memberId] : defaultImg} alt="profile img" />
+                        <img src={ImgArr[cookie.memberId] ? memberImg() : defaultImg} alt="profile img" />
                     </UserInfoLink>
                 ) : null}
                 <Links>
