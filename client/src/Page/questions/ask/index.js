@@ -46,7 +46,6 @@ const QuestionAsk = () => {
 
     const confirmDelete = useConfirm('정말 삭제하시겠습니까?', deleteConfirm, cancelConfirm);
 
-    // { title, expect: expect, problem: problem, tag: tag }
 
     const [cookie] = useCookies(['memberId']);
 
@@ -56,7 +55,7 @@ const QuestionAsk = () => {
             content: problem,
             memberId: cookie.memberId,
         };
-        console.log(data);
+
         if (title.length === 0) {
             alert('제목은 1글자 이상 입력해주세요');
             return;

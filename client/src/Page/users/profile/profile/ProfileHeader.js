@@ -37,10 +37,10 @@ const StyledHeader = styled.div`
     }
 `;
 
-const ProfileHeader = ({ userData, changeNickname }) => {
+const ProfileHeader = ({ userData }) => {
     const time = TimeForToday(new Date(userData.createdAt));
     const memberImg = ImgArr[userData.memberId];
-    console.log('🚀  userData', userData);
+
     return (
         <StyledHeader>
             <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img" />

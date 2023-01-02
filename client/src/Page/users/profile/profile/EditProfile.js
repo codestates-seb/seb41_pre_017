@@ -55,16 +55,18 @@ const BorderBox = styled.div`
     }
 `;
 
-const EditProfile = ({ setChangeNickname, changeNickname, userData, HandleChange, setUserData }) => {
+const EditProfile = ({ setChangeNickname, changeNickname, userData, setUserData }) => {
     const [cookie] = useCookies(['memberId']);
+
+    const nickNameLengthCheck = changeNickname.length < 2 || changeNickname.length > 10;
 
     const onChange = (e) => {
         setChangeNickname(e.target.value);
     };
 
     const handleNickname = () => {
-        if (changeNickname.length <= 1 || changeNickname.length > 4) {
-            alert('닉네임은 2글자 이상 5글자 미만으로 입력해주세요.');
+        if (nickNameLengthCheck) {
+            alert('닉네임은 2글자 이상 10글자 미만으로 입력해주세요.');
             return;
         }
         alert('닉네임이 변경되었습니다.');
@@ -93,7 +95,7 @@ const EditProfile = ({ setChangeNickname, changeNickname, userData, HandleChange
                 <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img" />
                 <label htmlFor="input">Change Nickname</label>
                 <input id="input" onChange={onChange} value={changeNickname} placeholder={userData.nickname} />
-                {changeNickname.length >= 1 ? <span>닉네임은 2글자 이상 5글자 미만으로 입력해주세요</span> : null}
+                {nickNameLengthCheck ? <span>닉네임은 2글자 이상 10글자 미만으로 입력해주세요</span> : null}
             </BorderBox>
             <BlueBtn onClick={handleNickname}>Save Profile</BlueBtn>
         </Wrapper>
