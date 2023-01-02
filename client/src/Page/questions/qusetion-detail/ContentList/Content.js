@@ -87,9 +87,9 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
     const [cookie, removeCookie] = useCookies(['memberId']);
     const Delete = () => {
         if (category === 'question') {
-            axios.delete(`http://localhost:8080/questions/${data.questionId}`);
+            axios.delete(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/questions/${data.questionId}`);
         } else if (category === 'answer') {
-            axios.delete(`http://localhost:8080/answers/${data.answerId}`);
+            axios.delete(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/answers/${data.answerId}`);
             const deleted = answerData.filter((el) => el !== data);
             dataHandler([...deleted]);
         }

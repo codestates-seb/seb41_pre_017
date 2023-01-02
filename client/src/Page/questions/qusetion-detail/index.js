@@ -8,7 +8,7 @@ import ContentSidebar from './sidebar/SideBar';
 import Loading from '../../components/style/loading';
 import TimeForToday from '../../components/function/timeForToday';
 import { useGet } from '../../components/hook/API';
-import {useCookies} from "react-cookie";
+import { useCookies } from 'react-cookie';
 const StyledHeader = styled.header`
     display: flex;
     flex-flow: row nowrap;
@@ -29,19 +29,19 @@ const H1 = styled.h1`
 `;
 
 const Information = styled.div`
-  display: flex;
-  font-size: 15px;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-  border-color: hsl(210, 8%, 90%);
-  border-bottom: 1px solid var(--theme-border);
+    display: flex;
+    font-size: 15px;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    border-color: hsl(210, 8%, 90%);
+    border-bottom: 1px solid var(--theme-border);
 `;
 
 const ElContainer = styled.div`
-  white-space: nowrap;
-  margin-bottom: 8px;
-  margin-right: 16px;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    margin-right: 16px;
 `;
 
 const AmvTitle = styled.span`
@@ -95,8 +95,7 @@ const SingleQuestion = () => {
                         <Link to="../users/login">
                             <BlueBtn>Ask Question</BlueBtn>
                         </Link>
-                    )
-                    }
+                    )}
                 </StyledHeader>
                 <Information>
                     <ElContainer>

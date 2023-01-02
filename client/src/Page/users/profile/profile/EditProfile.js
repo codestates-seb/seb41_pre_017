@@ -69,7 +69,7 @@ const EditProfile = ({ setChangeNickname, changeNickname, userData, HandleChange
         }
         alert('닉네임이 변경되었습니다.');
         axios
-            .patch(`http://localhost:8080/members/${cookie.memberId}`, {
+            .patch(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/members/${cookie.memberId}`, {
                 nickname: changeNickname,
             })
             .then(() => {

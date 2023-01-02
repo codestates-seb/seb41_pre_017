@@ -49,7 +49,7 @@ const ContentList = ({ dataList, dataHandler }) => {
             memberId: cookie.memberId,
         };
         axios
-            .post(`http://localhost:8080/answers/`, answer)
+            .post(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/answers/`, answer)
             .then((res) => dataHandler.setAnswerData([...answerData, res.data.data]))
             .catch((error) => console.error(error));
     };

@@ -6,7 +6,6 @@ import ChainBox from './AskComponent/ChainBox';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useConfirm from '../../components/hook/useConfirm';
-import { TextToCode } from '../../components/function/textConverter';
 import { useCookies } from 'react-cookie';
 
 const Wrapper = styled.div`
@@ -45,12 +44,8 @@ const QuestionAsk = () => {
 
     const cancelConfirm = () => {};
 
-    const confirmDelete = useConfirm(
-        "정말 삭제하시겠습니까?", 
-        deleteConfirm,
-        cancelConfirm   
-    );     
-        
+    const confirmDelete = useConfirm('정말 삭제하시겠습니까?', deleteConfirm, cancelConfirm);
+
     // { title, expect: expect, problem: problem, tag: tag }
 
     const [cookie] = useCookies(['memberId']);
@@ -59,40 +54,41 @@ const QuestionAsk = () => {
         const data = {
             title: title,
             content: problem,
-            memberId : cookie.memberId,
-        }
+            memberId: cookie.memberId,
+        };
         console.log(data);
-        if(title.length === 0){
-            alert('제목은 1글자 이상 입력해주세요')
+        if (title.length === 0) {
+            alert('제목은 1글자 이상 입력해주세요');
             return;
         }
-        if(problem.length <= 5){
-            alert('본문은 20글자 이상 입력해주세요')
+        if (problem.length <= 5) {
+            alert('본문은 20글자 이상 입력해주세요');
             return;
         }
 
-        axios.post('http://localhost:8080/questions', data)
-        .then(res => {
-            if(res.status === 201) {
-                alert('질문이 등록되었습니다.');
-                navigate('/questions');
-            }
-        })
-        .catch(e => console.log(e))
-    }
+        axios
+            .post('http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/questions', data)
+            .then((res) => {
+                if (res.status === 201) {
+                    alert('질문이 등록되었습니다.');
+                    navigate('/questions');
+                }
+            })
+            .catch((e) => console.log(e));
+    };
 
     return (
         <>
             <Wrapper>
                 <AskHeader />
-                <ChainBox 
-                    title={title} setTitle={setTitle}
-                    problem={problem} setProblem={setProblem}
-                    tag={tag} setTag={setTag} 
-                     setSubmit={setSubmit} />
-                <div className='buttonSubmit'>
-                    <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>Review your question</StyledButton>
-                    <StyledButton onClick={confirmDelete} color="red" background="white">Discard draft</StyledButton>
+                <ChainBox title={title} setTitle={setTitle} problem={problem} setProblem={setProblem} tag={tag} setTag={setTag} setSubmit={setSubmit} />
+                <div className="buttonSubmit">
+                    <StyledButton type="button" onClick={handleSubmit} disabled={submit ? false : true}>
+                        Review your question
+                    </StyledButton>
+                    <StyledButton onClick={confirmDelete} color="red" background="white">
+                        Discard draft
+                    </StyledButton>
                 </div>
             </Wrapper>
         </>
