@@ -56,7 +56,7 @@ const BorderBox = styled.div`
         
 `
 
-const EditProfile = ({setChangeNickname, changeNickname, userData}) => {
+const EditProfile = ({setChangeNickname, changeNickname, userData, HandleChange}) => {
     const [cookie] = useCookies(['memberId']);
     
     const onChange = (e) => {
@@ -68,11 +68,10 @@ const EditProfile = ({setChangeNickname, changeNickname, userData}) => {
             alert("닉네임은 2글자 이상 5글자 미만으로 입력해주세요.")
             return;
         }
-        
+        alert('닉네임이 변경되었습니다.')
         axios.patch(`http://localhost:8080/members/${cookie.memberId}`,{
             "nickname": changeNickname,   
         })
-        .then(res => window.location.reload())
     }
 
     const memberImg = ImgArr[userData.memberId];
