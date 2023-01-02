@@ -5,7 +5,7 @@ import { ReactComponent as Logo } from '../../Img/logo.svg';
 import SearchInput from '../components/style/SearchInput';
 import useInput from '../components/hook/useInput';
 import { useCookies } from 'react-cookie';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment } from 'react';
 import axios from 'axios';
 import { ImgArr } from '../users/userList/ImgArr';
 
