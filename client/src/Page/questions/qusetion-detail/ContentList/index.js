@@ -5,26 +5,28 @@ import Content from './Content';
 import axios from 'axios';
 import { TextToCode } from '../../../components/function/textConverter';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
+
 const Section = styled.section`
-  max-width: 1100px;
-  width: calc(100% - 24px);
-  height: 100%;
-  margin-bottom: 50px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: flex-start;
+    max-width: 1100px;
+    width: calc(100% - 24px);
+    height: 100%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
 `;
 
 const H1 = styled.h1`
-  font-weight: 100;
-  margin: 0 0 1em;
+    font-weight: 100;
+    margin: 0 0 1em;
 `;
 
 const EnterAnswer = styled.div`
-  margin: 20px;
-  margin-top: 50px;
-  width: 100%;
+    margin: 20px;
+    margin-top: 50px;
+    width: 100%;
 `;
 
 const ContentList = ({ dataList, dataHandler }) => {
@@ -32,7 +34,15 @@ const ContentList = ({ dataList, dataHandler }) => {
     const answerData = dataList.answerData;
     const [cookie] = useCookies(['memberId']);
 
+    const navigator = useNavigate();
+
     const sendToServer = (data) => {
+        if (cookie.memberId === undefined) {
+            alert('로그인을 해주세요');
+            navigator('/users/login');
+            return;
+        }
+
         const answer = {
             content: TextToCode(data),
             questionId: questionData.questionId,
