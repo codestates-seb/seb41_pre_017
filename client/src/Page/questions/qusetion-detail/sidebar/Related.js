@@ -72,7 +72,7 @@ const RelatedBox = (
                 return (
                 <ChainBox key={idx}>
                   <VotedScoreBox>{el.voted}</VotedScoreBox>
-                  <RelatedLink>{el.title}</RelatedLink>
+                  <RelatedLink to="/questions">{el.title}</RelatedLink>
                 </ChainBox>
                 )
               })
