@@ -46,11 +46,13 @@ const Profile = () => {
         return cookie.memberId === memberId;
     };   
 
+  
+
     return (
         <Container>
             <Sidebar/>
             <Main>
-                <ProfileHeader userData={userData} />
+                <ProfileHeader userData={userData} changeNickname={changeNickname} />
                 <Wrapper>
                     <StyledButton className={clickedBtn === 0 ? "active" : null} onClick={(e) => setClickedBtn(0)}>Activity</StyledButton>
                     { 
