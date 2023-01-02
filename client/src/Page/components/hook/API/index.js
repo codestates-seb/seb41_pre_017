@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-const baseUrl = `http://localhost:8080/`;
+const baseUrl = `http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/`;
 
 export const useGet = (path, setLoading, dependencies) => {
     const [data, setData] = useState([]);

@@ -57,7 +57,7 @@ const EditPage = () => {
                 answerId: data.answerId,
                 content: TextToCode(Content),
             };
-            axios.patch(`http://localhost:8080/answers/${data.answerId}`, answerData);
+            axios.patch(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/answers/${data.answerId}`, answerData);
             navigate(-1);
         } else if (category === 'question') {
             const questionData = {
@@ -65,7 +65,7 @@ const EditPage = () => {
                 title: Title,
                 content: TextToCode(Content),
             };
-            axios.patch(`http://localhost:8080/questions/${data.questionId}`, questionData);
+            axios.patch(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/questions/${data.questionId}`, questionData);
             navigate(-1);
         }
     };

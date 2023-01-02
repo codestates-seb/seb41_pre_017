@@ -1,4 +1,4 @@
-export const TextToCode = (data) => {
+export const TextToCode = (data = '') => {
     let result = data;
     result = result
         .replaceAll(/(\n|\r\n)/g, '<br>')
@@ -35,7 +35,8 @@ export const TextToCode = (data) => {
     return result;
 };
 
-export const CodeToHtml = (data) => {
+export const CodeToHtml = (data = '') => {
+    console.log(data);
     let result = data;
     result = result
         .replaceAll(/(<orange>)/g, '<span class=OrangeText>')
@@ -52,7 +53,7 @@ export const CodeToHtml = (data) => {
     return result;
 };
 
-export const CodeToText = (data) => {
+export const CodeToText = (data = '') => {
     let result = data;
     result = result.replaceAll(/(<br>)/g, '\n');
 
