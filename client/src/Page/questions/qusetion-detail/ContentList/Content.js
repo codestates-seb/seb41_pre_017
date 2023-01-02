@@ -9,7 +9,7 @@ import axios from 'axios';
 import TimeForToday from '../../../components/function/timeForToday';
 import { useCookies } from 'react-cookie';
 import { ImgArr } from '../../../users/userList/ImgArr';
-
+import { useNavigate } from 'react-router-dom';
 const Post = styled.div`
     line-height: 30px;
     margin: 0px 20px;
@@ -81,6 +81,7 @@ const PostBody = styled.div`
 `;
 
 const Content = ({ category, data, dataHandler, answerData, index }) => {
+    const navigate = useNavigate();
     const Modified = TimeForToday(new Date(data.modifiedAt));
     // CodeToHtml = 코드화된 데이터 파싱
     const contentData = CodeToHtml(data.content);
@@ -88,7 +89,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
     const [cookie, removeCookie] = useCookies(['memberId']);
     const Delete = () => {
         if (category === 'question') {
-            axios.delete(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/questions/${data.questionId}`);
+            axios.delete(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/questions/${data.questionId}`).then(() => navigate('/questions'));
         } else if (category === 'answer') {
             axios.delete(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/answers/${data.answerId}`);
             const deleted = answerData.filter((el) => el !== data);
@@ -119,13 +120,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                                 >
                                     <Button>Edit</Button>
                                 </Link>
-                                {category === 'question' ? (
-                                    <Link to={'/questions'}>
-                                        <Button onClick={Delete}>Delete</Button>
-                                    </Link>
-                                ) : (
-                                    <Button onClick={Delete}>Delete</Button>
-                                )}
+                                {category === 'question' ? <Button onClick={Delete}>Delete</Button> : <Button onClick={Delete}>Delete</Button>}
                             </>
                         ) : null}
 
