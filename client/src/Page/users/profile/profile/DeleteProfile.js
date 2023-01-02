@@ -59,7 +59,6 @@ const DeleteProfile = () => {
         axios
             .delete(`http://localhost:8080/members/${cookie.memberId}`, {})
             .then((response) => {
-                console.log('삭제 요청 성공');
                 alert('계정이 삭제되었습니다');
                 removeCookie('memberId');
                 navigate('/');
