@@ -26,7 +26,7 @@ const StyledButton = styled.button`
         cursor: pointer;
 `
 
-const Settings = ({ settingBtn, setSettingBtn, userData, changeNickname, setChangeNickname }) => {
+const Settings = ({ HandleChange, settingBtn, setSettingBtn, userData, changeNickname, setChangeNickname }) => {
     return (
         <Wrapper>
             <div>
@@ -35,7 +35,7 @@ const Settings = ({ settingBtn, setSettingBtn, userData, changeNickname, setChan
             </div>
             <div>
                 {
-                    settingBtn === 0 ? <EditProfile userData={userData} changeNickname={changeNickname} setChangeNickname={setChangeNickname} /> : <DeleteProfile />
+                    settingBtn === 0 ? <EditProfile userData={userData} changeNickname={changeNickname} setChangeNickname={setChangeNickname} HandleChange={HandleChange} /> : <DeleteProfile />
                 }
             </div>
         </Wrapper>

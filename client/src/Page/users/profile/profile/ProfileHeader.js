@@ -38,8 +38,7 @@ const StyledHeader = styled.div`
   }
 `;
 
-
-const ProfileHeader = ({userData}) => {
+const ProfileHeader = ({userData,changeNickname}) => {
 
     const time = TimeForToday(new Date(userData.createdAt));
     const memberImg = ImgArr[userData.memberId];
@@ -48,7 +47,7 @@ const ProfileHeader = ({userData}) => {
         <StyledHeader>
             <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img" />
             <div className='userinfo'>
-                <p>{userData.nickname}</p>
+                <p>{changeNickname}</p>
                 <span><Created/>Member for {time}</span>
                 <span><Email/>{userData.email}</span>
             </div>
