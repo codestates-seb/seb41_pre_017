@@ -192,8 +192,8 @@ const SignUpForm = () => {
     // 이름
     const onChangeName = useCallback((event) => {
         setName(event.target.value);
-        if (event.target.value.length < 2 || event.target.value.length > 5) {
-            setNameMessage('2글자 이상 5글자 미만으로 입력해주세요.');
+        if (event.target.value.length < 2 || event.target.value.length > 10) {
+            setNameMessage('2글자 이상 10글자 미만으로 입력해주세요.');
             setIsName(false);
         } else {
             setNameMessage('올바른 이름 형식입니다.');

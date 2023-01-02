@@ -36,7 +36,6 @@ export const TextToCode = (data = '') => {
 };
 
 export const CodeToHtml = (data = '') => {
-    console.log(data);
     let result = data;
     result = result
         .replaceAll(/(<orange>)/g, '<span class=OrangeText>')
