@@ -8,6 +8,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import TimeForToday from '../../../components/function/timeForToday';
 import { useCookies } from 'react-cookie';
+import { ImgArr } from '../../../users/userList/ImgArr';
 
 const Post = styled.div`
     line-height: 30px;
@@ -137,7 +138,7 @@ const Content = ({ category, data, dataHandler, answerData, index }) => {
                         </div>
 
                         <UserContainer>
-                            <ProfileImg src={ProfilePicture} alt="profile" />
+                            <ProfileImg src={ImgArr[data.memberId] ? ImgArr[data.memberId] : ProfilePicture} alt="profile" />
                             <div>
                                 <Link to={`/users/${data.memberId}`}>
                                     <div>{data.nickname}</div>
