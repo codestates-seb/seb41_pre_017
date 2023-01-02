@@ -7,6 +7,7 @@ import useInput from '../components/hook/useInput';
 import { useCookies } from 'react-cookie';
 import { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
+import { ImgArr } from '../users/userList/ImgArr';
 
 const Container = styled.div`
     position: fixed;
@@ -108,6 +109,7 @@ function Header() {
     const [value, setValue, ChangeValue] = useInput();
     const [cookie, , removeCookie] = useCookies();
     const [userName, setUserName] = useState('');
+    const [dropdown, setDropdown] = useState(false);
     const navigate = useNavigate();
     const Submit = (e) => {
         if (e.key === 'Enter') {
@@ -115,6 +117,10 @@ function Header() {
             window.location.reload();
         }
     };
+
+    const handleDropdown = () => {
+        setDropdown(!dropdown);
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -143,19 +149,18 @@ function Header() {
             })
             .catch((err) => console.log(err.message));
     };
+
     return (
         <Container>
             <StyledHeader>
                 <StyledLink className="blue_button_hover" to="/">
                     <StyledLogo></StyledLogo>
                 </StyledLink>
-
                 <StyledBtn>Products</StyledBtn>
-
-                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
+                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} onClick={handleDropdown} />
                 {cookie.memberId !== undefined ? (
                     <UserInfoLink to={`/users/${cookie.memberId}`}>
-                        <img src="https://avatars.githubusercontent.com/u/110921798?s=400&v=4" alt="profile img" />
+                        <img src={ImgArr[cookie.memberId] ? ImgArr[cookie.memberId] : ImgArr[0]} alt="profile img" />
                     </UserInfoLink>
                 ) : null}
                 <Links>

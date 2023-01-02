@@ -9,8 +9,10 @@ const Wrapper = styled.div`
     display: flex;
 
     .menu .buttonClicked {
-        background-color: #F1F2F3;
+        background-color: var(--theme-Orange);
         box-shadow: 1px 0 5px -2px rgb(90, 90, 90);
+        color: white;
+        border-radius: 30px;
     }
 
     .menu button {

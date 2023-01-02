@@ -62,12 +62,12 @@ const VoteButton = styled.button`
 
 
 
-const Summary = ({profileAnswerData, profileQuestionData, data}) => {
-    const recentAnswer = profileAnswerData.filter((aData,idx) => {
+const Summary = ({profileAnswerData, profileQuestionData}) => {
+    const recentAnswer = profileAnswerData.filter((aData) => {
         return aData.answerId <= 5
     });
 
-    const recentQuestion = profileQuestionData.filter((qData,idx) => {
+    const recentQuestion = profileQuestionData.filter((qData) => {
         return qData.questionId <=5
     });
         

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import BlueBtn from "../../../components/style/blueBtn";
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { ImgArr } from "../../userList/ImgArr";
 
 const Wrapper = styled.div`
     display: flex;
@@ -44,10 +45,18 @@ const BorderBox = styled.div`
         }
         img {
             width: 128px;
+            height: 128px;
+            margin-bottom: 30px;
         }
+        
+        span {
+            color: red;
+            font-size: 12px;
+        }
+        
 `
 
-const EditProfile = ({setChangeNickname, changeNickname}) => {
+const EditProfile = ({setChangeNickname, changeNickname, userData}) => {
     const [cookie] = useCookies(['memberId']);
     
     const onChange = (e) => {
@@ -55,11 +64,18 @@ const EditProfile = ({setChangeNickname, changeNickname}) => {
     }
 
     const handleNickname = () => {
+        if(changeNickname.length <= 1 || changeNickname.length > 4) { 
+            alert("닉네임은 2글자 이상 5글자 미만으로 입력해주세요.")
+            return;
+        }
+        
         axios.patch(`http://localhost:8080/members/${cookie.memberId}`,{
             "nickname": changeNickname,   
         })
         .then(res => window.location.reload())
-        }
+    }
+
+    const memberImg = ImgArr[userData.memberId];
 
     return (
         <Wrapper>
@@ -67,13 +83,15 @@ const EditProfile = ({setChangeNickname, changeNickname}) => {
             <div className="border"></div>
             <strong>Public information</strong>
             <BorderBox>
-            <p>Profile image</p>
-                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcqGhr6%2FbtrCOJ8rccY%2FBhZcEFwWj2ccg2nmvfrvWk%2Fimg.png" alt="profile img"/>
-                <p>Display name</p>
-                <input onChange={onChange} value={changeNickname} />
-                <p>Location</p>
-                <input />
-            </BorderBox>
+                <p>Profile image</p>
+                <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img"/>
+                <label htmlFor="input">Change Nickname</label>
+                <input id="input"  onChange={onChange} value={changeNickname} placeholder={userData.nickname} />
+                { changeNickname.length >= 1 
+                ? <span>닉네임은 2글자 이상 5글자 미만으로 입력해주세요</span>
+                : null
+                }
+                </BorderBox>
             <BlueBtn onClick={handleNickname}>Save Profile</BlueBtn>
         </Wrapper>
     )
