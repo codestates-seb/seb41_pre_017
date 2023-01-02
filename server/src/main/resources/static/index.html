@@ -510,7 +510,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="prettyprint highlight nowrap"><code data-lang="http">POST /members HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 94
+Content-Length: 90
 Host: localhost:8080
 
 {
@@ -528,15 +528,15 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 211
+Content-Length: 200
 
 {
   "data" : {
     "memberId" : 1,
     "email" : "example@gmail.com",
     "nickname" : "닉네임",
-    "createdAt" : "2022-12-27T12:37:25.8114566",
-    "modifiedAt" : "2022-12-27T12:37:25.8114566"
+    "createdAt" : "2022-12-30T18:28:15.571309",
+    "modifiedAt" : "2022-12-30T18:28:15.57133"
   }
 }</code></pre>
 </div>
@@ -602,9 +602,9 @@ Content-Length: 211
   "data" : {
     "memberId" : 1,
     "email" : "example@gmail.com",
-    "nickname" : "�땳�꽕�엫",
-    "createdAt" : "2022-12-27T12:37:25.8114566",
-    "modifiedAt" : "2022-12-27T12:37:25.8114566"
+    "nickname" : "닉네임",
+    "createdAt" : "2022-12-30T18:28:15.571309",
+    "modifiedAt" : "2022-12-30T18:28:15.57133"
   }
 }</code></pre>
 </div>
@@ -678,7 +678,7 @@ Content-Length: 211
 <pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /members/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 83
+Content-Length: 79
 Host: localhost:8080
 
 {
@@ -696,15 +696,15 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 217
+Content-Length: 207
 
 {
   "data" : {
     "memberId" : 1,
     "email" : "sample@gmail.com",
     "nickname" : "바뀐 닉네임",
-    "createdAt" : "2022-12-27T12:37:25.7120698",
-    "modifiedAt" : "2022-12-27T12:37:25.7120698"
+    "createdAt" : "2022-12-30T18:28:15.481463",
+    "modifiedAt" : "2022-12-30T18:28:15.481889"
   }
 }</code></pre>
 </div>
@@ -784,9 +784,9 @@ Content-Length: 217
   "data" : {
     "memberId" : 1,
     "email" : "sample@gmail.com",
-    "nickname" : "諛붾�� �땳�꽕�엫",
-    "createdAt" : "2022-12-27T12:37:25.7120698",
-    "modifiedAt" : "2022-12-27T12:37:25.7120698"
+    "nickname" : "바뀐 닉네임",
+    "createdAt" : "2022-12-30T18:28:15.481463",
+    "modifiedAt" : "2022-12-30T18:28:15.481889"
   }
 }</code></pre>
 </div>
@@ -864,15 +864,15 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 210
+Content-Length: 200
 
 {
   "data" : {
     "memberId" : 1,
     "email" : "sample@gmail.com",
     "nickname" : "닉네임",
-    "createdAt" : "2022-12-27T12:37:25.7552509",
-    "modifiedAt" : "2022-12-27T12:37:25.7552509"
+    "createdAt" : "2022-12-30T18:28:15.520618",
+    "modifiedAt" : "2022-12-30T18:28:15.520638"
   }
 }</code></pre>
 </div>
@@ -916,9 +916,9 @@ Content-Length: 210
   "data" : {
     "memberId" : 1,
     "email" : "sample@gmail.com",
-    "nickname" : "�땳�꽕�엫",
-    "createdAt" : "2022-12-27T12:37:25.7552509",
-    "modifiedAt" : "2022-12-27T12:37:25.7552509"
+    "nickname" : "닉네임",
+    "createdAt" : "2022-12-30T18:28:15.520618",
+    "modifiedAt" : "2022-12-30T18:28:15.520638"
   }
 }</code></pre>
 </div>
@@ -996,69 +996,69 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 2078
+Content-Length: 2009
 
 {
   "data" : [ {
     "memberId" : 1,
     "email" : "sample1@gmail.com",
     "nickname" : "닉네임1",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540688",
+    "modifiedAt" : "2022-12-30T18:28:15.540714"
   }, {
     "memberId" : 2,
     "email" : "sample2@gmail.com",
     "nickname" : "닉네임2",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540725",
+    "modifiedAt" : "2022-12-30T18:28:15.540732"
   }, {
     "memberId" : 3,
     "email" : "sample3@gmail.com",
     "nickname" : "닉네임3",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540742",
+    "modifiedAt" : "2022-12-30T18:28:15.540749"
   }, {
     "memberId" : 4,
     "email" : "sample4@gmail.com",
     "nickname" : "닉네임4",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540758",
+    "modifiedAt" : "2022-12-30T18:28:15.540764"
   }, {
     "memberId" : 5,
     "email" : "sample5@gmail.com",
     "nickname" : "닉네임5",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540773",
+    "modifiedAt" : "2022-12-30T18:28:15.540779"
   }, {
     "memberId" : 6,
     "email" : "sample6@gmail.com",
     "nickname" : "닉네임6",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540789",
+    "modifiedAt" : "2022-12-30T18:28:15.540801"
   }, {
     "memberId" : 7,
     "email" : "sample7@gmail.com",
     "nickname" : "닉네임7",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.54081",
+    "modifiedAt" : "2022-12-30T18:28:15.540818"
   }, {
     "memberId" : 8,
     "email" : "sample8@gmail.com",
     "nickname" : "닉네임8",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540827",
+    "modifiedAt" : "2022-12-30T18:28:15.540833"
   }, {
     "memberId" : 9,
     "email" : "sample9@gmail.com",
     "nickname" : "닉네임9",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540841",
+    "modifiedAt" : "2022-12-30T18:28:15.540848"
   }, {
     "memberId" : 10,
     "email" : "sample10@gmail.com",
     "nickname" : "닉네임10",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "createdAt" : "2022-12-30T18:28:15.540858",
+    "modifiedAt" : "2022-12-30T18:28:15.540864"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -1112,63 +1112,63 @@ Content-Length: 2078
   "data" : [ {
     "memberId" : 1,
     "email" : "sample1@gmail.com",
-    "nickname" : "�땳�꽕�엫1",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임1",
+    "createdAt" : "2022-12-30T18:28:15.540688",
+    "modifiedAt" : "2022-12-30T18:28:15.540714"
   }, {
     "memberId" : 2,
     "email" : "sample2@gmail.com",
-    "nickname" : "�땳�꽕�엫2",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임2",
+    "createdAt" : "2022-12-30T18:28:15.540725",
+    "modifiedAt" : "2022-12-30T18:28:15.540732"
   }, {
     "memberId" : 3,
     "email" : "sample3@gmail.com",
-    "nickname" : "�땳�꽕�엫3",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임3",
+    "createdAt" : "2022-12-30T18:28:15.540742",
+    "modifiedAt" : "2022-12-30T18:28:15.540749"
   }, {
     "memberId" : 4,
     "email" : "sample4@gmail.com",
-    "nickname" : "�땳�꽕�엫4",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임4",
+    "createdAt" : "2022-12-30T18:28:15.540758",
+    "modifiedAt" : "2022-12-30T18:28:15.540764"
   }, {
     "memberId" : 5,
     "email" : "sample5@gmail.com",
-    "nickname" : "�땳�꽕�엫5",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임5",
+    "createdAt" : "2022-12-30T18:28:15.540773",
+    "modifiedAt" : "2022-12-30T18:28:15.540779"
   }, {
     "memberId" : 6,
     "email" : "sample6@gmail.com",
-    "nickname" : "�땳�꽕�엫6",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임6",
+    "createdAt" : "2022-12-30T18:28:15.540789",
+    "modifiedAt" : "2022-12-30T18:28:15.540801"
   }, {
     "memberId" : 7,
     "email" : "sample7@gmail.com",
-    "nickname" : "�땳�꽕�엫7",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임7",
+    "createdAt" : "2022-12-30T18:28:15.54081",
+    "modifiedAt" : "2022-12-30T18:28:15.540818"
   }, {
     "memberId" : 8,
     "email" : "sample8@gmail.com",
-    "nickname" : "�땳�꽕�엫8",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임8",
+    "createdAt" : "2022-12-30T18:28:15.540827",
+    "modifiedAt" : "2022-12-30T18:28:15.540833"
   }, {
     "memberId" : 9,
     "email" : "sample9@gmail.com",
-    "nickname" : "�땳�꽕�엫9",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임9",
+    "createdAt" : "2022-12-30T18:28:15.540841",
+    "modifiedAt" : "2022-12-30T18:28:15.540848"
   }, {
     "memberId" : 10,
     "email" : "sample10@gmail.com",
-    "nickname" : "�땳�꽕�엫10",
-    "createdAt" : "2022-12-27T12:37:25.778846",
-    "modifiedAt" : "2022-12-27T12:37:25.778846"
+    "nickname" : "닉네임10",
+    "createdAt" : "2022-12-30T18:28:15.540858",
+    "modifiedAt" : "2022-12-30T18:28:15.540864"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -1341,7 +1341,7 @@ Vary: Access-Control-Request-Headers</code></pre>
 <pre class="prettyprint highlight nowrap"><code data-lang="http">POST /questions HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 90
+Content-Length: 86
 Host: localhost:8080
 
 {
@@ -1359,7 +1359,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 270
+Content-Length: 258
 
 {
   "data" : {
@@ -1368,8 +1368,8 @@ Content-Length: 270
     "nickname" : "nickname1",
     "title" : "제목입니다.",
     "content" : "본문입니다.",
-    "createdAt" : "2022-12-27T12:37:26.4888804",
-    "modifiedAt" : "2022-12-27T12:37:26.4888804"
+    "createdAt" : "2022-12-30T18:28:16.113593",
+    "modifiedAt" : "2022-12-30T18:28:16.113615"
   }
 }</code></pre>
 </div>
@@ -1436,10 +1436,10 @@ Content-Length: 270
     "questionId" : 1,
     "memberId" : 1,
     "nickname" : "nickname1",
-    "title" : "�젣紐⑹엯�땲�떎.",
-    "content" : "蹂몃Ц�엯�땲�떎.",
-    "createdAt" : "2022-12-27T12:37:26.4888804",
-    "modifiedAt" : "2022-12-27T12:37:26.4888804"
+    "title" : "제목입니다.",
+    "content" : "본문입니다.",
+    "createdAt" : "2022-12-30T18:28:16.113593",
+    "modifiedAt" : "2022-12-30T18:28:16.113615"
   }
 }</code></pre>
 </div>
@@ -1523,7 +1523,7 @@ Content-Length: 270
 <pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /questions/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 112
+Content-Length: 108
 Host: localhost:8080
 
 {
@@ -1541,7 +1541,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 288
+Content-Length: 278
 
 {
   "data" : {
@@ -1550,8 +1550,8 @@ Content-Length: 288
     "nickname" : "nickname1",
     "title" : "수정한 제목입니다.",
     "content" : "수정한 본문입니다.",
-    "createdAt" : "2022-12-27T12:37:26.45199",
-    "modifiedAt" : "2022-12-27T12:37:26.4529895"
+    "createdAt" : "2022-12-30T18:28:16.083121",
+    "modifiedAt" : "2022-12-30T18:28:16.083568"
   }
 }</code></pre>
 </div>
@@ -1632,10 +1632,10 @@ Content-Length: 288
     "questionId" : 1,
     "memberId" : 1,
     "nickname" : "nickname1",
-    "title" : "�닔�젙�븳 �젣紐⑹엯�땲�떎.",
-    "content" : "�닔�젙�븳 蹂몃Ц�엯�땲�떎.",
-    "createdAt" : "2022-12-27T12:37:26.45199",
-    "modifiedAt" : "2022-12-27T12:37:26.4529895"
+    "title" : "수정한 제목입니다.",
+    "content" : "수정한 본문입니다.",
+    "createdAt" : "2022-12-30T18:28:16.083121",
+    "modifiedAt" : "2022-12-30T18:28:16.083568"
   }
 }</code></pre>
 </div>
@@ -1723,7 +1723,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 290
+Content-Length: 278
 
 {
   "data" : {
@@ -1732,8 +1732,8 @@ Content-Length: 290
     "nickname" : "nickname1",
     "title" : "조회한 질문의 제목",
     "content" : "조회한 질문의 본문",
-    "createdAt" : "2022-12-27T12:37:26.5235105",
-    "modifiedAt" : "2022-12-27T12:37:26.5235105"
+    "createdAt" : "2022-12-30T18:28:16.142409",
+    "modifiedAt" : "2022-12-30T18:28:16.142431"
   }
 }</code></pre>
 </div>
@@ -1778,10 +1778,10 @@ Content-Length: 290
     "questionId" : 1,
     "memberId" : 1,
     "nickname" : "nickname1",
-    "title" : "議고쉶�븳 吏덈Ц�쓽 �젣紐�",
-    "content" : "議고쉶�븳 吏덈Ц�쓽 蹂몃Ц",
-    "createdAt" : "2022-12-27T12:37:26.5235105",
-    "modifiedAt" : "2022-12-27T12:37:26.5235105"
+    "title" : "조회한 질문의 제목",
+    "content" : "조회한 질문의 본문",
+    "createdAt" : "2022-12-30T18:28:16.142409",
+    "modifiedAt" : "2022-12-30T18:28:16.142431"
   }
 }</code></pre>
 </div>
@@ -1869,7 +1869,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 2478
+Content-Length: 2389
 
 {
   "data" : [ {
@@ -1878,80 +1878,80 @@ Content-Length: 2478
     "nickname" : "nickname1",
     "title" : "제목1",
     "content" : "본문1",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027483",
+    "modifiedAt" : "2022-12-30T18:28:16.027504"
   }, {
     "questionId" : 2,
     "memberId" : 2,
     "nickname" : "nickname2",
     "title" : "제목2",
     "content" : "본문2",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027529",
+    "modifiedAt" : "2022-12-30T18:28:16.027535"
   }, {
     "questionId" : 3,
     "memberId" : 3,
     "nickname" : "nickname3",
     "title" : "제목3",
     "content" : "본문3",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027544",
+    "modifiedAt" : "2022-12-30T18:28:16.027549"
   }, {
     "questionId" : 4,
     "memberId" : 1,
     "nickname" : "nickname1",
     "title" : "제목4",
     "content" : "본문4",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027557",
+    "modifiedAt" : "2022-12-30T18:28:16.027562"
   }, {
     "questionId" : 5,
     "memberId" : 4,
     "nickname" : "nickname4",
     "title" : "제목5",
     "content" : "본문5",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.02757",
+    "modifiedAt" : "2022-12-30T18:28:16.027576"
   }, {
     "questionId" : 6,
     "memberId" : 1,
     "nickname" : "nickname1",
     "title" : "제목6",
     "content" : "본문6",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027584",
+    "modifiedAt" : "2022-12-30T18:28:16.027589"
   }, {
     "questionId" : 7,
     "memberId" : 5,
     "nickname" : "nickname5",
     "title" : "제목7",
     "content" : "본문7",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027596",
+    "modifiedAt" : "2022-12-30T18:28:16.027602"
   }, {
     "questionId" : 8,
     "memberId" : 3,
     "nickname" : "nickname3",
     "title" : "제목8",
     "content" : "본문8",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027609",
+    "modifiedAt" : "2022-12-30T18:28:16.027615"
   }, {
     "questionId" : 9,
     "memberId" : 6,
     "nickname" : "nickname6",
     "title" : "제목9",
     "content" : "본문9",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027622",
+    "modifiedAt" : "2022-12-30T18:28:16.027628"
   }, {
     "questionId" : 10,
     "memberId" : 7,
     "nickname" : "nickname7",
     "title" : "제목10",
     "content" : "본문10",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "createdAt" : "2022-12-30T18:28:16.027639",
+    "modifiedAt" : "2022-12-30T18:28:16.027645"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -2006,82 +2006,82 @@ Content-Length: 2478
     "questionId" : 1,
     "memberId" : 1,
     "nickname" : "nickname1",
-    "title" : "�젣紐�1",
-    "content" : "蹂몃Ц1",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목1",
+    "content" : "본문1",
+    "createdAt" : "2022-12-30T18:28:16.027483",
+    "modifiedAt" : "2022-12-30T18:28:16.027504"
   }, {
     "questionId" : 2,
     "memberId" : 2,
     "nickname" : "nickname2",
-    "title" : "�젣紐�2",
-    "content" : "蹂몃Ц2",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목2",
+    "content" : "본문2",
+    "createdAt" : "2022-12-30T18:28:16.027529",
+    "modifiedAt" : "2022-12-30T18:28:16.027535"
   }, {
     "questionId" : 3,
     "memberId" : 3,
     "nickname" : "nickname3",
-    "title" : "�젣紐�3",
-    "content" : "蹂몃Ц3",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목3",
+    "content" : "본문3",
+    "createdAt" : "2022-12-30T18:28:16.027544",
+    "modifiedAt" : "2022-12-30T18:28:16.027549"
   }, {
     "questionId" : 4,
     "memberId" : 1,
     "nickname" : "nickname1",
-    "title" : "�젣紐�4",
-    "content" : "蹂몃Ц4",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목4",
+    "content" : "본문4",
+    "createdAt" : "2022-12-30T18:28:16.027557",
+    "modifiedAt" : "2022-12-30T18:28:16.027562"
   }, {
     "questionId" : 5,
     "memberId" : 4,
     "nickname" : "nickname4",
-    "title" : "�젣紐�5",
-    "content" : "蹂몃Ц5",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목5",
+    "content" : "본문5",
+    "createdAt" : "2022-12-30T18:28:16.02757",
+    "modifiedAt" : "2022-12-30T18:28:16.027576"
   }, {
     "questionId" : 6,
     "memberId" : 1,
     "nickname" : "nickname1",
-    "title" : "�젣紐�6",
-    "content" : "蹂몃Ц6",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목6",
+    "content" : "본문6",
+    "createdAt" : "2022-12-30T18:28:16.027584",
+    "modifiedAt" : "2022-12-30T18:28:16.027589"
   }, {
     "questionId" : 7,
     "memberId" : 5,
     "nickname" : "nickname5",
-    "title" : "�젣紐�7",
-    "content" : "蹂몃Ц7",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목7",
+    "content" : "본문7",
+    "createdAt" : "2022-12-30T18:28:16.027596",
+    "modifiedAt" : "2022-12-30T18:28:16.027602"
   }, {
     "questionId" : 8,
     "memberId" : 3,
     "nickname" : "nickname3",
-    "title" : "�젣紐�8",
-    "content" : "蹂몃Ц8",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목8",
+    "content" : "본문8",
+    "createdAt" : "2022-12-30T18:28:16.027609",
+    "modifiedAt" : "2022-12-30T18:28:16.027615"
   }, {
     "questionId" : 9,
     "memberId" : 6,
     "nickname" : "nickname6",
-    "title" : "�젣紐�9",
-    "content" : "蹂몃Ц9",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목9",
+    "content" : "본문9",
+    "createdAt" : "2022-12-30T18:28:16.027622",
+    "modifiedAt" : "2022-12-30T18:28:16.027628"
   }, {
     "questionId" : 10,
     "memberId" : 7,
     "nickname" : "nickname7",
-    "title" : "�젣紐�10",
-    "content" : "蹂몃Ц10",
-    "createdAt" : "2022-12-27T12:37:26.369083",
-    "modifiedAt" : "2022-12-27T12:37:26.369083"
+    "title" : "제목10",
+    "content" : "본문10",
+    "createdAt" : "2022-12-30T18:28:16.027639",
+    "modifiedAt" : "2022-12-30T18:28:16.027645"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -2264,7 +2264,7 @@ Vary: Access-Control-Request-Headers</code></pre>
 <pre class="prettyprint highlight nowrap"><code data-lang="http">POST /answers HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 69
+Content-Length: 65
 Host: localhost:8080
 
 {
@@ -2282,7 +2282,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 247
+Content-Length: 235
 
 {
   "data" : {
@@ -2291,8 +2291,8 @@ Content-Length: 247
     "memberId" : 1,
     "nickname" : "nickname1",
     "questionId" : 1,
-    "createdAt" : "2022-12-27T12:37:25.0928313",
-    "modifiedAt" : "2022-12-27T12:37:25.0928313"
+    "createdAt" : "2022-12-30T18:28:14.901356",
+    "modifiedAt" : "2022-12-30T18:28:14.901382"
   }
 }</code></pre>
 </div>
@@ -2361,8 +2361,8 @@ Content-Length: 247
     "memberId" : 1,
     "nickname" : "nickname1",
     "questionId" : 1,
-    "createdAt" : "2022-12-27T12:37:25.0928313",
-    "modifiedAt" : "2022-12-27T12:37:25.0928313"
+    "createdAt" : "2022-12-30T18:28:14.901356",
+    "modifiedAt" : "2022-12-30T18:28:14.901382"
   }
 }</code></pre>
 </div>
@@ -2445,7 +2445,7 @@ Content-Length: 247
 <pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /answers/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 48
+Content-Length: 45
 Host: localhost:8080
 
 {
@@ -2462,7 +2462,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 247
+Content-Length: 235
 
 {
   "data" : {
@@ -2471,8 +2471,8 @@ Content-Length: 247
     "memberId" : 1,
     "nickname" : "nickname1",
     "questionId" : 1,
-    "createdAt" : "2022-12-27T12:37:25.2152135",
-    "modifiedAt" : "2022-12-27T12:37:25.2152135"
+    "createdAt" : "2022-12-30T18:28:15.013586",
+    "modifiedAt" : "2022-12-30T18:28:15.013609"
   }
 }</code></pre>
 </div>
@@ -2553,8 +2553,8 @@ Content-Length: 247
     "memberId" : 1,
     "nickname" : "nickname1",
     "questionId" : 1,
-    "createdAt" : "2022-12-27T12:37:25.2152135",
-    "modifiedAt" : "2022-12-27T12:37:25.2152135"
+    "createdAt" : "2022-12-30T18:28:15.013586",
+    "modifiedAt" : "2022-12-30T18:28:15.013609"
   }
 }</code></pre>
 </div>
@@ -2642,7 +2642,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 586
+Content-Length: 562
 
 {
   "data" : [ {
@@ -2651,16 +2651,16 @@ Content-Length: 586
     "memberId" : 1,
     "nickname" : "nickname1",
     "questionId" : 1,
-    "createdAt" : "2022-12-27T12:37:24.811107",
-    "modifiedAt" : "2022-12-27T12:37:24.811107"
+    "createdAt" : "2022-12-30T18:28:14.662043",
+    "modifiedAt" : "2022-12-30T18:28:14.662068"
   }, {
     "answerId" : 2,
     "content" : "answer2",
     "memberId" : 2,
     "nickname" : "nickname2",
     "questionId" : 1,
-    "createdAt" : "2022-12-27T12:37:24.811107",
-    "modifiedAt" : "2022-12-27T12:37:24.811107"
+    "createdAt" : "2022-12-30T18:28:14.662081",
+    "modifiedAt" : "2022-12-30T18:28:14.662089"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -2736,16 +2736,16 @@ Content-Length: 586
     "memberId" : 1,
     "nickname" : "nickname1",
     "questionId" : 1,
-    "createdAt" : "2022-12-27T12:37:24.811107",
-    "modifiedAt" : "2022-12-27T12:37:24.811107"
+    "createdAt" : "2022-12-30T18:28:14.662043",
+    "modifiedAt" : "2022-12-30T18:28:14.662068"
   }, {
     "answerId" : 2,
     "content" : "answer2",
     "memberId" : 2,
     "nickname" : "nickname2",
     "questionId" : 1,
-    "createdAt" : "2022-12-27T12:37:24.811107",
-    "modifiedAt" : "2022-12-27T12:37:24.811107"
+    "createdAt" : "2022-12-30T18:28:14.662081",
+    "modifiedAt" : "2022-12-30T18:28:14.662089"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -2907,7 +2907,7 @@ Vary: Access-Control-Request-Headers</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2022-12-27 12:05:25 +0900
+Last updated 2022-12-27 09:14:03 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

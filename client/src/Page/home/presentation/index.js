@@ -7,6 +7,12 @@ const Main = styled.main`
     margin: 0;
     height: 100%;
     text-align: center;
+`;
+
+const Section = styled.section`
+    background: url(${BackImg}) fixed;
+    background-size: 100%;
+    height: 800px;
 
     h1 {
         font-size: 6em;
@@ -38,12 +44,6 @@ const Main = styled.main`
             opacity: 0;
         }
     }
-`;
-
-const Section = styled.section`
-    background: url(${BackImg}) fixed;
-    background-size: 100%;
-    height: 800px;
     ::after {
         width: 100%;
         height: 100%;

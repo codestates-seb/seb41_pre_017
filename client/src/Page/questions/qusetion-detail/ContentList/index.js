@@ -3,6 +3,9 @@ import InputBox from '../../../components/function/InputBox';
 import useInput from '../../../components/hook/useInput';
 import Content from './Content';
 import axios from 'axios';
+import { TextToCode } from '../../../components/function/textConverter';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Section = styled.section`
     max-width: 1100px;
@@ -29,15 +32,24 @@ const EnterAnswer = styled.div`
 const ContentList = ({ dataList, dataHandler }) => {
     const questionData = dataList.questionData;
     const answerData = dataList.answerData;
+    const [cookie] = useCookies(['memberId']);
+
+    const navigator = useNavigate();
 
     const sendToServer = (data) => {
+        if (cookie.memberId === undefined) {
+            alert('로그인을 해주세요');
+            navigator('/users/login');
+            return;
+        }
+
         const answer = {
-            content: data,
+            content: TextToCode(data),
             questionId: questionData.questionId,
-            memberId: 1,
+            memberId: cookie.memberId,
         };
         axios
-            .post(`http://localhost:8080/answers/`, answer)
+            .post(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/answers/`, answer)
             .then((res) => dataHandler.setAnswerData([...answerData, res.data.data]))
             .catch((error) => console.error(error));
     };

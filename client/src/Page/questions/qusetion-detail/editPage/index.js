@@ -5,7 +5,7 @@ import InputBox from '../../../components/function/InputBox';
 import useInput from '../../../components/hook/useInput';
 import BlueBtn from '../../../components/style/blueBtn';
 import axios from 'axios';
-
+import { TextToCode, CodeToText } from '../../../components/function/textConverter';
 const ContentLayout = styled.div`
     display: flex;
 `;
@@ -48,29 +48,28 @@ const EditPage = () => {
     const data = useLocation().state.data;
     const category = useLocation().state.category;
     const navigate = useNavigate();
-    console.log(data.questionId);
-    console.log(category);
+    const [Content, setContent, ChangeContent] = useInput(CodeToText(data.content));
+    const [Title, setTitle, ChangeTitle] = useInput(data.title);
+
     const sendToServer = () => {
         if (category === 'answer') {
             const answerData = {
                 answerId: data.answerId,
-                content: Content,
+                content: TextToCode(Content),
             };
-            axios.patch(`http://localhost:8080/answers/${data.answerId}`, answerData);
+            axios.patch(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/answers/${data.answerId}`, answerData);
             navigate(-1);
         } else if (category === 'question') {
             const questionData = {
                 questionId: data.questionId,
                 title: Title,
-                content: Content,
+                content: TextToCode(Content),
             };
-            axios.patch(`http://localhost:8080/questions/${data.questionId}`, questionData);
+            axios.patch(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/questions/${data.questionId}`, questionData);
             navigate(-1);
         }
     };
 
-    const [Content, setContent, ChangeContent] = useInput(data.content);
-    const [Title, setTitle, ChangeTitle] = useInput(data.title);
     return (
         <Container>
             <Sidebar />

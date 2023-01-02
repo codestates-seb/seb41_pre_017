@@ -1,7 +1,14 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BlueBtn from '../components/style/blueBtn';
 import { ReactComponent as Logo } from '../../Img/logo.svg';
+import SearchInput from '../components/style/SearchInput';
+import useInput from '../components/hook/useInput';
+import { useCookies } from 'react-cookie';
+import { Fragment } from 'react';
+import axios from 'axios';
+import { ImgArr } from '../users/userList/ImgArr';
+import defaultImg from '../questions/img/unnamed.png'
 
 const Container = styled.div`
     position: fixed;
@@ -10,7 +17,7 @@ const Container = styled.div`
     top: 0px;
     border-top: 3px solid var(--theme-Orange);
     background-color: #ffffff;
-    z-index: 1; // 화면 겹쳤을때 화면 최상위로 끌어올림
+    z-index: 999; // 화면 겹쳤을때 화면 최상위로 끌어올림
 `;
 
 const StyledHeader = styled.header`
@@ -30,12 +37,20 @@ const StyledLogo = styled(Logo)`
     padding-top: 10px;
 `;
 
-const SearchInput = styled.input`
-    flex-grow: 1;
-    height: 30px;
-    border-radius: 3px;
-    border: 1px solid var(--theme-searchBar-border);
-    margin: 0px 10px 0 10px;
+const UserInfoLink = styled(Link)`
+    img {
+        width: 40px;
+        height: 40px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+
+        :hover {
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+            -webkit-transition: 0.3s ease-in-out;
+            transition: 0.3s ease-in-out;
+        }
+    }
 `;
 
 const ProfileLink = styled(Link)`
@@ -48,6 +63,7 @@ const StyledBtn = styled.button`
     padding-left: 10px;
     padding-right: 10px;
     background-color: white;
+
     :hover {
         background: var(--theme-button-hover-background-color);
         color: var(--theme-button-hover-color);
@@ -59,6 +75,7 @@ const StyledLink = styled(Link)`
         background: var(--theme-button-hover-background-color);
         color: var(--theme-button-hover-color);
     }
+
     height: 55px;
 `;
 
@@ -75,12 +92,14 @@ const Links = styled.ul`
     ::-webkit-scrollbar {
         height: 10px; // 스크롤바의 크기
     }
+
     ::-webkit-scrollbar-thumb {
         height: 30%; /* 스크롤바의 길이 */
         background: #217af4; /* 스크롤바의 색상 */
 
         border-radius: 10px;
     }
+
     // 스크롤바 뒷 배경 색상
     ::-webkit-scrollbar-track {
         background: rgba(33, 122, 244, 0.1);
@@ -88,26 +107,64 @@ const Links = styled.ul`
 `;
 
 function Header() {
+    const [value, setValue, ChangeValue] = useInput();
+    const [cookie, , removeCookie] = useCookies();
+    const navigate = useNavigate();
+    const Submit = (e) => {
+        if (e.key === 'Enter') {
+            navigate('/questions', { state: value });
+        }
+    };
+
+    const logoutHandler = () => {
+        axios
+            .post('http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/users/logout')
+            .then((res) => {
+                removeCookie('memberId');
+            })
+            .catch((err) => console.log(err.message));
+    };
+
+    const memberImg = () => {
+        if(cookie.memberId > 21 ) return ImgArr[0];
+        else return ImgArr[cookie.memberId];
+    }
+
     return (
         <Container>
             <StyledHeader>
                 <StyledLink className="blue_button_hover" to="/">
                     <StyledLogo></StyledLogo>
                 </StyledLink>
-
                 <StyledBtn>Products</StyledBtn>
-                <SearchInput type="text" placeholder="  Search..." />
+                <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
+                {cookie.memberId !== undefined ? (
+                    <UserInfoLink to={`/users/${cookie.memberId}`}>
+                        <img src={ImgArr[cookie.memberId] ? memberImg() : defaultImg} alt="profile img" />
+                    </UserInfoLink>
+                ) : null}
                 <Links>
-                    <li>
-                        <ProfileLink to="/users/login">
-                            <BlueBtn>Log in</BlueBtn>
-                        </ProfileLink>
-                    </li>
-                    <li>
-                        <ProfileLink to="/users/signUp" className="profile">
-                            <BlueBtn>Sign Up</BlueBtn>
-                        </ProfileLink>
-                    </li>
+                    {cookie.memberId === undefined ? (
+                        <Fragment>
+                            <li>
+                                <ProfileLink to="/users/login">
+                                    <BlueBtn>Log in</BlueBtn>
+                                </ProfileLink>
+                            </li>
+                            <li>
+                                <ProfileLink to="/users/signUp" className="profile">
+                                    <BlueBtn>Sign Up</BlueBtn>
+                                </ProfileLink>
+                            </li>
+                        </Fragment>
+                    ) : null}
+                    {cookie.memberId !== undefined ? (
+                        <li>
+                            <ProfileLink to={'/'}>
+                                <BlueBtn onClick={logoutHandler}>Log Out</BlueBtn>
+                            </ProfileLink>
+                        </li>
+                    ) : null}
                 </Links>
             </StyledHeader>
         </Container>

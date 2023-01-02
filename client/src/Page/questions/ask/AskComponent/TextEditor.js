@@ -59,19 +59,19 @@ const TextArea = styled.textarea`
 
     :focus {
     outline: 1px solid #6BBBF7;
-    box-shadow: 3px 3px 30px rgb(193,213,227), -3px -3px 30px rgb(193,213,227);
+    box-shadow: 1px 1px 10px rgb(193,213,227), -1px -1px 10px rgb(193,213,227);
     }
-`
+`;
 
 const Preview = styled.div`
     padding: 10px;
     line-height: 25px; // 텍스트 줄간격(행간) 조절
 `;
 
-const TextEditor = ({ data, handleHide, handler, secondInput, problem, setProblem }) => {
+const TextEditor = ({ data, handleHide, secondInput, problem, setProblem }) => {
     const TextAreaFocus = useRef(null); // TextArea포커스 기능을 위한
     const [selectBtn, isSelectBtn] = useState(); //버튼 선택중
-  
+    const [PreviewText, setPreviewText] = useState(problem);
     // 텍스트를 html 로 바꾸기 위한
     const [isBold, setBold] = useState(false);
     const [isItalic, setItalic] = useState(false);
@@ -82,48 +82,42 @@ const TextEditor = ({ data, handleHide, handler, secondInput, problem, setProble
         setBold((current) => !current);
         if (isBold) {
             setProblem(problem + '</b>');
-            handler.setProblem(handler.problem + '</b>');
             isSelectBtn(null);
         } else {
             setProblem(problem + '<b>');
-            handler.setProblem(handler.problem + '<b>');
             isSelectBtn('Bold');
         }
         // TextAreaFocus.current.focus();
-        secondInput.current.focus()
+        secondInput.current.focus();
     };
     const Italic = () => {
         setItalic((current) => !current);
         if (isItalic) {
             setProblem(problem + '</i>');
-            handler.setProblem(handler.problem + '</i>');
             isSelectBtn(null);
         } else {
             setProblem(problem + '<i>');
-            handler.setProblem(handler.problem + '<i>');
             isSelectBtn('Italic');
         }
         // TextAreaFocus.current.focus();
-        secondInput.current.focus()
+        secondInput.current.focus();
     };
     const InlineCode = () => {
         setInlineCode((current) => !current);
         if (isInlineCode) {
             setProblem(problem + '</code>');
-            handler.setProblem(handler.problem + '</code>');
             isSelectBtn(null);
         } else {
             setProblem(problem + '<code>');
-            handler.setProblem(handler.problem + '<code>');
             isSelectBtn('InlineCode');
         }
         // TextAreaFocus.current.focus();
-        secondInput.current.focus()
+        secondInput.current.focus();
     };
     // 정규식으로 줄바꿈 태그 넣는 부분
     const handleProblem = (e) => {
-        setProblem(TextToCode(e.target.value));
-        handler.setProblem(e.target.value);
+        setPreviewText(TextToCode(e.target.value));
+        setProblem(e.target.value);
     };
 
     return (
@@ -169,16 +163,8 @@ const TextEditor = ({ data, handleHide, handler, secondInput, problem, setProble
                     </a>
                 </button>
             </Buttons>
-            <TextArea
-                ref={secondInput}
-                onFocus={handleHide}
-                onChange={handleProblem}
-                id={data.id} placeholder={data.placeholder}
-                value={handler.problem}
-            ></TextArea>
-            {
-                problem ? <Preview dangerouslySetInnerHTML={{ __html: CodeToHtml(problem) }} /> : null
-            }
+            <TextArea ref={secondInput} onFocus={handleHide} onChange={handleProblem} id={data.id} placeholder={data.placeholder} value={problem}></TextArea>
+            {problem ? <Preview dangerouslySetInnerHTML={{ __html: CodeToHtml(PreviewText) }} /> : null}
         </Wrapper>
     );
 };

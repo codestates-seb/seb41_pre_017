@@ -2,17 +2,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import { useCookies } from 'react-cookie';
 /* 사이드바 입니다 */
 const Aside = styled.aside`
-  width: 200px;
-  display: inline-block;
-  margin-left: 40px;
-  border-right: 1px solid var(--theme-border);
+    width: 200px;
+    display: inline-block;
+    margin-left: 40px;
+    border-right: 1px solid var(--theme-border);
 
-  @media screen and (max-width: 640px) {
-    display: none;
-  }
+    @media screen and (max-width: 640px) {
+        display: none;
+    }
 `;
 
 const Nav = styled.nav`
@@ -60,7 +60,7 @@ const SelectLink = styled(Link)`
 export function Sidebar() {
     const location = useLocation(); //현재 url주소 불러옴
     const [select, isSelect] = useState();
-
+    const [cookie] = useCookies(['memberId']);
     //url 주소 바뀔때마다 select에 할당하여 url주소 기준으로 탭선택 이펙트 구현
     useEffect(() => {
         isSelect(location.pathname.split('/')[1]);
@@ -82,12 +82,18 @@ export function Sidebar() {
                                 Questions
                             </StyledLink>
                         )}
-                        <StyledLink className="subNav" to="/">
-                            Tags
+                        <StyledLink className="subNav" to="/users">
+                            Users
                         </StyledLink>
-                        <StyledLink className="subNav" to="/">
-                            Companies
-                        </StyledLink>
+                        {cookie.memberId ? (
+                            <StyledLink className="subNav" to={`/users/${cookie.memberId}`}>
+                                profile
+                            </StyledLink>
+                        ) : (
+                            <StyledLink className="subNav" to={`/users/login`}>
+                                profile
+                            </StyledLink>
+                        )}
                     </NavList>
                 </NavList>
             </Nav>
@@ -111,18 +117,19 @@ export const Container = styled.div`
 
 // 컨텐츠가 들어올 영역입니다
 export const Main = styled.main`
-  max-width: 1100px; // 최대 너비를 지정  -> 이 값 이상으로는 안커짐
-  width: calc(100% - 200px); // css 함수 너비 100%에서 164px만큼 크기를 줄임(여백을 위해) https://developer.mozilla.org/ko/docs/Web/CSS/calc
-  padding: 24px;
+    max-width: 1100px; // 최대 너비를 지정  -> 이 값 이상으로는 안커짐
+    width: calc(100% - 200px); // css 함수 너비 100%에서 164px만큼 크기를 줄임(여백을 위해) https://developer.mozilla.org/ko/docs/Web/CSS/calc
+    padding: 24px;
+    z-index: 100;
 
-  @media screen and (max-width: 980px) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  
-  @media screen and (max-width: 640px) {
-    width: 100%;
-    border-left: 0;
-    border-right: 0;
-  }
+    @media screen and (max-width: 980px) {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    @media screen and (max-width: 640px) {
+        width: 100%;
+        border-left: 0;
+        border-right: 0;
+    }
 `;

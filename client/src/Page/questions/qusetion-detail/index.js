@@ -3,11 +3,12 @@ import ContentList from './ContentList';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import BlueBtn from '../../components/style/blueBtn';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ContentSidebar from './sidebar/SideBar';
-import axios from 'axios';
 import Loading from '../../components/style/loading';
 import TimeForToday from '../../components/function/timeForToday';
+import { useGet } from '../../components/hook/API';
+import { useCookies } from 'react-cookie';
 const StyledHeader = styled.header`
     display: flex;
     flex-flow: row nowrap;
@@ -66,25 +67,19 @@ const ContentLayout = styled.div`
         float: none;
     }
 `;
-//.get(`http://localhost:8080/questions/${data.state.id}`)
 //개별 질문 페이지 구성 화면입니다
 const SingleQuestion = () => {
     //서버에서 받아와야 될 데이터
     const data = useLocation();
-    const [questionData, setQuestionData] = useState({});
-    const [answerData, setAnswerData] = useState([]);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        setLoading(true);
-        axios.get(`http://localhost:8080/questions/${data.state.id}`).then((res) => setQuestionData(res.data.data));
-        axios
-            .get(`http://localhost:8080/answers/${data.state.id}?page=1&size=10`)
-            .then((res) => setAnswerData(res.data.data))
-            .then(() => setLoading(false))
-            .catch((error) => console.error(error));
-    }, []);
+
+    const [questionData, setQuestionData] = useGet(`questions/${data.state.id}`, setLoading);
+    const [answerData, setAnswerData] = useGet(`answers/${data.state.id}?page=1&size=10`, setLoading);
+
     const Asked = TimeForToday(new Date(questionData.createdAt));
     const Modified = TimeForToday(new Date(questionData.modifiedAt));
+    const [cookie] = useCookies(['memberId']);
+
     return (
         <Container>
             <Sidebar />
@@ -92,18 +87,24 @@ const SingleQuestion = () => {
                 {/* 헤더 = 제목, 질문생성 버튼, 질문정보(날짜등등) */}
                 <StyledHeader>
                     <H1>{questionData.title}</H1>
-                    <Link to={'/questions/ask'}>
-                        <BlueBtn>Ask Question</BlueBtn>
-                    </Link>
+                    {cookie.memberId !== undefined ? (
+                        <Link to="/questions/ask">
+                            <BlueBtn>Ask Question</BlueBtn>
+                        </Link>
+                    ) : (
+                        <Link to="../users/login">
+                            <BlueBtn>Ask Question</BlueBtn>
+                        </Link>
+                    )}
                 </StyledHeader>
                 <Information>
                     <ElContainer>
                         <AmvTitle>Asked</AmvTitle>
-                        <Time>{Asked}</Time>
+                        <Time>{Asked} ago</Time>
                     </ElContainer>
                     <ElContainer>
                         <AmvTitle>Modified</AmvTitle>
-                        <Time>{Modified}</Time>
+                        <Time>{Modified} ago</Time>
                     </ElContainer>
                 </Information>
                 {/* 질문과, 답변 = 콘텐츠 영역 */}

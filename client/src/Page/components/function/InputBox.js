@@ -11,9 +11,11 @@ import numlist from '../../questions/img/textEditor/numlist.png';
 import list from '../../questions/img/textEditor/list.png';
 import more from '../../questions/img/textEditor/more.png';
 import help from '../../questions/img/textEditor/help-web-button.png';
-import { useState, useRef } from 'react';
-import { TextToCode, CodeToHtml } from './textConverter';
+import { useRef, useState } from 'react';
+import { CodeToHtml, TextToCode } from './textConverter';
 import BlueBtn from '../style/blueBtn';
+import ContentLogin from '../../questions/qusetion-detail/ContentLogin';
+import { useCookies } from 'react-cookie';
 
 const Wrapper = styled.div`
     display: flex;
@@ -23,52 +25,52 @@ const Wrapper = styled.div`
 `;
 
 const Buttons = styled.div`
-  margin-top: 6px;
-  width: 850px;
-  height: 35px;
+    margin-top: 6px;
+    width: 850px;
+    height: 35px;
 
-  button {
-    background-color: white;
-    width: 30px;
-    height: 24px;
-    padding: 3px;
-    margin: 3px 3px 3px 6px;
+    button {
+        background-color: white;
+        width: 30px;
+        height: 24px;
+        padding: 3px;
+        margin: 3px 3px 3px 6px;
 
-    img {
-      width: 18px;
-      height: 18px;
+        img {
+            width: 18px;
+            height: 18px;
+        }
     }
-  }
 
-  .selected {
-    background-color: #c7e0f4;
-    padding-bottom: 23px;
-    padding-top: 5px;
-    border-radius: 5px;
-  }
+    .selected {
+        background-color: #c7e0f4;
+        padding-bottom: 23px;
+        padding-top: 5px;
+        border-radius: 5px;
+    }
 
-  button:hover {
-    cursor: pointer;
-    background-color: #efefef;
-  }
+    button:hover {
+        cursor: pointer;
+        background-color: #efefef;
+    }
 `;
 
 const TextArea = styled.textarea`
-  border-radius: 3px;
-  width: 100%;
-  height: 250px;
-  line-height: 25px;
-  font-size: 1em;
-  letter-spacing: 1px;
-  resize: none;
-  overflow: scroll;
-  border-bottom: 1px solid var(--theme-border);
-  border-top: 1px solid var(--theme-border);
+    border-radius: 3px;
+    width: 100%;
+    height: 250px;
+    line-height: 25px;
+    font-size: 1em;
+    letter-spacing: 1px;
+    resize: none;
+    overflow: scroll;
+    border-bottom: 1px solid var(--theme-border);
+    border-top: 1px solid var(--theme-border);
 
-  :focus {
-    outline: 1px solid #6BBBF7;
-    box-shadow: 3px 3px 30px rgb(193,213,227), -3px -3px 30px rgb(193,213,227);
-  }
+    :focus {
+        outline: 1px solid #6bbbf7;
+        box-shadow: 1px 1px 10px rgb(193, 213, 227), -1px -1px 10px rgb(193, 213, 227);
+    }
 `;
 
 const Title = styled.h2`
@@ -83,7 +85,7 @@ const Preview = styled.div`
 `;
 
 const PostBtn = styled(BlueBtn)`
-    margin-top: 30px;
+    margin-top: 5px;
 `;
 
 const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해주세요', Value, setValue, SubmitBtnName, Submit }) => {
@@ -91,20 +93,21 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
     const [selectBtn, isSelectBtn] = useState(); //버튼 선택중
 
     // 텍스트를 html 로 바꾸기 위한
-    const [PreviewText, setPreviewText] = useState(Value); //프리뷰
+    const [PreviewText, setPreviewText] = useState(TextToCode(Value)); //프리뷰
     const [isBold, setBold] = useState(false);
     const [isItalic, setItalic] = useState(false);
     const [isInlineCode, setInlineCode] = useState(false);
+
+    //cookie정보
+    const [cookie] = useCookies(['memberId']);
 
     // 버튼 이벤트로 해당 html 요소를 넣는 부분
     const Bold = () => {
         setBold((current) => !current);
         if (isBold) {
-            setPreviewText(PreviewText + '</b>');
             setValue(Value + '</b>');
             isSelectBtn(null);
         } else {
-            setPreviewText(PreviewText + '<b>');
             setValue(Value + '<b>');
             isSelectBtn('Bold');
         }
@@ -113,11 +116,9 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
     const Italic = () => {
         setItalic((current) => !current);
         if (isItalic) {
-            setPreviewText(PreviewText + '</i>');
             setValue(Value + '</i>');
             isSelectBtn(null);
         } else {
-            setPreviewText(PreviewText + '<i>');
             setValue(Value + '<i>');
             isSelectBtn('Italic');
         }
@@ -126,11 +127,9 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
     const InlineCode = () => {
         setInlineCode((current) => !current);
         if (isInlineCode) {
-            setPreviewText(PreviewText + '</code>');
             setValue(Value + '</code>');
             isSelectBtn(null);
         } else {
-            setPreviewText(PreviewText + '<code>');
             setValue(Value + '<code>');
             isSelectBtn('InlineCode');
         }
@@ -201,6 +200,7 @@ const TextBox = ({ title = '', subtitle = '', OnChange, Placeholder = '입력해
                     <Preview dangerouslySetInnerHTML={{ __html: CodeToHtml(PreviewText) }} /> {/* 문자열의 html 태그를 출력 */}
                 </div>
             </Wrapper>
+            {cookie.memberId === undefined && <ContentLogin />}
             {Submit ? <PostBtn onClick={handleSubmit}>{SubmitBtnName}</PostBtn> : null}
         </div>
     );
