@@ -8,6 +8,7 @@ import { useCookies } from 'react-cookie';
 import { Fragment } from 'react';
 import axios from 'axios';
 import { ImgArr } from '../users/userList/ImgArr';
+import defaultImg from '../questions/img/unnamed.png'
 
 const Container = styled.div`
     position: fixed;
@@ -134,7 +135,7 @@ function Header() {
                 <SearchInput type="text" placeholder="  Search..." onChange={ChangeValue} Value={value} setValue={setValue} onKeyPress={Submit} />
                 {cookie.memberId !== undefined ? (
                     <UserInfoLink to={`/users/${cookie.memberId}`}>
-                        <img src={ImgArr[cookie.memberId] ? ImgArr[cookie.memberId] : ImgArr[0]} alt="profile img" />
+                        <img src={ImgArr[cookie.memberId] ? ImgArr[cookie.memberId] : defaultImg} alt="profile img" />
                     </UserInfoLink>
                 ) : null}
                 <Links>
