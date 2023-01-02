@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import { useCookies } from 'react-cookie';
 /* 사이드바 입니다 */
 const Aside = styled.aside`
     width: 200px;
@@ -60,7 +60,8 @@ const SelectLink = styled(Link)`
 export function Sidebar() {
     const location = useLocation(); //현재 url주소 불러옴
     const [select, isSelect] = useState();
-
+    const [cookie] = useCookies(['memberId']);
+    console.log(cookie);
     //url 주소 바뀔때마다 select에 할당하여 url주소 기준으로 탭선택 이펙트 구현
     useEffect(() => {
         isSelect(location.pathname.split('/')[1]);
@@ -82,12 +83,18 @@ export function Sidebar() {
                                 Questions
                             </StyledLink>
                         )}
-                        <StyledLink className="subNav" to="/">
-                            Tags
-                        </StyledLink>
                         <StyledLink className="subNav" to="/users">
                             Users
                         </StyledLink>
+                        {cookie.memberId ? (
+                            <StyledLink className="subNav" to={`/users/${cookie.memberId}`}>
+                                profile
+                            </StyledLink>
+                        ) : (
+                            <StyledLink className="subNav" to={`/users/login`}>
+                                profile
+                            </StyledLink>
+                        )}
                     </NavList>
                 </NavList>
             </Nav>

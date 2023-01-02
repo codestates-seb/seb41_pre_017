@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import BlueBtn from "../../../components/style/blueBtn";
+import styled from 'styled-components';
+import BlueBtn from '../../../components/style/blueBtn';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import { ImgArr } from "../../userList/ImgArr";
+import { ImgArr } from '../../userList/ImgArr';
 
 const Wrapper = styled.div`
     display: flex;
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
         height: 40px;
         margin: 0px 0px 20px 0px;
     }
-`
+`;
 const BorderBox = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,39 +40,46 @@ const BorderBox = styled.div`
     margin: 10px 0px 20px 0px;
     width: 100%;
 
-        p {
-            margin-top: 5px;
-        }
-        img {
-            width: 128px;
-            height: 128px;
-            margin-bottom: 30px;
-        }
-        
-        span {
-            color: red;
-            font-size: 12px;
-        }
-        
-`
+    p {
+        margin-top: 5px;
+    }
+    img {
+        width: 128px;
+        height: 128px;
+        margin-bottom: 30px;
+    }
 
-const EditProfile = ({setChangeNickname, changeNickname, userData, HandleChange}) => {
+    span {
+        color: red;
+        font-size: 12px;
+    }
+`;
+
+const EditProfile = ({ setChangeNickname, changeNickname, userData, HandleChange, setUserData }) => {
     const [cookie] = useCookies(['memberId']);
-    
+
     const onChange = (e) => {
         setChangeNickname(e.target.value);
-    }
+    };
 
     const handleNickname = () => {
-        if(changeNickname.length <= 1 || changeNickname.length > 4) { 
-            alert("닉네임은 2글자 이상 5글자 미만으로 입력해주세요.")
+        if (changeNickname.length <= 1 || changeNickname.length > 4) {
+            alert('닉네임은 2글자 이상 5글자 미만으로 입력해주세요.');
             return;
         }
-        alert('닉네임이 변경되었습니다.')
-        axios.patch(`http://localhost:8080/members/${cookie.memberId}`,{
-            "nickname": changeNickname,   
-        })
-    }
+        alert('닉네임이 변경되었습니다.');
+        axios
+            .patch(`http://localhost:8080/members/${cookie.memberId}`, {
+                nickname: changeNickname,
+            })
+            .then(() => {
+                const newData = {
+                    ...userData,
+                    nickname: changeNickname,
+                };
+                setUserData(newData);
+            });
+    };
 
     const memberImg = ImgArr[userData.memberId];
 
@@ -83,17 +90,14 @@ const EditProfile = ({setChangeNickname, changeNickname, userData, HandleChange}
             <strong>Public information</strong>
             <BorderBox>
                 <p>Profile image</p>
-                <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img"/>
+                <img src={ImgArr[userData.memberId] ? memberImg : ImgArr[0]} alt="profile img" />
                 <label htmlFor="input">Change Nickname</label>
-                <input id="input"  onChange={onChange} value={changeNickname} placeholder={userData.nickname} />
-                { changeNickname.length >= 1 
-                ? <span>닉네임은 2글자 이상 5글자 미만으로 입력해주세요</span>
-                : null
-                }
-                </BorderBox>
+                <input id="input" onChange={onChange} value={changeNickname} placeholder={userData.nickname} />
+                {changeNickname.length >= 1 ? <span>닉네임은 2글자 이상 5글자 미만으로 입력해주세요</span> : null}
+            </BorderBox>
             <BlueBtn onClick={handleNickname}>Save Profile</BlueBtn>
         </Wrapper>
-    )
+    );
 };
 
 export default EditProfile;
