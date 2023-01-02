@@ -60,7 +60,6 @@ const DeleteProfile = () => {
         
             .delete(`http://ec2-52-78-166-35.ap-northeast-2.compute.amazonaws.com:8080/members/${cookie.memberId}`, {})
             .then((response) => {
-                console.log('삭제 요청 성공');
                 alert('계정이 삭제되었습니다');
                 removeCookie('memberId');
                 navigate('/');

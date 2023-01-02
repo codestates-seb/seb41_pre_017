@@ -3,6 +3,7 @@ import BlueBtn from '../../../components/style/blueBtn';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { ImgArr } from '../../userList/ImgArr';
+import defaultImg from '../../../questions/img/unnamed.png';
 
 const Wrapper = styled.div`
     display: flex;
@@ -95,7 +96,7 @@ const EditProfile = ({ setChangeNickname, changeNickname, userData, setUserData 
             <strong>Public information</strong>
             <BorderBox>
                 <p>Profile image</p>
-                <img src={ImgArr[userData.memberId] ? memberImg() : ImgArr[0]} alt="profile img" />
+                <img src={ImgArr[userData.memberId] ? memberImg() : defaultImg} alt="profile img" />
                 <label htmlFor="input">Change Nickname</label>
                 <input id="input" onChange={onChange} value={changeNickname} placeholder={userData.nickname} />
                 {nickNameLengthCheck ? <span>닉네임은 2글자 이상 10글자 미만으로 입력해주세요</span> : null}

@@ -3,6 +3,7 @@ import { ReactComponent as Created } from '../profile/img/createdAt.svg';
 import { ReactComponent as Email } from '../profile/img/email.svg';
 import TimeForToday from '../../../components/function/timeForToday';
 import { ImgArr } from '../../userList/ImgArr';
+import defaultImg from '../../../questions/img/unnamed.png';
 
 const StyledHeader = styled.div`
     display: flex;
@@ -48,7 +49,7 @@ const ProfileHeader = ({ userData }) => {
 
     return (
         <StyledHeader>
-            <img src={ImgArr[userData.memberId] ? memberImg() : ImgArr[0]} alt="profile img" />
+            <img src={ImgArr[userData.memberId] ? memberImg() : defaultImg } alt="profile img" />
             <div className="userinfo">
                 <p>{userData.nickname}</p>
                 <span>
